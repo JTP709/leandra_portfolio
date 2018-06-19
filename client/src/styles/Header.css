@@ -1,0 +1,14 @@
+body {
+	margin: 0;
+}
+
+.header_jumbotron {
+	background-color: #9E49FFFF;
+	height: 300px;
+}
+
+.header_content {
+    margin: auto;
+    width: 60%;
+    padding: 60px;
+}
