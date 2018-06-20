@@ -1,22 +1,20 @@
 import React, { Component } from 'react';
-import { Jumbotron, Button } from 'react-bootstrap';
+import { PageHeader, Row, Col } from 'react-bootstrap';
 import '../styles/Header.css';
 
 class Header extends Component {
 	render() {
 		return (
-			<Jumbotron className="header_jumbotron">
-				<div className="header_content">
-				  <h1>Hello, world!</h1>
-				  <p>
-				    This is a simple hero unit, a simple jumbotron-style component for calling
-				    extra attention to featured content or information.
-				  </p>
-				  <p>
-				    <Button bsStyle="primary">Learn more</Button>
-				  </p>
-			  </div>
-			</Jumbotron>
+			<PageHeader className="header_section">
+				<Row>
+					<Col sm={9}>
+						<h1>
+							<strong>Welcome to Leandra's World!</strong>
+						</h1>
+						<small>Art in Motion</small>
+					</Col>
+				</Row>
+			</PageHeader>
 		)
 	}
 }

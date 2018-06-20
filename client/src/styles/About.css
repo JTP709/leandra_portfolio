@@ -1,12 +1,9 @@
-.about_section {
+/*.about_section {
 	height: 400px;
 }
 
 .about_content {
-	display: flex;
-	flex-direction: row;
-	width: 60%;
-	margin: auto;
+
 }
 
 .about_information {
@@ -14,11 +11,9 @@
 }
 
 .about_header {
-	margin: auto;
-	width: 60%;
-	padding-bottom: 20px;
+
 }
 
 #profile_picture {
 	padding: 20px 20px 20px 0px;
-}
+}*/
