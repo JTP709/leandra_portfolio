@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Grid, Row } from 'react-bootstrap';
+import Navbar from './Navbar';
 import Header from './Header';
 import About from './About';
-import Blog from './Blog';
+import ConnectedWork from '../containers/ConnectedWork';
 import Footer from './Footer';
 import '../styles/bootstrap.min.css';
 import '../styles/bootstrap-theme.min.css';
@@ -12,13 +13,10 @@ class App extends Component {
   render() {
     return (
       <Grid>
+        <Navbar />
         <Header />
-        <Row className="about_header">
-          <h1>About Me</h1>
-          <hr />
-        </Row>
         <About />
-        <Blog />
+        <ConnectedWork />
         <Footer />
       </Grid>
     );
