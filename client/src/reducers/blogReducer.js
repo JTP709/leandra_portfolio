@@ -1,6 +1,10 @@
 import { testState } from '../testState';
 
-const initialState = { ...testState.blogs };
+const initialState = { ...testState };
+
+export const getBlogs = (state) => {
+	return state.blogs.blogs;
+}
 
 const blogReducer = (state = initialState, action) => {
   switch(action.type) {

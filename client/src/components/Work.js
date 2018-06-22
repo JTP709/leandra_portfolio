@@ -1,9 +1,59 @@
 import React, { Component } from 'react';
-import { Image, Row, Col, ButtonToolbar, Button, DropdownButton, MenuItem } from 'react-bootstrap';
+import { Row, Col, ButtonToolbar, Button, DropdownButton, MenuItem } from 'react-bootstrap';
+import { capitalizeFirstLetter } from '../utils/utils';
 import BlogCard from './BlogCard';
 import '../styles/Work.css';
 
 class Work extends Component {
+	constructor(){
+		super();
+		this.state = { filterButton: 'Filter Blog' }
+	}
+
+	handleFilterSelect(filter){
+		this.setState({ filterButton: filter })
+	}
+
+	renderBlogCards() {
+		const blogs = this.props.blogs;
+		return blogs.map(blog => {
+			const cardAndContentClasses = ((blogs.indexOf(blog)+1) % 2) === 0 ?
+				["blog_post blog_post_right blog_post_middle", "blog_post_content_right", "right"] :
+				["blog_post blog_post_left", "blog_post_content_left", "left"]
+
+			return (
+				<div key={blogs.indexOf(blog)}>
+					<BlogCard 
+						blogCardClass={ cardAndContentClasses[0] }
+						blogCardContentClass={ cardAndContentClasses[1] }
+						position={ cardAndContentClasses[2] }
+						title={ blog.title }
+						blurb={ blog.blurb }
+						thumbnail={ blog.thumbnail }
+					/>
+					<hr />
+				</div>
+			)
+		})
+	}
+
+	renderFilters(){
+		const filters = this.props.filters;
+		const filterButtons = filters.map(filter => {
+			const styledFilter = capitalizeFirstLetter(filter);
+			return(
+				<MenuItem key={filters.indexOf(filter)} onSelect={ ()=> this.handleFilterSelect(styledFilter) }>
+					{ styledFilter }
+				</MenuItem>
+			)
+		});
+		const defaultButton = (
+			<MenuItem key={'DefaultButton'} onSelect={ ()=> this.handleFilterSelect('Filter Blog') }>
+				Show All
+			</MenuItem>
+		)
+		return [ ...filterButtons, defaultButton];
+	}
 	render(){
 		return (
 			<Row id="work_section">
@@ -25,16 +75,8 @@ class Work extends Component {
 				</Col>
 				<Col xs={12} md={7}>
 					<ButtonToolbar>
-							<DropdownButton title="Filter" bsSize="large">
-								<MenuItem>
-									Recipies
-								</MenuItem>
-								<MenuItem>
-									Photography
-								</MenuItem>
-								<MenuItem>
-									Design
-								</MenuItem>
+							<DropdownButton title={ this.state.filterButton } bsSize="large" id="dropdownButton">
+								{ this.renderFilters() }
 							</DropdownButton>
 					</ButtonToolbar>
 				</Col>
@@ -42,32 +84,9 @@ class Work extends Component {
 					<hr />
 				</Col>
 				<Col xs={12}>
-					<BlogCard 
-						blogCardClass="blog_post blog_post_left"
-						blogCardContentClass="blog_post_content_left"
-						position="left"
-						title={ this.props.blogs[0].title }
-						blurb={ this.props.blogs[0].blurb }
-						thumbnail={ this.props.blogs[0].thumbnail }
-					/>
-					<hr />
-					<BlogCard
-						blogCardClass="blog_post blog_post_right blog_post_middle"
-						blogCardContentClass="blog_post_content_right"
-						position="right"
-						title={ this.props.blogs[1].title }
-						blurb={ this.props.blogs[1].blurb }
-						thumbnail={ this.props.blogs[1].thumbnail }
-					/>
-					<hr />
-					<BlogCard
-						blogCardClass="blog_post blog_post_left"
-						blogCardContentClass="blog_post_content_left"
-						position="left"
-						title={ this.props.blogs[2].title }
-						blurb={ this.props.blogs[2].blurb }
-						thumbnail={ this.props.blogs[2].thumbnail }
-					/>
+
+					{ this.renderBlogCards()}
+
 				</Col>
 				<hr />
 			</Row>

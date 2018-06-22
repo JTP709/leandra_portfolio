@@ -6,12 +6,12 @@ class BlogCard extends Component {
 	render(){
 		const { blogCardContentClass, blogCardClass, position, title, blurb, thumbnail } = this.props;
 		const imageElement = (
-			<Col xs={12} md={3}>
+			<Col xs={12} md={3} key={ 1 }>
 				<Image src={ thumbnail } alt="Blog Picture" responsive circle />
 			</Col>
 		)
 		const contentElement = (
-			<Col xs={12} md={9} className={ blogCardContentClass }>
+			<Col xs={12} md={9} className={ blogCardContentClass } key = { 2 }>
 				<h2>{ title }</h2>
 				<p>
 					{ blurb }

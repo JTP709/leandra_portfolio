@@ -1,4 +1,10 @@
-const initialState = {};
+import { testState } from '../testState';
+
+const initialState = { ...testState };
+
+export const getFilters = (state) => {
+	return state.filters.filters;
+}
 
 const filterReducer = (state = initialState, action) => {
   switch(action.type) {

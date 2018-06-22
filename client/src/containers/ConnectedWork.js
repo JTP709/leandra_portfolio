@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
+import { getBlogs } from '../reducers/blogReducer';
+import { getFilters } from '../reducers/filterReducer';
 import Work from '../components/Work';
 
 const mapStateToProps = (state) => {
-	const { filters, blogs } = state;
 	return {
-		filters,
-		blogs
+		filters: getFilters(state),
+		blogs: getBlogs(state)
 	}
 }
 
