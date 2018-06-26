@@ -1,6 +1,4 @@
-import { testState } from '../testState';
-
-const initialState = { ...testState };
+const initialState = { };
 
 export const getBlogs = (state) => {
 	return state.blogs.blogs;
@@ -9,7 +7,15 @@ export const getBlogs = (state) => {
 const blogReducer = (state = initialState, action) => {
   switch(action.type) {
     case 'ADD_NEW_BLOG':
-      return action.payload
+      return {
+      	...state,
+      	blogs: action.payload
+      }
+    case 'UPDATE_BLOG_ARRAY':
+    	return {
+    		...state,
+    		blogs: action.payload
+    	}
     default:
       return state;
   }

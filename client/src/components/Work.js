@@ -10,12 +10,21 @@ class Work extends Component {
 		this.state = { filterButton: 'Filter Blog' }
 	}
 
+	componentWillMount(){
+		this.props.fetchBlogs();
+	}
+
 	handleFilterSelect(filter){
 		this.setState({ filterButton: filter })
 	}
 
 	renderBlogCards() {
 		const blogs = this.props.blogs;
+		if (!blogs) return (
+			<div>
+				<h2>There are no blogs to display</h2>
+			</div>
+		)
 		return blogs.map(blog => {
 			const cardAndContentClasses = ((blogs.indexOf(blog)+1) % 2) === 0 ?
 				["blog_post blog_post_right blog_post_middle", "blog_post_content_right", "right"] :
@@ -28,7 +37,7 @@ class Work extends Component {
 						blogCardContentClass={ cardAndContentClasses[1] }
 						position={ cardAndContentClasses[2] }
 						title={ blog.title }
-						blurb={ blog.blurb }
+						blurb={ blog.body }
 						thumbnail={ blog.thumbnail }
 					/>
 					<hr />
