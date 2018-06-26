@@ -17,7 +17,7 @@ const mapDispatchToProps = {
 }
 
 const ConnectedApp = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(App)
 

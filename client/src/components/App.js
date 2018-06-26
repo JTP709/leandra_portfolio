@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
-import './App.css';
+import { Grid } from 'react-bootstrap';
+import Navbar from './Navbar';
+import Header from './Header';
+import About from './About';
+import ConnectedWork from '../containers/ConnectedWork';
+import Footer from './Footer';
+import '../styles/bootstrap.min.css';
+import '../styles/bootstrap-theme.min.css';
+
 
 class App extends Component {
   render() {
     return (
-      <div>
-        Hello, World!
-      </div>
+      <Grid>
+        <Navbar />
+        <Header />
+        <About />
+        <ConnectedWork />
+        <Footer />
+      </Grid>
     );
   }
 }

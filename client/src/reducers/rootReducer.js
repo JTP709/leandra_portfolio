@@ -1,10 +1,10 @@
-import userSelectedReducer from './blogReducer';
-import searchReducer from './filterReducer';
+import blogReducer from './blogReducer';
+import filterReducer from './filterReducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
-	userSelected: userSelectedReducer,
-	searchResult: searchReducer
+	blogs: blogReducer,
+	filters: filterReducer
 });
 
 export default rootReducer;

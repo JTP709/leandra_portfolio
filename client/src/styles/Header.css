@@ -1,0 +1,36 @@
+/*body {
+	margin: 0;
+}
+
+.header_jumbotron {
+	background-color: #9E49FFFF;
+	height: 300px;
+}
+
+.header_content {
+    margin: auto;
+    width: 60%;
+    padding: 60px;
+}*/
+
+/*.header_section {
+  padding-top: 10rem;
+  padding-bottom: calc(10rem - 56px);
+  background-image: url("../img/header.jpg");
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: white;
+}
+
+@media (min-width: 992px) {
+	.header_section {
+	    height: 100vh;
+	    width: 100%;
+	    min-height: 650px;
+	    padding-top: 0;
+	    padding-bottom: 0;
+	}
+}*/

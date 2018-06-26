@@ -1,0 +1,29 @@
+/*.blog_post {
+	margin: auto;
+	width: 60%;
+	display: flex;
+	flex-direction: row;
+}
+
+.blog_post_content_left {
+	padding-left: 20px;
+}
+
+.blog_post_content_right {
+	padding-right: 20px;
+}
+
+.blog_post_middle {
+	padding: 20px 0px 20px 0px;
+}
+
+.blog_header {
+	margin: auto;
+	width: 60%;
+	padding-bottom: 20px;
+}
+
+.blog_hr {
+	width: 60%;
+	margin: 30px auto;
+}*/
