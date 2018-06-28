@@ -4,7 +4,17 @@ import '../styles/Work.css';
 
 class BlogCard extends Component {
 	render(){
-		const { blogCardContentClass, blogCardClass, position, title, blurb, thumbnail } = this.props;
+		const { 
+			blogCardContentClass,
+			blogCardClass,
+			position,
+			title,
+			body,
+			thumbnail,
+			openModal,
+			blog
+		} = this.props;
+		const blurb = `${body.slice(0,450)}...`;
 		const imageElement = (
 			<Col xs={12} md={3} key={ 1 }>
 				<Image src={ thumbnail } alt="Blog Picture" responsive circle />
@@ -19,7 +29,7 @@ class BlogCard extends Component {
 			</Col>
 		)
 		return (
-			<Row className={ blogCardClass }>
+			<Row onClick={()=>{openModal(blog)}} className={ blogCardClass }>
 				{
 					position === "left" ? 
 						[imageElement, contentElement] : 

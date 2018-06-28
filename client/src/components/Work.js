@@ -2,12 +2,21 @@ import React, { Component } from 'react';
 import { Row, Col, ButtonToolbar, Button, DropdownButton, MenuItem } from 'react-bootstrap';
 import { capitalizeFirstLetter } from '../utils/utils';
 import BlogCard from './BlogCard';
+import BlogModal from './BlogModal';
 import '../styles/Work.css';
 
 class Work extends Component {
 	constructor(){
 		super();
-		this.state = { filterButton: 'Filter Blog' }
+		this.state = { 
+			filterButton: 'Filter Blog',
+			showModal: false,
+			title: "",
+			body: "",
+			thumbnail: ""
+		}
+    this.handleModal = this.handleModal.bind(this);
+    this.openModal = this.openModal.bind(this);
 	}
 
 	componentWillMount(){
@@ -15,7 +24,24 @@ class Work extends Component {
 	}
 
 	handleFilterSelect(filter){
-		this.setState({ filterButton: filter })
+		const oldState = { ...this.state };
+		this.setState({ ...oldState, filterButton: filter })
+	}
+
+	handleModal(state){
+		const oldState = { ...this.state };
+		this.setState({ ...oldState, showModal: state })
+	}
+
+	openModal(blog){
+		const oldState = { ...this.state };
+		this.setState({ 
+			...oldState,
+			showModal: true,
+			title: blog.title,
+			body: blog.body,
+			thumbnail: blog.thumbnail
+		})
 	}
 
 	renderBlogCards() {
@@ -37,11 +63,14 @@ class Work extends Component {
 						blogCardContentClass={ cardAndContentClasses[1] }
 						position={ cardAndContentClasses[2] }
 						title={ blog.title }
-						blurb={ blog.body }
+						body={ blog.body }
 						thumbnail={ blog.thumbnail }
+						blog={ blog }
+						openModal={ this.openModal }
 					/>
 					<hr />
 				</div>
+
 			)
 		})
 	}
@@ -63,6 +92,7 @@ class Work extends Component {
 		)
 		return [ ...filterButtons, defaultButton];
 	}
+
 	render(){
 		return (
 			<Row id="work_section">
@@ -93,11 +123,16 @@ class Work extends Component {
 					<hr />
 				</Col>
 				<Col xs={12}>
-
 					{ this.renderBlogCards()}
-
 				</Col>
 				<hr />
+				<BlogModal
+					handleModal={this.handleModal}
+					show={this.state.showModal}
+					title={this.state.title}
+					body={this.state.body}
+					thumbnail={this.state.thumbnail}
+				/>
 			</Row>
 		)
 	}

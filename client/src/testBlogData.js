@@ -10,7 +10,22 @@ var testBlogs = [
 		title: "Kittens!",
 		thumbnail: "http://via.placeholder.com/250x250",
 		filter: ['animals', 'life'],
-		blurb: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+		body: "### Something, something, something, dark side...\n\n\n\n" +
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+		"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+		"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
+		"nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
+		"reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla " +
+		"pariatur. Excepteur sint occaecat cupidatat non proident, sunt in " +
+		"culpa qui officia deserunt mollit anim id est laborum.\n\n"+
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+		"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+		"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
+		"nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
+		"reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla " +
+		"pariatur. Excepteur sint occaecat cupidatat non proident, sunt in " +
+		"culpa qui officia deserunt mollit anim id est laborum.\n\n"+
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
 		"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
 		"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
 		"nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
@@ -23,7 +38,22 @@ var testBlogs = [
 		title: "Doggies!",
 		thumbnail: "http://via.placeholder.com/250x250",
 		filter: ['cooking', 'animals'],
-		blurb: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+		body: "### Something, something, something, dark side...\n\n" +
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+		"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+		"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
+		"nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
+		"reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla " +
+		"pariatur. Excepteur sint occaecat cupidatat non proident, sunt in " +
+		"culpa qui officia deserunt mollit anim id est laborum.\n\n"+
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+		"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+		"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
+		"nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
+		"reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla " +
+		"pariatur. Excepteur sint occaecat cupidatat non proident, sunt in " +
+		"culpa qui officia deserunt mollit anim id est laborum.\n\n"+
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
 		"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
 		"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
 		"nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
@@ -36,7 +66,22 @@ var testBlogs = [
 		title: "Bubbles!",
 		thumbnail: "http://via.placeholder.com/250x250",
 		filter: ['design', 'life'],
-		blurb: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+		body: "### Something, something, something, dark side...\n\n" +
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+		"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+		"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
+		"nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
+		"reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla " +
+		"pariatur. Excepteur sint occaecat cupidatat non proident, sunt in " +
+		"culpa qui officia deserunt mollit anim id est laborum.\n\n"+
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+		"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+		"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
+		"nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
+		"reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla " +
+		"pariatur. Excepteur sint occaecat cupidatat non proident, sunt in " +
+		"culpa qui officia deserunt mollit anim id est laborum.\n\n"+
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
 		"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
 		"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
 		"nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
@@ -49,7 +94,22 @@ var testBlogs = [
 		title: "Bakery!",
 		thumbnail: "http://via.placeholder.com/250x250",
 		filter: ['cooking', 'design'],
-		blurb: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+		body: "### Something, something, something, dark side...\n\n" +
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+		"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+		"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
+		"nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
+		"reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla " +
+		"pariatur. Excepteur sint occaecat cupidatat non proident, sunt in " +
+		"culpa qui officia deserunt mollit anim id est laborum.\n\n"+
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+		"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+		"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
+		"nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
+		"reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla " +
+		"pariatur. Excepteur sint occaecat cupidatat non proident, sunt in " +
+		"culpa qui officia deserunt mollit anim id est laborum.\n\n"+
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
 		"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
 		"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
 		"nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
@@ -62,7 +122,22 @@ var testBlogs = [
 		title: "Shapes!",
 		thumbnail: "http://via.placeholder.com/250x250",
 		filter: ['Life', 'design'],
-		blurb: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+		body: "### Something, something, something, dark side...\n\n" +
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+		"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+		"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
+		"nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
+		"reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla " +
+		"pariatur. Excepteur sint occaecat cupidatat non proident, sunt in " +
+		"culpa qui officia deserunt mollit anim id est laborum.\n\n"+
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+		"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+		"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
+		"nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
+		"reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla " +
+		"pariatur. Excepteur sint occaecat cupidatat non proident, sunt in " +
+		"culpa qui officia deserunt mollit anim id est laborum.\n\n"+
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
 		"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
 		"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
 		"nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +

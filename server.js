@@ -1,14 +1,12 @@
 const express = require('express');
 const testBlogs = require('./client/src/testBlogData');
 const mongoose = require('mongoose');
-const cors = require('cors')
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 5000;
 const mongodb_host = process.env.MONGODB_HOST || '127.0.0.1:27017';
-app.use(cors());
 const Schema = mongoose.Schema;
-
 const blogSchema = new Schema({
   title:  String,
   date: { type: Date, default: Date.now },
@@ -17,8 +15,10 @@ const blogSchema = new Schema({
   filters: [String],
   hidden: Boolean,
 });
-
 const Blog = mongoose.model('Blog', blogSchema);
+
+app.use(cors());
+// TODO: https://expressjs.com/en/resources/middleware/cors.html
 
 app.all('/api/blogs', (req, res) => {
 	if (req.method === 'GET') {
@@ -33,7 +33,19 @@ app.all('/api/blogs', (req, res) => {
 			});
 		});
 	} else if (req.method === 'POST') {
-		res.send(req.body);
+		// const blog = req.body;
+		// const newBlog = new Blog({
+		// 	title: blog.title,
+		// 	date: blog.date,
+		// 	thumbnail: blog.thumbnail,
+		// 	body: blog.blurb,
+		// 	filters: blog.filters,
+		// 	hidden: false
+		// });
+		// newBlog.save(function (err, newBlog.title) {
+	 //    if (err) return console.error(err);
+	 //    //res.send()
+	 //  });
 	}
 });
 
