@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Image, Row, Col } from 'react-bootstrap';
+import ReactMarkdown from 'react-markdown';
 import '../styles/Work.css';
 
 class BlogCard extends Component {
@@ -23,9 +24,7 @@ class BlogCard extends Component {
 		const contentElement = (
 			<Col xs={12} md={9} className={ blogCardContentClass } key = { 2 }>
 				<h2>{ title }</h2>
-				<p>
-					{ blurb }
-				</p>
+        <ReactMarkdown source={ blurb } />
 			</Col>
 		)
 		return (

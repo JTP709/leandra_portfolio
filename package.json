@@ -4,7 +4,11 @@
   "scripts": {
     "client": "cd client && npm start",
     "server": "MONGODB_HOST=127.0.0.1:27017 nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\" \"mongod\""
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\" \"mongod\"",
+    "database:drop": "node server_drop.js",
+    "database:build:dev":"node server_setup.js",
+    "database:read":"node server_read.js"
+
   },
   "dependencies": {
     "cors": "^2.8.4",

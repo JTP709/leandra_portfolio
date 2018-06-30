@@ -19,23 +19,37 @@ export const updateBlogArray = payload => {
 	}
 }
 
-export const addNewBlog = payload => {
+export const updateBlogModal = payload => {
   return {
-    type: 'ADD_NEW_BLOG',
+    type: 'UPDATE_BLOG_MODAL',
     payload
   }
 }
 
-export const updateBlog = payload => {
+export const updatePageNumber = payload => {
 	return {
-		type: 'UPDATE_BLOG',
+		type: 'UPDATE_PAGE_NUMBER',
 		payload
 	}
 }
 
-export const addFilter = payload => {
+export const updateBlogPage = payload => {
 	return {
-		type: 'ADD_FILTER',
+		type: 'UPDATE_BLOG_PAGE',
 		payload
 	}
+}
+
+export const updateBlogsDisplay = payload => {
+  return {
+    type: 'UPDATE_BLOG_DISPLAY',
+    payload
+  }
+}
+
+export const updateFilterButton = payload => {
+  return {
+    type: 'UPDATE_FILTER_BUTTON',
+    payload
+  }
 }

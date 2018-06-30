@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import { Row, Col, ButtonToolbar, Button, DropdownButton, MenuItem } from 'react-bootstrap';
+import { 
+	Row,
+	Col,
+	ButtonToolbar,
+	Button,
+	DropdownButton,
+	MenuItem,
+	Pagination
+} from 'react-bootstrap';
 import { capitalizeFirstLetter } from '../utils/utils';
 import BlogCard from './BlogCard';
 import BlogModal from './BlogModal';
@@ -8,56 +16,66 @@ import '../styles/Work.css';
 class Work extends Component {
 	constructor(){
 		super();
-		this.state = { 
-			filterButton: 'Filter Blog',
+		this.state = {
 			showModal: false,
-			title: "",
-			body: "",
-			thumbnail: ""
 		}
     this.handleModal = this.handleModal.bind(this);
     this.openModal = this.openModal.bind(this);
+    this.renderBlogCards = this.renderBlogCards.bind(this);
+    this.handlePagination = this.handlePagination.bind(this);
 	}
 
 	componentWillMount(){
 		this.props.fetchBlogs();
 	}
 
-	handleFilterSelect(filter){
-		const oldState = { ...this.state };
-		this.setState({ ...oldState, filterButton: filter })
+	handlePagination(page){
+		const { updateBlogPage } = this.props;
+		updateBlogPage(page);
 	}
 
-	handleModal(state){
-		const oldState = { ...this.state };
-		this.setState({ ...oldState, showModal: state })
+	handleFilterSelect(filter){
+		this.props.updateFilterButton(filter)
+	}
+
+	handleModal(arg){
+		this.setState({ showModal: arg })
 	}
 
 	openModal(blog){
-		const oldState = { ...this.state };
-		this.setState({ 
-			...oldState,
-			showModal: true,
+		const { updateBlogModal } = this.props;
+		const modalInfo = {
 			title: blog.title,
 			body: blog.body,
 			thumbnail: blog.thumbnail
-		})
+		};
+		updateBlogModal(modalInfo);
+		this.setState({
+			showModal: true
+		});
 	}
 
 	renderBlogCards() {
-		const blogs = this.props.blogs;
+		const { blogs, updateBlogsDisplay } = this.props;
 		if (!blogs) return (
 			<div>
 				<h2>There are no blogs to display</h2>
 			</div>
 		)
-		return blogs.map(blog => {
-			const cardAndContentClasses = ((blogs.indexOf(blog)+1) % 2) === 0 ?
+		const filteredBlogs = blogs.filter(blog => {
+			const { filterButton } = this.props;
+			return filterButton === 'Filter Blog' ?
+				blog :
+				blog.filters.includes(filterButton.toLowerCase());
+		});
+		const pages = Math.ceil(filteredBlogs.length/5);
+		const renderedBlogs = filteredBlogs.map(blog => {
+			const cardAndContentClasses = ((filteredBlogs.indexOf(blog)+1) % 2) === 0 ?
 				["blog_post blog_post_right blog_post_middle", "blog_post_content_right", "right"] :
-				["blog_post blog_post_left", "blog_post_content_left", "left"]
+				["blog_post blog_post_left", "blog_post_content_left", "left"];
 
 			return (
-				<div key={blogs.indexOf(blog)}>
+				<div key={ blogs.indexOf(blog) }>
 					<BlogCard 
 						blogCardClass={ cardAndContentClasses[0] }
 						blogCardContentClass={ cardAndContentClasses[1] }
@@ -70,30 +88,82 @@ class Work extends Component {
 					/>
 					<hr />
 				</div>
-
-			)
-		})
+			);
+		});
+		console.log('renderedBlogs: ', renderedBlogs);
+		updateBlogsDisplay(renderedBlogs);
 	}
 
 	renderFilters(){
-		const filters = this.props.filters;
+		const { filters } = this.props;
 		const filterButtons = filters.map(filter => {
 			const styledFilter = capitalizeFirstLetter(filter);
 			return(
 				<MenuItem key={filters.indexOf(filter)} onSelect={ ()=> this.handleFilterSelect(styledFilter) }>
 					{ styledFilter }
 				</MenuItem>
-			)
+			);
 		});
 		const defaultButton = (
 			<MenuItem key={'DefaultButton'} onSelect={ ()=> this.handleFilterSelect('Filter Blog') }>
 				Show All
 			</MenuItem>
-		)
+		);
 		return [ ...filterButtons, defaultButton];
 	}
 
 	render(){
+		const { blogs, updateBlogsDisplay } = this.props;
+		let blogsDisplay;
+		if (!blogs) {
+			blogsDisplay = (<div>
+				<h2>There are no blogs to display</h2>
+			</div>)
+		} 
+
+		const filteredBlogs = blogs.filter(blog => {
+			const { filterButton } = this.props;
+			return filterButton === 'Filter Blog' ?
+				blog :
+				blog.filters.includes(filterButton.toLowerCase());
+		});
+		const pages = Math.ceil(filteredBlogs.length/5);
+		const { activePage } = this.props;
+		let pageNumbers = [];
+		for (let n = 1; n <= pages; n++) {
+		  pageNumbers.push(
+		    <Pagination.Item
+		    	key={n}
+		    	active={n === activePage}
+		    	onClick={ ()=>{this.handlePagination(n)} }
+		    >{n}</Pagination.Item>
+		  );
+		}
+		const arrayStop = activePage*5;
+		const arrayStart = arrayStop-5;
+
+		blogsDisplay = filteredBlogs.slice(arrayStart,arrayStop).map(blog => {
+			const cardAndContentClasses = ((filteredBlogs.indexOf(blog)+1) % 2) === 0 ?
+				["blog_post blog_post_right blog_post_middle", "blog_post_content_right", "right"] :
+				["blog_post blog_post_left", "blog_post_content_left", "left"];
+
+			return (
+				<div key={ blogs.indexOf(blog) }>
+					<BlogCard 
+						blogCardClass={ cardAndContentClasses[0] }
+						blogCardContentClass={ cardAndContentClasses[1] }
+						position={ cardAndContentClasses[2] }
+						title={ blog.title }
+						body={ blog.body }
+						thumbnail={ blog.thumbnail }
+						blog={ blog }
+						openModal={ this.openModal }
+					/>
+					<hr />
+				</div>
+			);
+		});
+
 		return (
 			<Row id="work_section">
 				<Col xs={12}>
@@ -114,7 +184,7 @@ class Work extends Component {
 				</Col>
 				<Col xs={12} md={7}>
 					<ButtonToolbar>
-							<DropdownButton title={ this.state.filterButton } bsSize="large" id="dropdownButton">
+							<DropdownButton title={ this.props.filterButton } bsSize="large" id="dropdownButton">
 								{ this.renderFilters() }
 							</DropdownButton>
 					</ButtonToolbar>
@@ -123,18 +193,21 @@ class Work extends Component {
 					<hr />
 				</Col>
 				<Col xs={12}>
-					{ this.renderBlogCards()}
+					{ blogsDisplay }
 				</Col>
 				<hr />
+				<Col md={12}>
+		    	<Pagination bsSize="medium">{pageNumbers}</Pagination>
+		    </Col>
 				<BlogModal
 					handleModal={this.handleModal}
-					show={this.state.showModal}
-					title={this.state.title}
-					body={this.state.body}
-					thumbnail={this.state.thumbnail}
+					show={this.props.showModal}
+					title={this.props.title}
+					body={this.props.body}
+					thumbnail={this.props.thumbnail}
 				/>
 			</Row>
-		)
+		);
 	}
 }
 

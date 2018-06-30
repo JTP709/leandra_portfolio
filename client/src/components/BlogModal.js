@@ -23,11 +23,10 @@ class BlogModal extends Component {
     return (
       <Modal show={this.props.show} onHide={this.handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>{ title }</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <img src={ thumbnail } />
-          <h1>{ title }</h1>
+          <img src={ thumbnail } alt="blog thumbnail" />
           <ReactMarkdown source={ body } />
         </Modal.Body>
         <Modal.Footer>

@@ -1,18 +1,51 @@
 import { connect } from 'react-redux';
-import { getBlogs } from '../reducers/blogReducer';
-import { getFilters } from '../reducers/filterReducer';
-import { fetchBlogs } from '../actions/actionCreators';
+import {
+	getBlogs,
+	getBlogModal,
+	getPages,
+	getActivePage,
+	getBlogsDisplay,
+	getFilters,
+	getFilterButton
+} from '../reducers/rootReducer';
+import {
+	fetchBlogs,
+	updateBlogArray,
+	updateBlogModal,
+	updatePageNumber,
+	updateBlogPage,
+	updateBlogsDisplay,
+	updateFilterButton
+} from '../actions/actionCreators';
 import Work from '../components/Work';
 
 const mapStateToProps = (state) => {
+	const filters = getFilters(state);
+	const blogs = getBlogs(state);
+	const blogModal = getBlogModal(state);
+	const pages = getPages(state);
+	const activePage = getActivePage(state);
+	const blogsDisplay = getBlogsDisplay(state);
+	const filterButton = getFilterButton(state);
 	return {
-		filters: getFilters(state),
-		blogs: getBlogs(state)
+		filters,
+		blogs,
+		blogModal,
+		pages,
+		activePage,
+		blogsDisplay,
+		filterButton
 	}
 }
 
 const mapDispatchToProps = {
-	fetchBlogs
+	fetchBlogs,
+	updateBlogArray,
+	updateBlogModal,
+	updatePageNumber,
+	updateBlogPage,
+	updateBlogsDisplay,
+	updateFilterButton
 }
 
 const ConnectedWork = connect(

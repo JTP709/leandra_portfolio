@@ -1,24 +1,56 @@
-const initialState = { };
+const defaultState = {
+	blogs: [],
+	blogFilters: ['life','design','cooking','animals', 'travel'],
+	blogModal: {
+		title: "",
+		body: "",
+		thumbnail: ""
+	},
+	pages: 0,
+	activePage: 1,
+	blogsDisplay: [],
+	filterButton: 'Filter Blog'
+};
 
-export const getBlogs = (state) => {
-	return state.blogs.blogs;
-}
-
-const blogReducer = (state = initialState, action) => {
+export const blogs = (state = defaultState, action) => {
   switch(action.type) {
-    case 'ADD_NEW_BLOG':
-      return {
-      	...state,
-      	blogs: action.payload
-      }
     case 'UPDATE_BLOG_ARRAY':
+    	const blogs = action.payload;
     	return {
     		...state,
-    		blogs: action.payload
+    		blogs
+    	}
+    case 'UPDATE_BLOG_MODAL':
+    	const blogModal = action.payload;
+    	return {
+    		...state,
+    		blogModal
+    	}
+    case 'UPDATE_PAGE_NUMBER':
+    	const pages = action.payload;
+    	return {
+    		...state,
+    		pages
+    	}
+    case 'UPDATE_BLOG_PAGE':
+    	const activePage = action.payload;
+    	return {
+    		...state,
+    		activePage
+    	}
+    case 'UPDATE_BLOG_DISPLAY':
+    	const blogsDisplay = action.payload;
+    	return {
+    		...state,
+    		blogsDisplay
+    	}
+    case 'UPDATE_FILTER_BUTTON':
+    	const filterButton = action.payload;
+    	return {
+    		...state,
+    		filterButton
     	}
     default:
       return state;
   }
 }
-
-export default blogReducer

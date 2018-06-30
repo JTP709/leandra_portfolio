@@ -18,20 +18,8 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log('connected to database');
-
-  testBlogs.map(blog => {
-  	const { title, date, thumbnail, body, filters } = blog;
-		const newBlog = new Blog({
-			title: title,
-			date: date,
-			thumbnail: thumbnail,
-			body: body,
-			filters: filters,
-			hidden: false
-		});
-		newBlog.save(function (err, title) {
-	    if (err) return console.error(err);
-	    console.log(`${blog.title} added to database`);
-	  });
+	Blog.find(function (err, blogs) {
+	  if (err) return console.error(err);
+	  console.log(blogs);
 	});
 });

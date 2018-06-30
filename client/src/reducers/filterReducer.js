@@ -1,18 +1,19 @@
 import { testState } from '../testState';
 
-const initialState = { ...testState };
+const defaultState = { 
+	...testState,
+	filterButton: 'Filter Blog'
+};
 
-export const getFilters = (state) => {
-	return state.filters.filters;
-}
-
-const filterReducer = (state = initialState, action) => {
+export const filters = (state = defaultState.filters, action) => {
   switch(action.type) {
-    case 'ADD_NEW_FILTER':
-      return action.payload
+    case 'UPDATE_FILTER_BUTTON':
+    	const filterButton = action.payload;
+    	return {
+    		...state,
+    		filterButton
+    	}
     default:
       return state;
   }
 }
-
-export default filterReducer
