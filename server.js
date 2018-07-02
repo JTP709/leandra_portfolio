@@ -2,6 +2,7 @@ const express = require('express');
 const testBlogs = require('./client/src/testBlogData');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -18,6 +19,7 @@ const blogSchema = new Schema({
 const Blog = mongoose.model('Blog', blogSchema);
 
 app.use(cors());
+app.use(bodyParser.json()); // for parsing application/json
 // TODO: https://expressjs.com/en/resources/middleware/cors.html
 
 app.all('/api/blogs', (req, res) => {
@@ -33,19 +35,19 @@ app.all('/api/blogs', (req, res) => {
 			});
 		});
 	} else if (req.method === 'POST') {
-		// const blog = req.body;
-		// const newBlog = new Blog({
-		// 	title: blog.title,
-		// 	date: blog.date,
-		// 	thumbnail: blog.thumbnail,
-		// 	body: blog.blurb,
-		// 	filters: blog.filters,
-		// 	hidden: false
-		// });
-		// newBlog.save(function (err, newBlog.title) {
-	 //    if (err) return console.error(err);
-	 //    //res.send()
-	 //  });
+		const { title, date, thumbnail, body, filters } = req.body;
+		const newBlog = new Blog({
+			title: title,
+			date: date,
+			thumbnail: thumbnail,
+			body: body,
+			filters: filters,
+			hidden: false
+		});
+		newBlog.save(function (err, title) {
+	    if (err) return console.error(err);
+	    //res.send()
+	  });
 	}
 });
 

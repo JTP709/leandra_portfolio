@@ -3,6 +3,7 @@ const defaultState = {
 	blogFilters: ['life','design','cooking','animals', 'travel'],
 	blogModal: {
 		title: "",
+        date: "",
 		body: "",
 		thumbnail: ""
 	},

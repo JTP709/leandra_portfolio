@@ -21,11 +21,11 @@ class Work extends Component {
 		}
     this.handleModal = this.handleModal.bind(this);
     this.openModal = this.openModal.bind(this);
-    this.renderBlogCards = this.renderBlogCards.bind(this);
     this.handlePagination = this.handlePagination.bind(this);
+    this.renderFilters = this.renderFilters.bind(this);
 	}
 
-	componentWillMount(){
+	componentDidMount(){
 		this.props.fetchBlogs();
 	}
 
@@ -46,6 +46,7 @@ class Work extends Component {
 		const { updateBlogModal } = this.props;
 		const modalInfo = {
 			title: blog.title,
+			date: blog.date,
 			body: blog.body,
 			thumbnail: blog.thumbnail
 		};
@@ -55,57 +56,24 @@ class Work extends Component {
 		});
 	}
 
-	renderBlogCards() {
-		const { blogs, updateBlogsDisplay } = this.props;
-		if (!blogs) return (
-			<div>
-				<h2>There are no blogs to display</h2>
-			</div>
-		)
-		const filteredBlogs = blogs.filter(blog => {
-			const { filterButton } = this.props;
-			return filterButton === 'Filter Blog' ?
-				blog :
-				blog.filters.includes(filterButton.toLowerCase());
-		});
-		const pages = Math.ceil(filteredBlogs.length/5);
-		const renderedBlogs = filteredBlogs.map(blog => {
-			const cardAndContentClasses = ((filteredBlogs.indexOf(blog)+1) % 2) === 0 ?
-				["blog_post blog_post_right blog_post_middle", "blog_post_content_right", "right"] :
-				["blog_post blog_post_left", "blog_post_content_left", "left"];
-
-			return (
-				<div key={ blogs.indexOf(blog) }>
-					<BlogCard 
-						blogCardClass={ cardAndContentClasses[0] }
-						blogCardContentClass={ cardAndContentClasses[1] }
-						position={ cardAndContentClasses[2] }
-						title={ blog.title }
-						body={ blog.body }
-						thumbnail={ blog.thumbnail }
-						blog={ blog }
-						openModal={ this.openModal }
-					/>
-					<hr />
-				</div>
-			);
-		});
-		console.log('renderedBlogs: ', renderedBlogs);
-		updateBlogsDisplay(renderedBlogs);
-	}
-
 	renderFilters(){
 		const { filters } = this.props;
 		const filterButtons = filters.map(filter => {
 			const styledFilter = capitalizeFirstLetter(filter);
 			return(
-				<MenuItem key={filters.indexOf(filter)} onSelect={ ()=> this.handleFilterSelect(styledFilter) }>
+				<MenuItem 
+					key = { filters.indexOf(filter) }
+					onSelect = { ()=> this.handleFilterSelect(styledFilter) }
+				>
 					{ styledFilter }
 				</MenuItem>
 			);
 		});
 		const defaultButton = (
-			<MenuItem key={'DefaultButton'} onSelect={ ()=> this.handleFilterSelect('Filter Blog') }>
+			<MenuItem
+				key = { 'DefaultButton' }
+				onSelect = { ()=> this.handleFilterSelect('Filter Blog') }
+			>
 				Show All
 			</MenuItem>
 		);
@@ -113,98 +81,103 @@ class Work extends Component {
 	}
 
 	render(){
-		const { blogs, updateBlogsDisplay } = this.props;
-		let blogsDisplay;
-		if (!blogs) {
-			blogsDisplay = (<div>
-				<h2>There are no blogs to display</h2>
-			</div>)
-		} 
-
-		const filteredBlogs = blogs.filter(blog => {
-			const { filterButton } = this.props;
-			return filterButton === 'Filter Blog' ?
-				blog :
+		const { blogs, activePage, filterButton, blogModal } = this.props;
+		const filteredBlogs = blogs.sort((a,b) => {
+		  return new Date(b.date) - new Date(a.date);
+		}).filter(blog => {
+			return filterButton === 'Filter Blog' ? blog :
 				blog.filters.includes(filterButton.toLowerCase());
 		});
 		const pages = Math.ceil(filteredBlogs.length/5);
-		const { activePage } = this.props;
-		let pageNumbers = [];
-		for (let n = 1; n <= pages; n++) {
-		  pageNumbers.push(
-		    <Pagination.Item
-		    	key={n}
-		    	active={n === activePage}
-		    	onClick={ ()=>{this.handlePagination(n)} }
-		    >{n}</Pagination.Item>
-		  );
-		}
 		const arrayStop = activePage*5;
 		const arrayStart = arrayStop-5;
+		const pageNumbers = Array.apply(null, {length: pages})
+			.map(Number.call, Number)
+			.map(n => {
+				const num = n+1;
+				return(
+					<Pagination.Item
+			    	key = { num }
+			    	active = { num === activePage }
+			    	onClick = { ()=>{this.handlePagination(num)} }
+		    	>{num}</Pagination.Item>
+				)
+			});
+		const noBlogsCard = (
+			<div>
+				<h2>There are no blogs to display</h2>
+			</div>
+		);
+		const blogCards = !blogs ? noBlogsCard :
+			filteredBlogs.slice(arrayStart,arrayStop).map(blog => {
+				const cardAndContentClasses = ((filteredBlogs.indexOf(blog)+1) % 2) === 0 ?
+					[
+						"blog_post blog_post_right blog_post_middle",
+						"blog_post_content_right",
+						"right"
+					] :
+					[
+						"blog_post blog_post_left",
+						"blog_post_content_left",
+						"left"
+					];
 
-		blogsDisplay = filteredBlogs.slice(arrayStart,arrayStop).map(blog => {
-			const cardAndContentClasses = ((filteredBlogs.indexOf(blog)+1) % 2) === 0 ?
-				["blog_post blog_post_right blog_post_middle", "blog_post_content_right", "right"] :
-				["blog_post blog_post_left", "blog_post_content_left", "left"];
-
-			return (
-				<div key={ blogs.indexOf(blog) }>
-					<BlogCard 
-						blogCardClass={ cardAndContentClasses[0] }
-						blogCardContentClass={ cardAndContentClasses[1] }
-						position={ cardAndContentClasses[2] }
-						title={ blog.title }
-						body={ blog.body }
-						thumbnail={ blog.thumbnail }
-						blog={ blog }
-						openModal={ this.openModal }
-					/>
-					<hr />
-				</div>
-			);
-		});
+				return (
+					<div key={ blogs.indexOf(blog) }>
+						<BlogCard 
+							blogCardClass={ cardAndContentClasses[0] }
+							blogCardContentClass={ cardAndContentClasses[1] }
+							position={ cardAndContentClasses[2] }
+							blog={ blog }
+							openModal={ this.openModal }
+						/>
+						<hr />
+					</div>
+				);
+			});
 
 		return (
-			<Row id="work_section">
-				<Col xs={12}>
+			<Row id = "work_section">
+				<Col xs = { 12 }>
 					<hr />
 				</Col>
-				<Col xs={12} md={5} className="blog_header">
+				<Col xs = { 12 } md = { 5 } className = "blog_header">
 				  <ButtonToolbar>
-				    <Button bsStyle="primary" bsSize="large">
+				    <Button active bsSize = "large">
 				      Blog
 				    </Button>
-				    <Button bsSize="large">
+				    <Button bsSize = "large">
 				      Portfolio
 				    </Button>
-				    <Button bsSize="large">
+				    <Button bsSize = "large">
 				      Photography
 				    </Button>
 				   </ButtonToolbar>
 				</Col>
-				<Col xs={12} md={7}>
+				<Col xs = { 12 } md = { 7 }>
 					<ButtonToolbar>
-							<DropdownButton title={ this.props.filterButton } bsSize="large" id="dropdownButton">
+							<DropdownButton
+								title = { this.props.filterButton }
+								bsSize = "large"
+								id = "dropdownButton"
+							>
 								{ this.renderFilters() }
 							</DropdownButton>
 					</ButtonToolbar>
 				</Col>
-				<Col xs={12}>
+				<Col xs = { 12 }>
 					<hr />
 				</Col>
-				<Col xs={12}>
-					{ blogsDisplay }
+				<Col xs = { 12 }>
+					{ blogCards }
 				</Col>
-				<hr />
-				<Col md={12}>
-		    	<Pagination bsSize="medium">{pageNumbers}</Pagination>
+				<Col md = { 12 } className = "text-center">
+		    	<Pagination bsSize = "medium">{ pageNumbers }</Pagination>
 		    </Col>
 				<BlogModal
-					handleModal={this.handleModal}
-					show={this.props.showModal}
-					title={this.props.title}
-					body={this.props.body}
-					thumbnail={this.props.thumbnail}
+					handleModal = { this.handleModal }
+					show = { this.state.showModal }
+					blogModal={ this.props.blogModal }
 				/>
 			</Row>
 		);

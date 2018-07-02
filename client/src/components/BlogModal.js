@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
+import { formatDate } from '../utils/utils';
 
 class BlogModal extends Component {
   constructor(props, context) {
@@ -19,13 +20,15 @@ class BlogModal extends Component {
   }
 
   render() {
-    const { title, body, thumbnail } = this.props;
+    const { title, date, body, thumbnail } = this.props.blogModal;
+    const dateObject = new Date(date);
     return (
       <Modal show={this.props.show} onHide={this.handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{ title }</Modal.Title>
+          <Modal.Title>{ formatDate(dateObject) }</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <h2>{ title }</h2>
           <img src={ thumbnail } alt="blog thumbnail" />
           <ReactMarkdown source={ body } />
         </Modal.Body>
