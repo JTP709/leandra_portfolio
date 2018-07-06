@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/rootReducer';
-import App from './components/App';
+import ConnectedApp from './containers/ConnectedApp';
 import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(
@@ -17,6 +17,6 @@ window.store = store;
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ConnectedApp />
   </Provider>, document.getElementById('root'));
 registerServiceWorker();

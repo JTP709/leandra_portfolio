@@ -6,8 +6,7 @@ import {
 	getActivePage,
 	getBlogsDisplay,
 	getFilters,
-	getFilterButton,
-	getNotification
+	getFilterButton
 } from '../reducers/rootReducer';
 import {
 	fetchBlogs,
@@ -16,11 +15,9 @@ import {
 	updatePageNumber,
 	updateBlogPage,
 	updateBlogsDisplay,
-	updateFilterButton,
-	updateNotification,
-	updateBlogForm
+	updateFilterButton
 } from '../actions/actionCreators';
-import Admin from '../components/Admin/Admin';
+import BlogDashboard from '../components/Admin/BlogDashBoard';
 
 const mapStateToProps = (state) => {
 	const filters = getFilters(state);
@@ -30,7 +27,6 @@ const mapStateToProps = (state) => {
 	const activePage = getActivePage(state);
 	const blogsDisplay = getBlogsDisplay(state);
 	const filterButton = getFilterButton(state);
-	const notification = getNotification(state);
 	return {
 		filters,
 		blogs,
@@ -38,8 +34,7 @@ const mapStateToProps = (state) => {
 		pages,
 		activePage,
 		blogsDisplay,
-		filterButton,
-		notification
+		filterButton
 	}
 }
 
@@ -50,14 +45,12 @@ const mapDispatchToProps = {
 	updatePageNumber,
 	updateBlogPage,
 	updateBlogsDisplay,
-	updateFilterButton,
-	updateNotification,
-	updateBlogForm
+	updateFilterButton
 }
 
-const ConnectedAdmin = connect(
+const ConnectedBlogDashboard = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Admin)
+)(BlogDashboard)
 
-export default ConnectedAdmin;
+export default ConnectedBlogDashboard;

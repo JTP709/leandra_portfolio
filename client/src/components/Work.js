@@ -25,17 +25,14 @@ class Work extends Component {
     this.renderFilters = this.renderFilters.bind(this);
 	}
 
-	componentDidMount(){
-		this.props.fetchBlogs();
-	}
-
 	handlePagination(page){
 		const { updateBlogPage } = this.props;
 		updateBlogPage(page);
 	}
 
 	handleFilterSelect(filter){
-		this.props.updateFilterButton(filter)
+		this.props.updateFilterButton(filter);
+		this.handlePagination(1);
 	}
 
 	handleModal(arg){

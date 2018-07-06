@@ -12,8 +12,14 @@ import '../styles/bootstrap-theme.min.css';
 
 
 class App extends Component {
+  componentDidMount(){
+    this.props.fetchBlogs();
+  }
+
   render() {
-    const AdminPage = () => <ConnectedAdmin />
+    const BlogDashboard = () => <ConnectedAdmin page="blog_dashboard" />
+    const NewBlogForm = () => <ConnectedAdmin page="new_blog_form" />
+    const UpdateBlogForm = ({ match }) => <ConnectedAdmin page="update_blog_form" blogId={ match.params.id } />
     const IndexPage = () => (
       <Grid>
         <Navbar />
@@ -28,7 +34,9 @@ class App extends Component {
       <Router>
         <div>
           <Route exact path="/" component={ IndexPage } />
-          <Route path="/admin" component={ AdminPage } />
+          <Route exact path="/admin/blog" component={ BlogDashboard } />
+          <Route exact path="/admin/blog/new" component={ NewBlogForm } />
+          <Route exact path="/admin/blog/update/:id" component= { UpdateBlogForm } />
         </div>
       </Router>
     );

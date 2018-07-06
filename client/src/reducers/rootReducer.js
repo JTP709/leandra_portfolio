@@ -29,6 +29,14 @@ export const getFilterButton = (state) => {
 	return state.blogState.filterButton;
 }
 
+export const getNotification = (state) => {
+	return state.blogState.notification;
+}
+
+export const getBlogForm = state => {
+	return state.blogState.blogForm;
+}
+
 const rootReducer = combineReducers({
 	blogState: blogs
 });

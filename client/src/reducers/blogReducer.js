@@ -3,14 +3,21 @@ const defaultState = {
 	blogFilters: ['life','design','cooking','animals', 'travel'],
 	blogModal: {
 		title: "",
-        date: "",
+    date: "",
 		body: "",
 		thumbnail: ""
 	},
 	pages: 0,
 	activePage: 1,
 	blogsDisplay: [],
-	filterButton: 'Filter Blog'
+	filterButton: 'Filter Blog',
+  notification: '',
+  blogForm: {
+    title: '',
+    body: '',
+    filters: [],
+    thumbnail: '',
+  }
 };
 
 export const blogs = (state = defaultState, action) => {
@@ -51,6 +58,18 @@ export const blogs = (state = defaultState, action) => {
     		...state,
     		filterButton
     	}
+    case 'UPDATE_NOTIFICATION':
+        const notification = action.payload;
+        return {
+            ...state,
+            notification
+        }
+    case 'UPDATE_BLOG_FORM':
+      const blogForm = action.payload;
+      return {
+        ...state,
+        blogForm
+      }
     default:
       return state;
   }

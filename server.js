@@ -45,8 +45,13 @@ app.all('/api/blogs', (req, res) => {
 			hidden: false
 		});
 		newBlog.save(function (err, title) {
-	    if (err) return console.error(err);
-	    //res.send()
+	    if (err) {
+	    	console.error(err)
+	    	res.send(err)
+	    } else {
+	    	res.statusCode = 200;
+	    	res.send('success');
+	    }
 	  });
 	}
 });

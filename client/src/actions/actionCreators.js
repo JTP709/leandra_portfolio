@@ -53,3 +53,17 @@ export const updateFilterButton = payload => {
     payload
   }
 }
+
+export const updateNotification = payload => {
+  return {
+    type: 'UPDATE_NOTIFICATION',
+    payload
+  }
+}
+
+export const updateBlogForm = payload => {
+  return {
+    type: 'UPDATE_BLOG_FORM',
+    payload
+  }
+}
