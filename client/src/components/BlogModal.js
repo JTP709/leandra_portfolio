@@ -6,24 +6,20 @@ import { formatDate } from '../utils/utils';
 class BlogModal extends Component {
   constructor(props, context) {
     super(props, context);
-
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-  }
-
-  handleClose() {
-    this.props.handleModal(false);
-  }
-
-  handleShow() {
-    this.props.handleModal(true);
   }
 
   render() {
-    const { title, date, body, thumbnail } = this.props.blogModal;
-    const dateObject = new Date(date);
+    const { showModal, blogModal, updateShowModal } = this.props;
+    const { title, author_date, body, thumbnail } = blogModal;
+
+    const dateObject = new Date(author_date);
     return (
-      <Modal show={this.props.show} onHide={this.handleClose}>
+      <Modal 
+        show={showModal}
+        onHide={ () => { updateShowModal(false) } }
+        bsSize="large"
+        animation
+      >
         <Modal.Header closeButton>
           <Modal.Title>{ formatDate(dateObject) }</Modal.Title>
         </Modal.Header>
@@ -33,7 +29,7 @@ class BlogModal extends Component {
           <ReactMarkdown source={ body } />
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this.handleClose}>Close</Button>
+          <Button onClick={ () => { updateShowModal(false) } }>Close</Button>
         </Modal.Footer>
       </Modal>
     );

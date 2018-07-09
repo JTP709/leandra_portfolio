@@ -3,12 +3,14 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 const blogSchema = new Schema({
+  blogId: String,
   title:  String,
-  date: { type: Date, default: Date.now },
+  author_date: { type: Date },
+  created_date: { type: Date, default: Date.now},
   thumbnail: String,
   body:   String,
   filters: [String],
-  hidden: Boolean,
+  hidden: Boolean
 });
 const Blog = mongoose.model('Blog', blogSchema);
 

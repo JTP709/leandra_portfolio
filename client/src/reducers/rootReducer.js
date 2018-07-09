@@ -33,8 +33,12 @@ export const getNotification = (state) => {
 	return state.blogState.notification;
 }
 
-export const getBlogForm = state => {
+export const getBlogForm = (state) => {
 	return state.blogState.blogForm;
+}
+
+export const getShowModal = (state) => {
+	return state.blogState.showModal;
 }
 
 const rootReducer = combineReducers({

@@ -15,7 +15,8 @@ import {
 	updatePageNumber,
 	updateBlogPage,
 	updateBlogsDisplay,
-	updateFilterButton
+	updateFilterButton,
+	updateShowModal
 } from '../actions/actionCreators';
 import Work from '../components/Work';
 
@@ -45,7 +46,8 @@ const mapDispatchToProps = {
 	updatePageNumber,
 	updateBlogPage,
 	updateBlogsDisplay,
-	updateFilterButton
+	updateFilterButton,
+	updateShowModal
 }
 
 const ConnectedWork = connect(

@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const fetchBlogs = () => {
   return dispatch => {
     fetch(`http://localhost:5000/api/blogs`)
@@ -9,6 +11,79 @@ export const fetchBlogs = () => {
         return response.json();
       })
       .then(data => dispatch(updateBlogArray(data)))
+  };
+}
+
+export const newBlog = blog => {
+  return dispatch => {
+    axios({
+      method: 'post',
+      url: 'http://localhost:5000/api/blogs/new',
+      data: {
+        title: blog.title,
+        author_date: Date.now(),
+        thumbnail: blog.thumbnail,
+        filters: blog.filters,
+        body: blog.body
+      }
+    }).then(response => {
+      if(response.status === 200) {
+        //TODO : LOADING false
+        dispatch(updateNotification('blog_submission_successful'));
+        dispatch(fetchBlogs());
+      }
+    }).catch(error => {
+      //TODO : LOADING false
+      dispatch(updateNotification('blog_submission_fail'));
+    });
+  }
+}
+
+export const updateBlog = blog => {
+  return dispatch => {
+    axios({
+      method: 'put',
+      url: 'http://localhost:5000/api/blogs/update',
+      data: {
+        _id: blog._id,
+        blogId: blog.blogId,
+        title: blog.title,
+        author_date: blog.author_date,
+        thumbnail: blog.thumbnail,
+        filters: blog.filters,
+        body: blog.body
+      }
+    }).then(response => {
+      if(response.status === 200) {
+        //TODO : LOADING false
+        dispatch(updateNotification('blog_update_successful'));
+        dispatch(fetchBlogs());
+      }
+    })
+    .catch(error => {
+      //TODO : LOADING false
+      dispatch(updateNotification('blog_update_fail'));
+    });
+  }
+}
+
+export const deleteBlog = id => {
+  return dispatch => {
+    axios({
+      method: 'delete',
+      url: 'http://localhost:5000/api/blogs/delete',
+      data: { id }
+    }).then(response => {
+      if(response.status === 200) {
+        //TODO : LOADING false
+        dispatch(updateNotification('blog_deletion_successful'));
+        dispatch(fetchBlogs());
+      }
+    })
+    .catch(error => {
+      //TODO : LOADING false
+      dispatch(updateNotification('blog_deletion_fail'));
+    });
   };
 }
 
@@ -64,6 +139,13 @@ export const updateNotification = payload => {
 export const updateBlogForm = payload => {
   return {
     type: 'UPDATE_BLOG_FORM',
+    payload
+  }
+}
+
+export const updateShowModal = payload => {
+  return {
+    type: 'UPDATE_SHOW_MODAL',
     payload
   }
 }

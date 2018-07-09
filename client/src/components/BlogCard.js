@@ -13,8 +13,8 @@ class BlogCard extends Component {
 			openModal,
 			blog
 		} = this.props;
-		const { title, date, thumbnail, body } = blog;
-		const dateObject = new Date(date);
+		const { title, author_date, thumbnail, body } = blog;
+		const dateObject = new Date(author_date);
 		const blurb = `${body.slice(0,450)}...`;
 		const imageElement = (
 			<Col xs={12} md={3} key={ 1 }>

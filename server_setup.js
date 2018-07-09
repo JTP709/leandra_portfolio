@@ -1,14 +1,17 @@
 const testBlogs = require('./client/src/testBlogData');
 const mongoose = require('mongoose');
+const uuidv4 = require('uuid/v4');
 
 const Schema = mongoose.Schema;
 const blogSchema = new Schema({
+	blogId: String,
   title:  String,
-  date: { type: Date, default: Date.now },
+  author_date: { type: Date },
+  created_date: { type: Date, default: Date.now},
   thumbnail: String,
   body:   String,
   filters: [String],
-  hidden: Boolean,
+  hidden: Boolean
 });
 const Blog = mongoose.model('Blog', blogSchema);
 
@@ -21,9 +24,11 @@ db.once('open', function() {
 
   testBlogs.map(blog => {
   	const { title, date, thumbnail, body, filters } = blog;
+		const blogId = uuidv4();
 		const newBlog = new Blog({
+			blogId: blogId,
 			title: title,
-			date: date,
+			author_date: date,
 			thumbnail: thumbnail,
 			body: body,
 			filters: filters,

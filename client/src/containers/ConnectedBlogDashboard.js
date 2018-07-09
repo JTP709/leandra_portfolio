@@ -10,12 +10,14 @@ import {
 } from '../reducers/rootReducer';
 import {
 	fetchBlogs,
+	deleteBlog,
 	updateBlogArray,
 	updateBlogModal,
 	updatePageNumber,
 	updateBlogPage,
 	updateBlogsDisplay,
-	updateFilterButton
+	updateFilterButton,
+	updateShowModal
 } from '../actions/actionCreators';
 import BlogDashboard from '../components/Admin/BlogDashBoard';
 
@@ -40,12 +42,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
 	fetchBlogs,
+	deleteBlog,
 	updateBlogArray,
 	updateBlogModal,
 	updatePageNumber,
 	updateBlogPage,
 	updateBlogsDisplay,
-	updateFilterButton
+	updateFilterButton,
+	updateShowModal
 }
 
 const ConnectedBlogDashboard = connect(

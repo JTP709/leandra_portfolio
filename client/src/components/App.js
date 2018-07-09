@@ -13,7 +13,10 @@ import '../styles/bootstrap-theme.min.css';
 
 class App extends Component {
   componentDidMount(){
-    this.props.fetchBlogs();
+    const { blogs, fetchBlogs } = this.props;
+    if (blogs.length === 0){
+      fetchBlogs();
+    }
   }
 
   render() {

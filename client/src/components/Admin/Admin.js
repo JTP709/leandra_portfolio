@@ -4,6 +4,7 @@ import {
 	Col,
 	Row,
 } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import ConnectedBlogForm from '../../containers/ConnectedBlogForm';
 import ConnectedBlogDashboard from '../../containers/ConnectedBlogDashboard';
 import Notification from './Notification';
@@ -17,7 +18,7 @@ class Admin extends Component {
 			} else if (page === "new_blog_form") {
 				return <ConnectedBlogForm type={ page } />
 			} else if (page === "update_blog_form") {
-				const editBlog = this.props.blogs[blogId];
+				const editBlog = this.props.blogs.filter(blog => blog.blogId === blogId)[0];
 				updateBlogForm(editBlog);
 				return <ConnectedBlogForm type={ page } blogId={ blogId } />
 			} else {
@@ -34,11 +35,14 @@ class Admin extends Component {
 				<Notification notification={notification} />
 				<Row>
 					<Col xs={12} md={2}>
-						<h2>TODO: </h2>
 						<ul>
-							<li>Add</li>
-							<li>Update</li>
-							<li>Delete</li>
+							<li>
+			          <Link to="/admin/blog">Blogs Dashboard</Link>
+			        </li>
+			        <li>
+			        	{/* TODO: do i need to pass state? */}
+			          <Link to={{pathname: "/admin/blog/new"}, state:{newBlog: true}}>Add New Blog</Link>
+			        </li>
 							<li>Filter</li>
 						</ul>
 					</Col>

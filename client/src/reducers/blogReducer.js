@@ -13,11 +13,13 @@ const defaultState = {
 	filterButton: 'Filter Blog',
   notification: '',
   blogForm: {
+    _id: '',
     title: '',
     body: '',
     filters: [],
     thumbnail: '',
-  }
+  },
+  showModal: false
 };
 
 export const blogs = (state = defaultState, action) => {
@@ -69,6 +71,12 @@ export const blogs = (state = defaultState, action) => {
       return {
         ...state,
         blogForm
+      }
+    case 'UPDATE_SHOW_MODAL':
+      const showModal = action.payload;
+      return {
+        ...state,
+        showModal
       }
     default:
       return state;

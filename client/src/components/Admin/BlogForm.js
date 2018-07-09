@@ -15,9 +15,6 @@ import { capitalizeFirstLetter } from '../../utils/utils';
 class BlogForm extends Component {
 	constructor(){
 		super();
-		this.state = {
-			isLoading: false
-		}
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleBodyChange = this.handleBodyChange.bind(this);
 		this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -26,51 +23,27 @@ class BlogForm extends Component {
 		this.renderFilterOptions = this.renderFilterOptions.bind(this);
 	}
 
-	handleSubmit(blog) {
-		const { title, thumbnail, filters, body } = this.props.blogForm;
-		const { updateNotification } = this.props;
-		const oldState = { ...this.state };
+	handleSubmit() {
+		const { blogForm, type, updateNotification, newBlog, updateBlog } = this.props;
+		const { title, thumbnail, filters, body, blogId, _id, author_date } = blogForm;
 		if (title === '' || thumbnail === '' || filters === '' || body === '') {
-			this.setState({
-				oldState,
-				isLoading: false
-			});
+			//TODO : LOADING false
 			updateNotification('blog_submission_error');
 			return;
 		}
-		this.setState({
-			oldState,
-			isLoading: true
-		});
+		const newBlogObj = {
+				title,
+				author_date,
+				thumbnail,
+				filters,
+				body
+			};
+		const newBlogPost = type === 'new_blog_form' ? 
+			{ ...newBlogObj, author_date: Date.now() } :
+			{ ...newBlogObj, blogId, _id}
 		updateNotification('')
-		const newBlogPost = {
-			title,
-			date: Date.now(),
-			thumbnail,
-			filters,
-			body
-		};
-		axios.post('http://localhost:5000/api/blogs', newBlogPost)
-	  .then(response => {
-	    if(response.status === 200) {
-	    	this.setState({
-	    		oldState,
-					title: '',
-					body: '',
-					filters: [],
-					thumbnail: '',
-	    		isLoading: false
-	    	});
-	    	updateNotification('blog_submission_successful');
-	    }
-	  })
-	  .catch(error => {
-	  	this.setState({
-	  		oldState,
-	  		isLoading: false
-	  	});
-	  	updateNotification('blog_submission_fail');
-	  });
+		if (type === 'new_blog_form') newBlog(newBlogPost);
+		if (type === 'update_blog_form') updateBlog(newBlogPost);
 	}
 
 	handleTitleChange(e) {
@@ -105,8 +78,7 @@ class BlogForm extends Component {
 
 	handleFilterChange(e) {
     if (e === undefined) { return; }
-    const filters = Array.apply(null, {length: e.target.options.length})
-    	.map(Number.call, Number)
+    const filters = Object.keys(e.target.options)
     	.map(num => {
 	    	if (e.target.options[num].selected === true) {
 	    		return e.target.options[num].value 
@@ -122,7 +94,6 @@ class BlogForm extends Component {
 
 	renderFilterOptions() {
 		const { filters } = this.props;
-		console.log('filters: ', filters);
 		if (filters != undefined) {
 			return filters.map(filter => {
 	      return (
@@ -137,6 +108,7 @@ class BlogForm extends Component {
 	render() {
 		const { type, blogId, blogForm } = this.props;
 		const header = type === "new_blog_form" ? <h2>New Blog Form</h2> : <h2>Update Blog Form</h2>;
+		// const loading = this.state.isLoading ? <h1>LOADING</h1> : null;
 		const writtenWords = [
 			'Magnum Opus',
 			'masterpiece',
@@ -163,7 +135,7 @@ class BlogForm extends Component {
 				      <ControlLabel>Title</ControlLabel>
 				      <FormControl
 				      	type="text"
-		            value={blogForm.title}
+		            value={ blogForm ? blogForm.title : '' }
 		            placeholder="Enter text"
 		            onChange={ this.handleTitleChange }
 				      />
@@ -176,7 +148,7 @@ class BlogForm extends Component {
 				      <ControlLabel>Thumbnail</ControlLabel>
 				      <FormControl
 				      	type="text"
-		            value={ blogForm.thumbnail }
+		            value={ blogForm ? blogForm.thumbnail : '' }
 		            placeholder="Enter thumbnail URL"
 		            onChange={ this.handleThumbnailChange }
 				      />
@@ -187,7 +159,7 @@ class BlogForm extends Component {
 				      <ControlLabel>Filters</ControlLabel>
 				      <FormControl
 					      componentClass="select"
-					      value={ blogForm.filters }
+					      value={ blogForm ? blogForm.filters : '' }
 					      multiple
 					      onChange={ this.handleFilterChange }
 				      >
@@ -200,7 +172,7 @@ class BlogForm extends Component {
 				      <ControlLabel>Post</ControlLabel>
 				      <FormControl
 				      	componentClass="textarea"
-				      	value={ blogForm.body }
+				      	value={ blogForm ? blogForm.body : '' }
 				      	placeholder={ textAreaPlaceholder }
 				      	onChange={ this.handleBodyChange } />
 				      <HelpBlock>
@@ -215,7 +187,7 @@ class BlogForm extends Component {
 				</Col>
 				<Col xs={12} md={5}>
 					<h2>Post Preview</h2>
-    			<ReactMarkdown source={ blogForm.body } />
+    			<ReactMarkdown source={ blogForm ? blogForm.body : '' } />
       	</Col>
 			</div>
 		)

@@ -10,16 +10,12 @@ import {
 } from 'react-bootstrap';
 import { capitalizeFirstLetter } from '../utils/utils';
 import BlogCard from './BlogCard';
-import BlogModal from './BlogModal';
+import ConnectedBlogModal from '../containers/ConnectedBlogModal';
 import '../styles/Work.css';
 
 class Work extends Component {
 	constructor(){
 		super();
-		this.state = {
-			showModal: false,
-		}
-    this.handleModal = this.handleModal.bind(this);
     this.openModal = this.openModal.bind(this);
     this.handlePagination = this.handlePagination.bind(this);
     this.renderFilters = this.renderFilters.bind(this);
@@ -35,22 +31,17 @@ class Work extends Component {
 		this.handlePagination(1);
 	}
 
-	handleModal(arg){
-		this.setState({ showModal: arg })
-	}
-
 	openModal(blog){
-		const { updateBlogModal } = this.props;
+		const { updateBlogModal, updateShowModal } = this.props;
+		const { title, author_date, body, thumbnail } = blog;
 		const modalInfo = {
-			title: blog.title,
-			date: blog.date,
-			body: blog.body,
-			thumbnail: blog.thumbnail
+			title,
+			author_date,
+			body,
+			thumbnail
 		};
 		updateBlogModal(modalInfo);
-		this.setState({
-			showModal: true
-		});
+		updateShowModal(true);
 	}
 
 	renderFilters(){
@@ -106,7 +97,14 @@ class Work extends Component {
 			</div>
 		);
 		const blogCards = !blogs ? noBlogsCard :
-			filteredBlogs.slice(arrayStart,arrayStop).map(blog => {
+			filteredBlogs
+			.sort((a,b) => { 
+				const dateA = new Date(b.author_date);
+				const dateB = new Date(a.author_date);
+				return dateA - dateB;
+			})
+			.slice(arrayStart,arrayStop)
+			.map(blog => {
 				const cardAndContentClasses = ((filteredBlogs.indexOf(blog)+1) % 2) === 0 ?
 					[
 						"blog_post blog_post_right blog_post_middle",
@@ -171,11 +169,7 @@ class Work extends Component {
 				<Col md = { 12 } className = "text-center">
 		    	<Pagination bsSize = "medium">{ pageNumbers }</Pagination>
 		    </Col>
-				<BlogModal
-					handleModal = { this.handleModal }
-					show = { this.state.showModal }
-					blogModal={ this.props.blogModal }
-				/>
+				<ConnectedBlogModal />
 			</Row>
 		);
 	}
