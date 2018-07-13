@@ -11,7 +11,7 @@ import Notification from './Notification';
 
 class Admin extends Component {
 	render() {
-		const { page, notification, blogId, updateBlogForm } = this.props;
+		const { page, notification, blogId, updateBlogForm, redirectNewBlogForm } = this.props;
 		const renderPage = () => {
 			if(page === "blog_dashboard") {
 				return <ConnectedBlogDashboard />
@@ -40,8 +40,7 @@ class Admin extends Component {
 			          <Link to="/admin/blog">Blogs Dashboard</Link>
 			        </li>
 			        <li>
-			        	{/* TODO: do i need to pass state? */}
-			          <Link to={{pathname: "/admin/blog/new"}, state:{newBlog: true}}>Add New Blog</Link>
+			        	<a href='#' onClick={ redirectNewBlogForm }>Add New Blog</a>
 			        </li>
 							<li>Filter</li>
 						</ul>

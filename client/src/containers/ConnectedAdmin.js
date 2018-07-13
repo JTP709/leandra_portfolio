@@ -18,7 +18,8 @@ import {
 	updateBlogsDisplay,
 	updateFilterButton,
 	updateNotification,
-	updateBlogForm
+	updateBlogForm,
+	redirectNewBlogForm
 } from '../actions/actionCreators';
 import Admin from '../components/Admin/Admin';
 
@@ -52,7 +53,8 @@ const mapDispatchToProps = {
 	updateBlogsDisplay,
 	updateFilterButton,
 	updateNotification,
-	updateBlogForm
+	updateBlogForm,
+	redirectNewBlogForm
 }
 
 const ConnectedAdmin = connect(

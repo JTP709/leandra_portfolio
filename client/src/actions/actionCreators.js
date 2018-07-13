@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { push } from 'connected-react-router';
 
 export const fetchBlogs = () => {
   return dispatch => {
@@ -86,6 +87,29 @@ export const deleteBlog = id => {
     });
   };
 }
+
+export const redirectNewBlogForm = () => {
+  return dispatch => {
+    dispatch(updateBlogForm({}));
+    dispatch(push('/admin/blog/new'));
+  }
+}
+
+// export const dispatchThenRoute = (myAction, myPath) => {
+//     return (dispatch) => {
+//         dispatch(myAction)
+//         browserHistory.push(myPath);
+//     }
+// };
+
+// import { push } from 'connected-react-router'
+
+// export const login = (username, password) => (dispatch) => {
+
+//   /* do something before redirection */
+
+//   dispatch(push('/home'))
+// }
 
 export const updateBlogArray = payload => {
 	return {

@@ -58,8 +58,7 @@ class BlogDashboard extends Component {
 			      	{ blog.filters.map(filter => capitalizeFirstLetter(filter)).join(', ') }
 			      </td>
 			      <td>
-			      	{/* TODO: do i need to pass state? */}
-			      	<Link to={{pathname: `/admin/blog/update/${blog.blogId}`}, state:{ newBlog: false }}>
+			      	<Link to={`/admin/blog/update/${blog.blogId}`}>
 			      		Edit
 			      	</Link>
 			      </td>
