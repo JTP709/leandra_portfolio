@@ -12,14 +12,11 @@ class Navbar extends Component {
         <NavItem href="#about_section">
           About
         </NavItem>
-        <NavItem href="#work_section">
-          Blog
+        <NavItem href="#work">
+          Work
         </NavItem>
-        <NavItem href="#work_section">
-          Portfolio
-        </NavItem>
-        <NavItem href="#work_section">
-          Photography
+        <NavItem href="#contact">
+          Contact
         </NavItem>
       </Nav>
     )

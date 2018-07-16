@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { Col } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import ShowcaseNavButtons from '../ShowcaseNavButtons';
 
 class PortfolioMain extends Component{
 	render(){
 		return(
-			<div>
+			<Row id="work">
+
+				<Col xs={ 12 }><hr /></Col>
+
 				<ShowcaseNavButtons
 					visibility={{
 						blog: false,
@@ -14,10 +17,16 @@ class PortfolioMain extends Component{
 						laboratory: false
 					}}
 				/>
+
+				<Col xs={ 12 }><hr /></Col>
+
 				<Col md={12}>
-					<h1>Phortfolio!</h1>
+					<h1>Portfolio!</h1>
 				</Col>
-			</div>
+
+				<Col xs={ 12 }><hr /></Col>
+				
+			</Row>
 		)
 	}
 }

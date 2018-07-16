@@ -4,7 +4,7 @@ import '../styles/Footer.css';
 class Footer extends Component {
 	render(){
 		return (
-			<div className="footer_section">
+			<div id="contact" className="footer_section">
 				<div className="footer_content">
 					<p>&copy;2018 Leandra Clifton</p>
 				</div>

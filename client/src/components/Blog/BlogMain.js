@@ -180,7 +180,7 @@ class BlogMain extends Component {
 			});
 
 		return (
-			<Row id = "work_section">
+			<Row id = "work">
 
 				<Col xs={ 12 }><hr /></Col>
 
