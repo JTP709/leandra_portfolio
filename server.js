@@ -7,6 +7,7 @@ const uuidv4 = require('uuid/v4');
 
 const app = express();
 const port = process.env.PORT || 5000;
+
 const mongodb_host = process.env.MONGODB_HOST || '127.0.0.1:27017';
 const Schema = mongoose.Schema;
 const blogSchema = new Schema({
@@ -20,6 +21,10 @@ const blogSchema = new Schema({
   hidden: Boolean
 });
 const Blog = mongoose.model('Blog', blogSchema);
+const filterSchema = new Schema({
+	filter: String
+});
+const Filter = mongoose.model('Filter', filterSchema);
 
 app.use(cors());
 app.use(bodyParser.json()); // for parsing application/json
@@ -104,6 +109,60 @@ app.delete('/api/blogs/delete', (req, res) => {
 			res.send('success');
     }
   });
-})
+});
+
+app.get('/api/blogs/filters', (req,res) => {
+	mongoose.connect(`mongodb://${mongodb_host}`);
+	const db = mongoose.connection;
+	db.on('error', console.error.bind(console, 'connection error:'));
+	db.once('open', function() {
+	  console.log('connected to database');
+		Filter.find(function (err, filters) {
+		  if (err) return res.send(err);
+		  res.send(filters);
+		});
+	});
+});
+
+app.post('/api/blogs/filters/new', (req,res) => {
+	const { filter } = req.body;
+	const newFilter = new Filter({ filter });
+	newFilter.save(function (err, title) {
+    if (err) {
+    	console.error(err)
+    	res.send(err)
+    } else {
+    	res.statusCode = 200;
+    	res.send('success');
+    }
+  });
+
+});
+
+app.put('/api/blogs/filters/update', (req,res) => {
+	const { id, filter } = req.body;
+	Filter.findByIdAndUpdate(id, { filter }, function (err){
+    if (err) {
+    	console.error(err);
+    	res.send(err);
+    } else {
+			res.statusCode = 200;
+			res.send('success');
+    }
+  });
+});
+
+app.delete('/api/blogs/filters/delete', (req,res) => {
+	const { id } = req.body;
+	Filter.findByIdAndRemove(id, function (err){
+		if (err) {
+			console.error(err);
+			res.send(err);
+		} else {
+			res.statusCode = 200;
+			res.send('success');
+		}
+	})
+});
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

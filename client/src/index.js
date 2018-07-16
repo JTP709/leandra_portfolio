@@ -23,6 +23,6 @@ window.store = store;
 
 ReactDOM.render(
   <Provider store={store}>
-    <ConnectedApp />
+  	<ConnectedApp history={history} />
   </Provider>, document.getElementById('root'));
 registerServiceWorker();

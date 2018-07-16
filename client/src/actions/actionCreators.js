@@ -1,4 +1,5 @@
 import axios from 'axios';
+import lunr from 'lunr';
 import { push } from 'connected-react-router';
 
 export const fetchBlogs = () => {
@@ -11,7 +12,18 @@ export const fetchBlogs = () => {
         }
         return response.json();
       })
-      .then(data => dispatch(updateBlogArray(data)))
+      .then(data => {
+        const idx = lunr(function() {
+          this.ref('blogId');
+          this.field('body');
+          this.field('title');
+          this.metadataWhitelist = ['position'];
+
+          data.forEach(function (doc) { this.add(doc) }, this)
+          dispatch(updateBlogArray(data));
+        })
+        dispatch(updateSearchIndex(idx));
+      })
   };
 }
 
@@ -88,6 +100,93 @@ export const deleteBlog = id => {
   };
 }
 
+export const fetchFilters = () => {
+  return dispatch => {
+    fetch(`http://localhost:5000/api/blogs/filters`)
+      .then(response => {
+        if (!response.ok) {
+          alert('API call returned an error.');
+          throw Error(response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        dispatch(updateFilters(data));
+      })
+  }
+}
+
+export const newFilter = filter => {
+  return dispatch => {
+    axios({
+      method: 'post',
+      url: 'http://localhost:5000/api/blogs/filters/new',
+      data: {
+        filter
+      }
+    }).then(response => {
+      if(response.status === 200) {
+        //TODO : LOADING false
+        dispatch(updateNotification('filter_submission_successful'));
+        dispatch(fetchFilters());
+      }
+    }).catch(error => {
+      //TODO : LOADING false
+      dispatch(updateNotification('filter_submission_fail'));
+    });
+  }
+}
+
+export const updateFilter = payload => {
+  const { id, filter } = payload;
+  return dispatch => {
+    axios({
+      method: 'put',
+      url: 'http://localhost:5000/api/blogs/filters/update',
+      data: {
+        id,
+        filter
+      }
+    }).then(response => {
+      if(response.status === 200) {
+        //TODO : LOADING false
+        dispatch(updateNotification('filter_update_successful'));
+        dispatch(fetchFilters());
+      }
+    })
+    .catch(error => {
+      //TODO : LOADING false
+      dispatch(updateNotification('filter_update_fail'));
+    });
+  }
+}
+
+export const deleteFilter = id => {
+return dispatch => {
+    axios({
+      method: 'delete',
+      url: 'http://localhost:5000/api/blogs/filters/delete',
+      data: { id }
+    }).then(response => {
+      if(response.status === 200) {
+        //TODO : LOADING false
+        dispatch(updateNotification('filter_update_successful'));
+        dispatch(fetchFilters());
+      }
+    })
+    .catch(error => {
+      //TODO : LOADING false
+      dispatch(updateNotification('filter_update_fail'));
+    });
+  }
+}
+
+export const redirectPage = url => {
+  return dispatch => {
+    dispatch(push(url));
+  }
+}
+
 export const redirectNewBlogForm = () => {
   return dispatch => {
     dispatch(updateBlogForm({}));
@@ -95,21 +194,33 @@ export const redirectNewBlogForm = () => {
   }
 }
 
-// export const dispatchThenRoute = (myAction, myPath) => {
-//     return (dispatch) => {
-//         dispatch(myAction)
-//         browserHistory.push(myPath);
-//     }
-// };
+export const updateSearchQuery = payload => {
+  return {
+    type: 'UPDATE_SEARCH_QUERY',
+    payload
+  }
+}
 
-// import { push } from 'connected-react-router'
+export const updateSearchToggle = payload => {
+  return {
+    type: 'UPDATE_SEARCH_TOGGLE',
+    payload
+  }
+}
 
-// export const login = (username, password) => (dispatch) => {
+export const updateSearchResults = payload => {
+  return {
+    type: 'UPDATE_SEARCH_RESULTS',
+    payload
+  }
+}
 
-//   /* do something before redirection */
-
-//   dispatch(push('/home'))
-// }
+export const updateSearchIndex = payload => {
+  return {
+    type: 'UPDATE_SEARCH_INDEX',
+    payload
+  }
+}
 
 export const updateBlogArray = payload => {
 	return {
@@ -149,6 +260,13 @@ export const updateBlogsDisplay = payload => {
 export const updateFilterButton = payload => {
   return {
     type: 'UPDATE_FILTER_BUTTON',
+    payload
+  }
+}
+
+export const updateFilters = payload => {
+  return {
+    type: 'UPDATE_FILTERS',
     payload
   }
 }

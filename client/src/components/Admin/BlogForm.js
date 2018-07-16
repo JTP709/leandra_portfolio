@@ -96,8 +96,8 @@ class BlogForm extends Component {
 		const { filters } = this.props;
 		if (filters != undefined) {
 			return filters.map(filter => {
-	      return (<option value={ filter }>
-	      	{ capitalizeFirstLetter(filter) }
+	      return (<option value={ filter.filter }>
+	      	{ capitalizeFirstLetter(filter.filter) }
 	      </option>)
 			})
 		}

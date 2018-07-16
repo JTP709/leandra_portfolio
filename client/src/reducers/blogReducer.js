@@ -1,6 +1,6 @@
 const defaultState = {
 	blogs: [],
-	blogFilters: ['life','design','cooking','animals', 'travel'],
+	filters: [],
 	blogModal: {
 		title: "",
     date: "",
@@ -19,7 +19,11 @@ const defaultState = {
     filters: [],
     thumbnail: '',
   },
-  showModal: false
+  showModal: false,
+  searchToggle: false,
+  searchIndex: null,
+  searchResults: [],
+  searchQuery: ''
 };
 
 export const blogs = (state = defaultState, action) => {
@@ -60,6 +64,12 @@ export const blogs = (state = defaultState, action) => {
     		...state,
     		filterButton
     	}
+    case 'UPDATE_FILTERS':
+      const filters = action.payload;
+      return {
+        ...state,
+        filters
+      }
     case 'UPDATE_NOTIFICATION':
         const notification = action.payload;
         return {
@@ -77,6 +87,30 @@ export const blogs = (state = defaultState, action) => {
       return {
         ...state,
         showModal
+      }
+    case 'UPDATE_SEARCH_INDEX':
+      const searchIndex = action.payload;
+      return {
+        ...state,
+        searchIndex
+      }
+    case 'UPDATE_SEARCH_RESULTS':
+      const searchResults = action.payload;
+      return {
+        ...state,
+        searchResults
+      }
+    case 'UPDATE_SEARCH_TOGGLE':
+      const searchToggle = action.payload;
+      return {
+        ...state,
+        searchToggle
+      }
+    case 'UPDATE_SEARCH_QUERY':
+      const searchQuery = action.payload;
+      return {
+        ...state,
+        searchQuery
       }
     default:
       return state;

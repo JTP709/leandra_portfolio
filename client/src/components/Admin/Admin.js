@@ -7,22 +7,26 @@ import {
 import { Link } from 'react-router-dom';
 import ConnectedBlogForm from '../../containers/ConnectedBlogForm';
 import ConnectedBlogDashboard from '../../containers/ConnectedBlogDashboard';
+import ConnectedFilterDashboard from '../../containers/ConnectedFilterDashboard';
 import Notification from './Notification';
 
 class Admin extends Component {
 	render() {
 		const { page, notification, blogId, updateBlogForm, redirectNewBlogForm } = this.props;
 		const renderPage = () => {
-			if(page === "blog_dashboard") {
-				return <ConnectedBlogDashboard />
-			} else if (page === "new_blog_form") {
-				return <ConnectedBlogForm type={ page } />
-			} else if (page === "update_blog_form") {
-				const editBlog = this.props.blogs.filter(blog => blog.blogId === blogId)[0];
-				updateBlogForm(editBlog);
-				return <ConnectedBlogForm type={ page } blogId={ blogId } />
-			} else {
-				return null;
+			switch(page){
+				case 'blog_dashboard':
+					return <ConnectedBlogDashboard />
+				case 'new_blog_form':
+					return <ConnectedBlogForm type={ page } />
+				case 'update_blog_form':
+					const editBlog = this.props.blogs.find(blog => blog.blogId === blogId);
+					updateBlogForm(editBlog);
+					return <ConnectedBlogForm type={ page } blogId={ blogId } />
+				case 'filter_dashboard':
+					return <ConnectedFilterDashboard />
+				default:
+					return null
 			}
 		}
 		return (
@@ -42,7 +46,9 @@ class Admin extends Component {
 			        <li>
 			        	<a href='#' onClick={ redirectNewBlogForm }>Add New Blog</a>
 			        </li>
-							<li>Filter</li>
+							<li>
+								<Link to="/admin/blog/filters">Filter</Link>
+							</li>
 						</ul>
 					</Col>
 					{

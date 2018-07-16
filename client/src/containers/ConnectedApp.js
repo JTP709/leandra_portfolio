@@ -10,6 +10,7 @@ import {
 } from '../reducers/rootReducer';
 import {
 	fetchBlogs,
+	fetchFilters,
 	updateBlogArray,
 	updateBlogModal,
 	updatePageNumber,
@@ -40,6 +41,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
 	fetchBlogs,
+	fetchFilters,
 	updateBlogArray,
 	updateBlogModal,
 	updatePageNumber,

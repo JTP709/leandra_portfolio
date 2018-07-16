@@ -14,6 +14,11 @@ const blogSchema = new Schema({
   hidden: Boolean
 });
 const Blog = mongoose.model('Blog', blogSchema);
+const filterSchema = new Schema({
+	filter: String
+});
+const Filter = mongoose.model('Filter', filterSchema);
+const testFilters = ['life','design','cooking','animals', 'travel'];
 
 
 mongoose.connect('mongodb://127.0.0.1:27017');
@@ -39,4 +44,13 @@ db.once('open', function() {
 	    console.log(`${blog.title} added to database`);
 	  });
 	});
+
+  testFilters.map(filter => {
+  	const newFilter = new Filter({ filter });
+  	newFilter.save(function (err, tittle) {
+  		if (err) return console.error(err);
+  		console.log(`${filter} added to the database`)
+  	});
+  });
+
 });

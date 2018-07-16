@@ -13,7 +13,10 @@ const blogSchema = new Schema({
   hidden: Boolean
 });
 const Blog = mongoose.model('Blog', blogSchema);
-
+const filterSchema = new Schema({
+  filter: String
+});
+const Filter = mongoose.model('Filter', filterSchema);
 
 mongoose.connect('mongodb://127.0.0.1:27017');
 const db = mongoose.connection;
@@ -21,6 +24,9 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log('connected to database');
   Blog.remove({}, function(err) { 
-   console.log('collection removed') 
+   console.log('blogs removed') 
 	});
+  Filter.remove({}, function(err) {
+    console.log('filters removed')
+  });
 });

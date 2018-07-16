@@ -6,19 +6,27 @@ import {
 	getActivePage,
 	getBlogsDisplay,
 	getFilters,
-	getFilterButton
+	getFilterButton,
+	getSearchIndex,
+	getSearchResults,
+	getSearchToggle,
+	getSearchQuery
 } from '../reducers/rootReducer';
 import {
 	fetchBlogs,
+	redirectPage,
 	updateBlogArray,
 	updateBlogModal,
 	updatePageNumber,
 	updateBlogPage,
 	updateBlogsDisplay,
 	updateFilterButton,
-	updateShowModal
+	updateShowModal,
+	updateSearchResults,
+	updateSearchToggle,
+	updateSearchQuery
 } from '../actions/actionCreators';
-import Work from '../components/Work';
+import BlogMain from '../components/Blog/BlogMain';
 
 const mapStateToProps = (state) => {
 	const filters = getFilters(state);
@@ -28,6 +36,10 @@ const mapStateToProps = (state) => {
 	const activePage = getActivePage(state);
 	const blogsDisplay = getBlogsDisplay(state);
 	const filterButton = getFilterButton(state);
+	const searchIndex = getSearchIndex(state);
+	const searchResults = getSearchResults(state);
+	const searchToggle = getSearchToggle(state);
+	const searchQuery = getSearchQuery(state);
 	return {
 		filters,
 		blogs,
@@ -35,24 +47,32 @@ const mapStateToProps = (state) => {
 		pages,
 		activePage,
 		blogsDisplay,
-		filterButton
+		filterButton,
+		searchIndex,
+		searchResults,
+		searchToggle,
+		searchQuery
 	}
 }
 
 const mapDispatchToProps = {
 	fetchBlogs,
+	redirectPage,
 	updateBlogArray,
 	updateBlogModal,
 	updatePageNumber,
 	updateBlogPage,
 	updateBlogsDisplay,
 	updateFilterButton,
-	updateShowModal
+	updateShowModal,
+	updateSearchResults,
+	updateSearchToggle,
+	updateSearchQuery
 }
 
-const ConnectedWork = connect(
+const ConnectedBlogMain = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Work)
+)(BlogMain)
 
-export default ConnectedWork;
+export default ConnectedBlogMain;

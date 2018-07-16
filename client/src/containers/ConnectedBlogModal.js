@@ -6,7 +6,7 @@ import {
 import {
 	updateShowModal
 } from '../actions/actionCreators';
-import BlogModal from '../components/BlogModal';
+import BlogModal from '../components/Blog/BlogModal';
 
 const mapStateToProps = (state) => {
 	const showModal = getShowModal(state);

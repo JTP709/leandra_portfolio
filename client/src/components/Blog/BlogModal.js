@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
-import { formatDate } from '../utils/utils';
+import { formatDate } from '../../utils/utils';
 
 class BlogModal extends Component {
   constructor(props, context) {

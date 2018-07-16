@@ -1,13 +1,13 @@
-import React, { Component } from 'react';import { 
+import React, { Component } from 'react';
+import { 
 	Grid,
 	Col,
 	Table,
 	Image
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { formatDate } from '../../utils/utils';
 import ConnectedBlogModal from '../../containers/ConnectedBlogModal';
-import { capitalizeFirstLetter } from '../../utils/utils';
+import { capitalizeFirstLetter, formatDate } from '../../utils/utils';
 
 class BlogDashboard extends Component {
 	constructor(){
