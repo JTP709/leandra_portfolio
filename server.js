@@ -1,9 +1,6 @@
 const express = require('express');
-const testBlogs = require('./client/src/testBlogData');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const uuidv4 = require('uuid/v4');
 
 const getBlogs = require('./server/blog/getBlogs.js');
 const postBlogs = require('./server/blog/postBlogs.js');
