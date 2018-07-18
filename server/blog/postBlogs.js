@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Blog = require('../schema.js').Blog;
+const Blog = require('../schema/schema.js').Blog;
 
 // TODO: move to constants file
 const mongodb_host = process.env.MONGODB_HOST || '127.0.0.1:27017';

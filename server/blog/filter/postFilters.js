@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Filter = require('../schema.js').Filter;
+const Filter = require('../../schema/schema.js').Filter;
 
 // TODO: move to constants file
 const mongodb_host = process.env.MONGODB_HOST || '127.0.0.1:27017';

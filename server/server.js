@@ -2,15 +2,15 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-const getBlogs = require('./server/blog/getBlogs.js');
-const postBlogs = require('./server/blog/postBlogs.js');
-const putBlogs = require('./server/blog/putBlogs.js');
-const deleteBlogs = require('./server/blog/deleteBlogs.js');
+const getBlogs = require('./blog/getBlogs.js');
+const postBlogs = require('./blog/postBlogs.js');
+const putBlogs = require('./blog/putBlogs.js');
+const deleteBlogs = require('./blog/deleteBlogs.js');
 
-const getFilters = require('./server/blog/getFilters.js');
-const postFilters = require('./server/blog/postFilters.js');
-const putFilters = require('./server/blog/putFilters.js');
-const deleteFilters = require('./server/blog/deleteFilters.js');
+const getFilters = require('./blog/filter/getFilters.js');
+const postFilters = require('./blog/filter/postFilters.js');
+const putFilters = require('./blog/filter/putFilters.js');
+const deleteFilters = require('./blog/filter/deleteFilters.js');
 
 const app = express();
 const port = process.env.PORT || 5000;

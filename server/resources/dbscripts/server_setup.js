@@ -2,24 +2,10 @@ const testBlogs = require('./client/src/testBlogData');
 const mongoose = require('mongoose');
 const uuidv4 = require('uuid/v4');
 
-const Schema = mongoose.Schema;
-const blogSchema = new Schema({
-	blogId: String,
-  title:  String,
-  author_date: { type: Date },
-  created_date: { type: Date, default: Date.now},
-  thumbnail: String,
-  body:   String,
-  filters: [String],
-  hidden: Boolean
-});
-const Blog = mongoose.model('Blog', blogSchema);
-const filterSchema = new Schema({
-	filter: String
-});
-const Filter = mongoose.model('Filter', filterSchema);
-const testFilters = ['life','design','cooking','animals', 'travel'];
+const Blog = require('../../schema/schema.js').Blog;
+const Filter = require('../../schema/schema.js').Filter;
 
+const testFilters = ['life','design','cooking','animals', 'travel'];
 
 mongoose.connect('mongodb://127.0.0.1:27017');
 const db = mongoose.connection;
