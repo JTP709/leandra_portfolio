@@ -9,9 +9,9 @@ class Header extends Component {
 				<Row>
 					<Col sm={9}>
 						<h1>
-							<strong>Welcome to Leandra's World!</strong>
+							<strong>Welcome to My World!</strong>
 						</h1>
-						<small>Art in Motion</small>
+						<small>Something Witty</small>
 					</Col>
 				</Row>
 			</PageHeader>

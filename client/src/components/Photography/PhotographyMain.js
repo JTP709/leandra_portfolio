@@ -5,18 +5,7 @@ import ShowcaseNav from '../ShowcaseNav';
 class PhotographyMain extends Component{
 	render(){
 		return(
-			<Row id="work">
-
-				<Col xs={ 12 }><hr /></Col>
-
-				<ShowcaseNav
-					visibility={{
-						blog: false,
-						photography: true,
-						portfolio: false,
-						laboratory: false
-					}}
-				/>
+			<Row id="photo_section">
 
 				<Col xs={ 12 }><hr /></Col>
 

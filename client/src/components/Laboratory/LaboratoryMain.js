@@ -5,18 +5,7 @@ import ShowcaseNav from '../ShowcaseNav';
 class LaboratoryMain extends Component{
 	render(){
 		return(
-			<Row id="work">
-
-				<Col xs={ 12 }><hr /></Col>
-
-				<ShowcaseNav
-					visibility={{
-						blog: false,
-						photography: false,
-						portfolio: false,
-						laboratory: true
-					}}
-				/>
+			<Row id="lab_section">
 
 				<Col xs={ 12 }><hr /></Col>
 

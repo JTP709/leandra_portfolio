@@ -7,6 +7,8 @@ import Header from './Header';
 import About from './About';
 import Footer from './Footer';
 import ConnectedAdmin from '../containers/ConnectedAdmin';
+import ShowcaseTabs from './ShowcaseTabs';
+
 import ConnectedBlogMain from '../containers/ConnectedBlogMain';
 
 import PhotographyMain from './Photography/PhotographyMain';
@@ -29,32 +31,35 @@ class App extends Component {
   }
 
   render() {
-    const IndexPage = component =>
+    const IndexPage = () =>
       <Grid>
         <Navbar />
         <Header />
         <About />
-        { component }
+        <ShowcaseTabs />
         <Footer />
       </Grid>
     const BlogDashboard = () => <ConnectedAdmin page="blog_dashboard" />
     const NewBlogForm = () => <ConnectedAdmin page="new_blog_form" />
     const UpdateBlogForm = ({ match }) => <ConnectedAdmin page="update_blog_form" blogId={ match.params.id } />
     const FiltersDashboard = () => <ConnectedAdmin page="filter_dashboard" />
-    const BlogPage = () => IndexPage(<ConnectedBlogMain />);
-    const PhotographyPage = () => IndexPage(<PhotographyMain />);
-    const PortfolioPage = () => IndexPage(<PortfolioMain />);
-    const LaboratoryPage = () => IndexPage(<LaboratoryMain />);
 
+    // const BlogPage = () => IndexPage(<ConnectedBlogMain />);
+    // const PhotographyPage = () => IndexPage(<PhotographyMain />);
+    // const PortfolioPage = () => IndexPage(<PortfolioMain />);
+    // const LaboratoryPage = () => IndexPage(<LaboratoryMain />);
 
     return (
       <ConnectedRouter history={this.props.history}>
         <Switch>
-          <Route exact path="/" component={ BlogPage } />
-          <Route exact path="/blog" component={ BlogPage } />
-          <Route exact path="/photography" component={ PhotographyPage } />
-          <Route exact path="/portfolio" component={ PortfolioPage } />
-          <Route exact path="/laboratory" component={ LaboratoryPage } />
+          {/* INDEX */}
+          <Route exact path="/" component={ IndexPage } />
+          <Route exact path="/blog" component={ IndexPage } />
+          <Route exact path="/photography" component={ IndexPage } />
+          <Route exact path="/portfolio" component={ IndexPage } />
+          <Route exact path="/laboratory" component={ IndexPage } />
+          {/* ADMIN */}
+          <Route exact path="/admin" component={ BlogDashboard } />
           <Route exact path="/admin/blog" component={ BlogDashboard } />
           <Route exact path="/admin/blog/new" component={ NewBlogForm } />
           <Route exact path="/admin/blog/update/:id" component={ UpdateBlogForm } />

@@ -180,24 +180,13 @@ class BlogMain extends Component {
 			});
 
 		return (
-			<Row id = "work">
+			<Row id = "blog_section">
 
 				<Col xs={ 12 }><hr /></Col>
 
-				{/* Work Buttons */}
-
-				<ShowcaseNav
-					visibility={{
-						blog: true,
-						photography: false,
-						portfolio: false,
-						laboratory: false
-					}}
-				/>
-
 				{/* Blog Filters */}
 
-				<Col xs={ 4 } md={ 2 }>
+				<Col xs={ 4 } md={ 6 }>
 					<ButtonToolbar>
 							<DropdownButton
 								title={ this.props.filterButton }
@@ -211,7 +200,7 @@ class BlogMain extends Component {
 
 				{/* Blog Search */}
 
-				<Col xd={ 8 } md={ 5 }>
+				<Col xd={ 8 } md={ 6 }>
 					<Form inline>
 						<FormGroup bsSize="large" controlId="search_box">
 					  	<FormControl

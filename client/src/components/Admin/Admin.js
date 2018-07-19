@@ -36,6 +36,7 @@ class Admin extends Component {
 						<h1>ADMIN!</h1>
 					</Col>
 				</Row>
+				
 				<Notification notification={notification} />
 				<Row>
 					<Col xs={12} md={2}>
@@ -51,9 +52,7 @@ class Admin extends Component {
 							</li>
 						</ul>
 					</Col>
-					{
-		        renderPage()
-					}
+					{ renderPage() }
 				</Row>
 			</Grid>
 		)
