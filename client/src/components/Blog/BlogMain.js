@@ -15,7 +15,7 @@ import {
 import { capitalizeFirstLetter } from '../../utils/utils';
 import BlogCard from './BlogCard';
 import ConnectedBlogModal from '../../containers/ConnectedBlogModal';
-import ShowcaseNavButtons from '../ShowcaseNavButtons';
+import ShowcaseNav from '../ShowcaseNav';
 import '../../styles/Work.css';
 
 class BlogMain extends Component {
@@ -186,7 +186,7 @@ class BlogMain extends Component {
 
 				{/* Work Buttons */}
 
-				<ShowcaseNavButtons
+				<ShowcaseNav
 					visibility={{
 						blog: true,
 						photography: false,

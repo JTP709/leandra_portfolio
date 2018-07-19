@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Row } from 'react-bootstrap';
-import ShowcaseNavButtons from '../ShowcaseNavButtons';
+import ShowcaseNav from '../ShowcaseNav';
 
 class LaboratoryMain extends Component{
 	render(){
@@ -9,7 +9,7 @@ class LaboratoryMain extends Component{
 
 				<Col xs={ 12 }><hr /></Col>
 
-				<ShowcaseNavButtons
+				<ShowcaseNav
 					visibility={{
 						blog: false,
 						photography: false,
