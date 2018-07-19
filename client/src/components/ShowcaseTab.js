@@ -11,7 +11,7 @@ import PortfolioMain from './Portfolio/PortfolioMain';
 import LaboratoryMain from './Laboratory/LaboratoryMain';
 
 
-class ShowCase extends Component {
+class ShowcaseTabs extends Component {
   constructor(props, context) {
     super(props, context);
 		this.state = { key: 1 };
