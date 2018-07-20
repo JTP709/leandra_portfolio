@@ -9,12 +9,6 @@ import Footer from './Footer';
 import ConnectedAdmin from '../containers/ConnectedAdmin';
 import ShowcaseTabs from './ShowcaseTabs';
 
-import ConnectedBlogMain from '../containers/ConnectedBlogMain';
-
-import PhotographyMain from './Photography/PhotographyMain';
-import PortfolioMain from './Portfolio/PortfolioMain';
-import LaboratoryMain from './Laboratory/LaboratoryMain';
-
 import '../styles/bootstrap.min.css';
 import '../styles/bootstrap-theme.min.css';
 
@@ -39,15 +33,8 @@ class App extends Component {
         <ShowcaseTabs />
         <Footer />
       </Grid>
-    const BlogDashboard = () => <ConnectedAdmin page="blog_dashboard" />
-    const NewBlogForm = () => <ConnectedAdmin page="new_blog_form" />
-    const UpdateBlogForm = ({ match }) => <ConnectedAdmin page="update_blog_form" blogId={ match.params.id } />
-    const FiltersDashboard = () => <ConnectedAdmin page="filter_dashboard" />
-
-    // const BlogPage = () => IndexPage(<ConnectedBlogMain />);
-    // const PhotographyPage = () => IndexPage(<PhotographyMain />);
-    // const PortfolioPage = () => IndexPage(<PortfolioMain />);
-    // const LaboratoryPage = () => IndexPage(<LaboratoryMain />);
+    const AdminPage = () => <ConnectedAdmin />
+    const AdminPageUpdateBlog = ({ match }) => <ConnectedAdmin blogId={ match.params.id } />
 
     return (
       <ConnectedRouter history={this.props.history}>
@@ -59,11 +46,18 @@ class App extends Component {
           <Route exact path="/portfolio" component={ IndexPage } />
           <Route exact path="/laboratory" component={ IndexPage } />
           {/* ADMIN */}
-          <Route exact path="/admin" component={ BlogDashboard } />
-          <Route exact path="/admin/blog" component={ BlogDashboard } />
-          <Route exact path="/admin/blog/new" component={ NewBlogForm } />
-          <Route exact path="/admin/blog/update/:id" component={ UpdateBlogForm } />
-          <Route exact path="/admin/blog/filters" component={ FiltersDashboard } />
+          <Route exact path="/admin" component={ AdminPage } />
+          {/* ADMIN BLOG */}
+          <Route exact path="/admin/blog" component={ AdminPage } />
+          <Route exact path="/admin/blog/new" component={ AdminPage } />
+          <Route exact path="/admin/blog/update/:id" component={ AdminPageUpdateBlog } />
+          <Route exact path="/admin/blog/filters" component={ AdminPage } />
+          {/* ADMIN PORTFOLIO */}
+          <Route exact path="/admin/portfolio" component={ AdminPage } />
+          {/* ADMIN PHOTOGRAPHY */}
+          <Route exact path="/admin/photography" component={ AdminPage } />
+          {/* ADMIN LABORATORY */}
+          <Route exact path="/admin/laboratory" component={ AdminPage } />
         </Switch>
       </ConnectedRouter>
     );

@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { push } from 'connected-react-router';
 import {
 	getBlogs,
 	getBlogModal,
@@ -7,7 +8,8 @@ import {
 	getBlogsDisplay,
 	getFilters,
 	getFilterButton,
-	getNotification
+	getNotification,
+	getPathname
 } from '../reducers/rootReducer';
 import {
 	fetchBlogs,
@@ -32,6 +34,7 @@ const mapStateToProps = (state) => {
 	const blogsDisplay = getBlogsDisplay(state);
 	const filterButton = getFilterButton(state);
 	const notification = getNotification(state);
+	const pathname = getPathname(state);
 	return {
 		filters,
 		blogs,
@@ -40,7 +43,8 @@ const mapStateToProps = (state) => {
 		activePage,
 		blogsDisplay,
 		filterButton,
-		notification
+		notification,
+		pathname
 	}
 }
 
@@ -54,7 +58,8 @@ const mapDispatchToProps = {
 	updateFilterButton,
 	updateNotification,
 	updateBlogForm,
-	redirectNewBlogForm
+	redirectNewBlogForm,
+	push
 }
 
 const ConnectedAdmin = connect(

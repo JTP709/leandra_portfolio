@@ -5,16 +5,23 @@ const Filter = require('../../schema/schema.js').Filter;
 const mongodb_host = process.env.MONGODB_HOST || '127.0.0.1:27017';
 
 const deleteFilters = (req,res) => {
-	const { id } = req.body;
-	Filter.findByIdAndRemove(id, function (err){
-		if (err) {
-			console.error(err);
-			res.send(err);
-		} else {
-			res.statusCode = 200;
-			res.send('success');
-		}
-	})
+	mongoose.connect(`mongodb://${mongodb_host}`);
+	const db = mongoose.connection;
+	db.on('error', console.error.bind(console, 'connection error:'));
+	db.once('open', function() {
+		const { id } = req.body;
+		Filter.findByIdAndRemove(id, function (err){
+			if (err) {
+				console.error(err);
+				res.send(err);
+				db.close();
+			} else {
+				res.statusCode = 200;
+				res.send('success');
+				db.close();
+			}
+		});
+	});
 }
 
 exports = module.exports = deleteFilters;

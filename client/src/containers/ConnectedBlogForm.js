@@ -22,7 +22,7 @@ import {
 	updateNotification,
 	updateBlogForm
 } from '../actions/actionCreators';
-import BlogForm from '../components/Admin/BlogForm';
+import BlogForm from '../components/Admin/Blog/BlogForm';
 
 const mapStateToProps = (state) => {
 	const filters = getFilters(state);

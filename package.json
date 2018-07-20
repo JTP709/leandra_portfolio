@@ -5,9 +5,9 @@
     "client": "cd client && npm start",
     "server": "cd server && MONGODB_HOST=127.0.0.1:27017 nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run client\" \"mongod\" \"npm run server\"",
-    "database:drop": "cd /server/resources/dbscripts/ && node server_drop.js",
-    "database:build:dev": "cd /server/resources/dbscripts/ && node server_setup.js",
-    "database:read": "cd /server/resources/dbscripts/ && node server_read.js"
+    "database:drop": "cd server/resources/dbscripts && node server_drop.js",
+    "database:build:dev": "cd server/resources/dbscripts && node server_setup.js",
+    "database:read": "cd server/resources/dbscripts && node server_read.js"
   },
   "dependencies": {
     "cors": "^2.8.4",

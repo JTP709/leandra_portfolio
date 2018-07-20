@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { 
 	Row,
 	Col,
@@ -15,7 +14,6 @@ import {
 import { capitalizeFirstLetter } from '../../utils/utils';
 import BlogCard from './BlogCard';
 import ConnectedBlogModal from '../../containers/ConnectedBlogModal';
-import ShowcaseNav from '../ShowcaseNav';
 import '../../styles/Work.css';
 
 class BlogMain extends Component {
@@ -108,7 +106,7 @@ class BlogMain extends Component {
 			searchResults,
 			searchToggle,
 			searchQuery,
-			redirectPage 
+			redirectPage
 		} = this.props;
 		const filteredBlogs = searchToggle ?
 			searchResults.sort((a,b) => {

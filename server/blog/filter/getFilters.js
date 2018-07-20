@@ -11,8 +11,13 @@ const getFilters = (req,res) => {
 	db.once('open', function() {
 	  console.log('connected to database');
 		Filter.find(function (err, filters) {
-		  if (err) return res.send(err);
-		  res.send(filters);
+		  if (err) {
+				res.send(err);
+				db.close();
+			} else {
+				res.send(filters);
+				db.close();
+			}
 		});
 	});
 }

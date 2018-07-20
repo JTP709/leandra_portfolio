@@ -15,21 +15,29 @@ const putBlogs = (req, res) => {
 		filters,
 		hidden: false
 	});
-	Blog.findByIdAndUpdate(_id, { hidden: true }, function (err, blog){
-		if (err) {
-			console.error(err);
-			res.send(err);
-		} else {
-			newBlog.save(function (err, title) {
-		    if (err) {
-		    	console.error(err);
-		    	res.send(err);
-		    } else {
+	mongoose.connect(`mongodb://${mongodb_host}`);
+	const db = mongoose.connection;
+	db.on('error', console.error.bind(console, 'connection error:'));
+	db.once('open', function() {
+		Blog.findByIdAndUpdate(_id, { hidden: true }, function (err, blog){
+			if (err) {
+				console.error(err);
+				res.send(err);
+				db.close();
+			} else {
+				newBlog.save(function (err, title) {
+				if (err) {
+					console.error(err);
+					res.send(err);
+					db.close();
+				} else {
 					res.statusCode = 200;
 					res.send('success');
-		    }
-		  });
-		}
+					db.close();
+				}
+			});
+			}
+		});
 	});
 }
 

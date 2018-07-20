@@ -7,7 +7,7 @@ import {
 	updateFilter,
 	deleteFilter
 } from '../actions/actionCreators';
-import FilterDashboard from '../components/Admin/FilterDashboard';
+import FilterDashboard from '../components/Admin/Blog/FilterDashboard';
 
 const mapStateToProps = (state) => {
 	const filters = getFilters(state);

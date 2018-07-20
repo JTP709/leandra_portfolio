@@ -29,7 +29,7 @@ export const getBlogForm = state => { return state.blogState.blogForm }
 
 export const getShowModal = state => { return state.blogState.showModal }
 
-export const getPathname = state => { return state.router.pathname }
+export const getPathname = state => { return state.router.location.pathname }
 
 const rootReducer = combineReducers({
 	blogState: blogs

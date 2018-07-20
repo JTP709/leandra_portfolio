@@ -1,4 +1,4 @@
-const testBlogs = require('./client/src/testBlogData');
+const testBlogs = require('./testBlogData');
 const mongoose = require('mongoose');
 const uuidv4 = require('uuid/v4');
 
@@ -33,9 +33,10 @@ db.once('open', function() {
 
   testFilters.map(filter => {
   	const newFilter = new Filter({ filter });
-  	newFilter.save(function (err, tittle) {
+  	newFilter.save(function (err, title) {
   		if (err) return console.error(err);
-  		console.log(`${filter} added to the database`)
+  		console.log(`${filter} added to the database`);
+			mongoose.disconnect();
   	});
   });
 

@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import { 
-	Grid,
+import {
 	Col,
 	Table,
-	Form,
 	FormGroup,
 	FormControl,
 	HelpBlock,
 	Button
 } from 'react-bootstrap';
-import { capitalizeFirstLetter } from '../../utils/utils';
+import { capitalizeFirstLetter } from '../../../utils/utils';
 
 class FilterDashboard extends Component {
 	constructor(){

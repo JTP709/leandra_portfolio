@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import { 
-	Grid,
+import {
 	Col,
-	Row,
 	FormGroup,
 	ControlLabel,
 	FormControl,
 	HelpBlock
 } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
-import axios from 'axios';
-import { capitalizeFirstLetter } from '../../utils/utils';
+import { capitalizeFirstLetter } from '../../../utils/utils';
 
 class BlogForm extends Component {
 	constructor(){

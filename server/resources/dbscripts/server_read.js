@@ -1,4 +1,4 @@
-const testBlogs = require('./client/src/testBlogData');
+const testBlogs = require('./testBlogData');
 const mongoose = require('mongoose');
 
 const Blog = require('../../schema/schema.js').Blog;
@@ -12,5 +12,6 @@ db.once('open', function() {
 	Blog.find(function (err, blogs) {
 	  if (err) return console.error(err);
 	  console.log(blogs);
+		mongoose.disconnect();
 	});
 });

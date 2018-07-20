@@ -19,7 +19,7 @@ import {
 	updateFilterButton,
 	updateShowModal
 } from '../actions/actionCreators';
-import BlogDashboard from '../components/Admin/BlogDashBoard';
+import BlogDashboard from '../components/Admin/Blog/BlogDashBoard';
 
 const mapStateToProps = (state) => {
 	const filters = getFilters(state);

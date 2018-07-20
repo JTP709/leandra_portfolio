@@ -1,4 +1,4 @@
-const testBlogs = require('./client/src/testBlogData');
+const testBlogs = require('./testBlogData');
 const mongoose = require('mongoose');
 
 const Blog = require('../../schema/schema.js').Blog;
@@ -13,6 +13,7 @@ db.once('open', function() {
    console.log('blogs removed') 
 	});
   Filter.remove({}, function(err) {
-    console.log('filters removed')
+    console.log('filters removed');
+    mongoose.disconnect();
   });
 });

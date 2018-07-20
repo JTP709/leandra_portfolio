@@ -12,9 +12,14 @@ const getBlogs = (req, res) => {
 	db.once('open', function() {
 	  console.log('connected to database');
 		Blog.find(function (err, blogs) {
-		  if (err) return res.send(err);
-		  const filteredHiddenBlogs = blogs.filter(blog => { return !blog.hidden });
-		  res.send(filteredHiddenBlogs);
+		  if (err) {
+				res.send(err);
+				db.close();
+			} else {
+				const filteredHiddenBlogs = blogs.filter(blog => { return !blog.hidden });
+				res.send(filteredHiddenBlogs);
+				db.close();
+			}
 		});
 	});
 }

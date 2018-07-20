@@ -5,17 +5,24 @@ const Filter = require('../../schema/schema.js').Filter;
 const mongodb_host = process.env.MONGODB_HOST || '127.0.0.1:27017';
 
 const postFilters = (req,res) => {
-	const { filter } = req.body;
-	const newFilter = new Filter({ filter });
-	newFilter.save(function (err, title) {
-    if (err) {
-    	console.error(err)
-    	res.send(err)
-    } else {
-    	res.statusCode = 200;
-    	res.send('success');
-    }
-  });
+	mongoose.connect(`mongodb://${mongodb_host}`);
+	const db = mongoose.connection;
+	db.on('error', console.error.bind(console, 'connection error:'));
+	db.once('open', function() {
+		const { filter } = req.body;
+		const newFilter = new Filter({ filter });
+		newFilter.save(function (err, title) {
+			if (err) {
+				console.error(err)
+				res.send(err)
+				db.close();
+			} else {
+				res.statusCode = 200;
+				res.send('success');
+				db.close();
+			}
+		});
+	});
 }
 
 exports = module.exports = postFilters;
