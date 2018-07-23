@@ -44,15 +44,10 @@ class Admin extends Component {
 			}
 		}
     let key;
-    if (
-      pathname === "/admin/blog" || 
-      pathname === "/admin" || 
-      pathname === "/admin/blog/new" || 
-      pathname === "/admin/blog/filters"
-    ) { key = 1 }
-    if (pathname === "/admin/portfolio") { key =  2}
-    if (pathname === "/admin/photography") { key = 3 }
-    if (pathname === "/admin/laboratory") { key = 4 }
+    if (pathname.includes("/admin/blog") || pathname === "/admin") { key = 1 }
+    if (pathname.includes("/admin/portfolio")) { key =  2}
+    if (pathname.includes("/admin/photography")) { key = 3 }
+    if (pathname.includes("/admin/laboratory")) { key = 4 }
 		return (
 			<Grid>
 				<Row>
