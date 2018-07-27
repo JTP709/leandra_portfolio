@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-	Col,
-	Tabs,
-	Tab
-} from 'react-bootstrap';
+import { Tabs, Tab } from 'react-bootstrap';
 import { getPathname } from '../reducers/rootReducer';
 import { redirectPage } from '../actions/actionCreators';
 import ConnectedBlogMain from '../containers/ConnectedBlogMain';
@@ -51,7 +47,7 @@ class ShowcaseTabs extends Component {
 
   render() {
     return (
-			<Col xs={ 12 } md={ 12 } id = "work">
+			<div id = "work">
 
 				<hr />
 
@@ -73,7 +69,7 @@ class ShowcaseTabs extends Component {
 						<LaboratoryMain />
 					</Tab>
 				</Tabs>
-			</Col>
+			</div>
     );
   }
 }

@@ -45,13 +45,16 @@ class BlogMain extends Component {
 	}
 
 	handleSearch(){
-		const { searchIndex, updateSearchResults, updateSearchToggle, activePage, searchQuery } = this.props;
+		const { searchIndex, updateSearchResults, updateSearchToggle, searchQuery } = this.props;
 		const search = searchIndex.search(searchQuery);
-		searchQuery === '' || searchQuery === undefined ? 
-			updateSearchToggle(false) : 
-			(updateSearchToggle(true), updateSearchResults(search));
-		this.handlePagination(1);
 		this.handleFilterSelect('Filter Blog');
+		this.handlePagination(1);
+		if(searchQuery === '' || searchQuery === undefined) {
+			updateSearchToggle(false)
+		} else {
+			updateSearchToggle(true);
+			updateSearchResults(search);
+		}
 	}
 
 	handleClearSearch(){
@@ -102,11 +105,9 @@ class BlogMain extends Component {
 			blogs,
 			activePage,
 			filterButton,
-			blogModal,
 			searchResults,
 			searchToggle,
 			searchQuery,
-			redirectPage
 		} = this.props;
 		const filteredBlogs = searchToggle ?
 			searchResults.sort((a,b) => {

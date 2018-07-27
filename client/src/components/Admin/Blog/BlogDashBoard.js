@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
 	Col,
 	Table,
-	Image
+	Image,
+	Button
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ConnectedBlogModal from '../../../containers/ConnectedBlogModal';
@@ -33,19 +34,16 @@ class BlogDashboard extends Component {
 				const dateA = new Date(b.author_date);
 				const dateB = new Date(a.author_date);
 				return dateA - dateB;
-			}).
-			map(blog => {
+			}).map(blog => {
 				const dateObj = new Date(blog.author_date);
 				// TODO: replace dead href
 				return (
-					<tr>
+					<tr key={blog._id} >
 			      <td>
 			      	{ formatDate(dateObj) }
 			      </td>
-			      <td>
-			      	<a onClick={ () => { this.handleBlogPreview(blog) } } href='#'>
-			      		{ blog.title }
-			      	</a>
+			      <td onClick={ () => { this.handleBlogPreview(blog) } } >
+							{ blog.title }
 			      </td>
 			      <td>
 			      	<Image src={ blog.thumbnail } responsive />
@@ -62,9 +60,9 @@ class BlogDashboard extends Component {
 			      	</Link>
 			      </td>
 			      <td>
-			      	<a onClick={ () => { this.handleBlogDelete(blog._id) } } href='#'>
-			      		Del
-			      	</a>
+							<Button onClick={ () => { this.handleBlogDelete(blog._id) } } >
+								X
+							</Button>
 			      </td>
 			    </tr>
 			  )

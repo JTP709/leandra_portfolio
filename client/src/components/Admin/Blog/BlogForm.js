@@ -77,11 +77,9 @@ class BlogForm extends Component {
     if (e === undefined) { return; }
     const filters = Object.keys(e.target.options)
     	.map(num => {
-	    	if (e.target.options[num].selected === true) {
-	    		return e.target.options[num].value 
-	    	}
+				return e.target.options[num].selected && e.target.options[num].value;
 	    })
-	    .filter(filter => { if (filter) return filter });
+	    .filter(filter => { return filter && filter });
     const { blogForm, updateBlogForm } = this.props;
     updateBlogForm({
     	...blogForm,
@@ -91,17 +89,16 @@ class BlogForm extends Component {
 
 	renderFilterOptions() {
 		const { filters } = this.props;
-		if (filters != undefined) {
-			return filters.map(filter => {
-	      return (<option value={ filter.filter }>
-	      	{ capitalizeFirstLetter(filter.filter) }
-	      </option>)
-			})
-		}
+		return filters && filters.map(filter => (
+				<option key={filter.filter} value={ filter.filter }>
+					{ capitalizeFirstLetter(filter.filter) }
+				</option>
+			)
+		)
 	}
 
 	render() {
-		const { type, blogId, blogForm } = this.props;
+		const { type, blogForm } = this.props;
 		const header = type === "new_blog_form" ? <h2>New Blog Form</h2> : <h2>Update Blog Form</h2>;
 		// const loading = this.state.isLoading ? <h1>LOADING</h1> : null;
 		const writtenWords = [

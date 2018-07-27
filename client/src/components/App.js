@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import { ConnectedRouter } from 'connected-react-router';
 import { Grid } from 'react-bootstrap';
 import Navbar from './Navbar';
