@@ -27,7 +27,7 @@ class BlogDashboard extends Component {
 	}
 
 	render(){
-		const { blogs, updateShowModal, updateBlogModal } = this.props;
+		const { blogs } = this.props;
 		const blogRows = blogs
 			.sort((a,b) => { 
 				const dateA = new Date(b.author_date);
