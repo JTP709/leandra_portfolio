@@ -9,7 +9,7 @@ const About = () =>
 			<hr />
 		</Col>
 		<Col xs={12} md={3}>
-			<Image id="profile_picture" src="http://via.placeholder.com/250x250" alt="Profile Picture" responsive />
+			<Image id="profile_picture" src="https://placedog.net/250/250" alt="Profile Picture" responsive />
 		</Col>
 		<Col xs={12} md={9} className="about_information">
 			<p>Hi! I'm a dude, playin a dude, disguised as another dude!</p>

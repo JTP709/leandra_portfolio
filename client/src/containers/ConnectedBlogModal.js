@@ -1,11 +1,9 @@
 import { connect } from 'react-redux';
 import {
 	getShowModal,
-	getBlogModal
-} from '../reducers/rootReducer';
-import {
+	getBlogModal,
 	updateShowModal
-} from '../actions/actionCreators';
+} from 'site-redux';
 import BlogModal from '../components/Blog/BlogModal';
 
 const mapStateToProps = (state) => {

@@ -9,9 +9,7 @@ import {
 	getFilters,
 	getFilterButton,
 	getNotification,
-	getPathname
-} from '../reducers/rootReducer';
-import {
+	getPathname,
 	fetchBlogs,
 	updateBlogArray,
 	updateBlogModal,
@@ -22,7 +20,7 @@ import {
 	updateNotification,
 	updateBlogForm,
 	redirectNewBlogForm
-} from '../actions/actionCreators';
+} from 'site-redux';
 import Admin from '../components/Admin/Admin';
 
 const mapStateToProps = (state) => {

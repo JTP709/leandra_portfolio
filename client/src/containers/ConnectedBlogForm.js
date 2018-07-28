@@ -7,9 +7,7 @@ import {
 	getBlogsDisplay,
 	getFilters,
 	getFilterButton,
-	getBlogForm
-} from '../reducers/rootReducer';
-import {
+	getBlogForm,
 	fetchBlogs,
 	newBlog,
 	updateBlog,
@@ -21,7 +19,7 @@ import {
 	updateFilterButton,
 	updateNotification,
 	updateBlogForm
-} from '../actions/actionCreators';
+} from 'site-redux';
 import BlogForm from '../components/Admin/Blog/BlogForm';
 
 const mapStateToProps = (state) => {

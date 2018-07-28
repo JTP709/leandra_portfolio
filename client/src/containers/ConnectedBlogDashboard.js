@@ -6,9 +6,7 @@ import {
 	getActivePage,
 	getBlogsDisplay,
 	getFilters,
-	getFilterButton
-} from '../reducers/rootReducer';
-import {
+	getFilterButton,
 	fetchBlogs,
 	deleteBlog,
 	updateBlogArray,
@@ -18,7 +16,7 @@ import {
 	updateBlogsDisplay,
 	updateFilterButton,
 	updateShowModal
-} from '../actions/actionCreators';
+} from 'site-redux';
 import BlogDashboard from '../components/Admin/Blog/BlogDashBoard';
 
 const mapStateToProps = (state) => {

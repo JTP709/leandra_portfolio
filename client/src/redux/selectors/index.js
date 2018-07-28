@@ -1,6 +1,3 @@
-import { blogs } from './blogReducer';
-import { combineReducers } from 'redux';
-
 export const getSearchQuery = state => { return state.blogState.searchQuery }
 
 export const getSearchToggle = state => { return state.blogState.searchToggle }
@@ -30,9 +27,3 @@ export const getBlogForm = state => { return state.blogState.blogForm }
 export const getShowModal = state => { return state.blogState.showModal }
 
 export const getPathname = state => { return state.router.location.pathname }
-
-const rootReducer = combineReducers({
-	blogState: blogs
-});
-
-export default rootReducer;

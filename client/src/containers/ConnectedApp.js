@@ -6,9 +6,7 @@ import {
 	getActivePage,
 	getBlogsDisplay,
 	getFilters,
-	getFilterButton
-} from '../reducers/rootReducer';
-import {
+	getFilterButton,
 	fetchBlogs,
 	fetchFilters,
 	updateBlogArray,
@@ -17,7 +15,7 @@ import {
 	updateBlogPage,
 	updateBlogsDisplay,
 	updateFilterButton
-} from '../actions/actionCreators';
+} from 'site-redux';
 import App from '../components/App';
 
 const mapStateToProps = (state) => {

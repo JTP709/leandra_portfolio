@@ -1,12 +1,10 @@
 import { connect } from 'react-redux';
 import {
-	getFilters
-} from '../reducers/rootReducer';
-import {
+	getFilters,
 	newFilter,
 	updateFilter,
 	deleteFilter
-} from '../actions/actionCreators';
+} from 'site-redux';
 import FilterDashboard from '../components/Admin/Blog/FilterDashboard';
 
 const mapStateToProps = (state) => {

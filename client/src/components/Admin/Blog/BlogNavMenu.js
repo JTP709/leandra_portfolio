@@ -6,8 +6,7 @@ import {
   NavItem
 } from 'react-bootstrap';
 import { push } from 'connected-react-router';
-import { redirectNewBlogForm } from '../../../actions/actionCreators';
-import { getPathname } from '../../../reducers/rootReducer';
+import { redirectNewBlogForm, getPathname } from 'site-redux';
 
 class BlogNavMenu extends Component {
   constructor(){

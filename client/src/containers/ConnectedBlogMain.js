@@ -9,9 +9,7 @@ import {
 	getSearchIndex,
 	getSearchResults,
 	getSearchToggle,
-	getSearchQuery
-} from '../reducers/rootReducer';
-import {
+	getSearchQuery,
 	fetchBlogs,
 	updateBlogArray,
 	updateBlogModal,
@@ -23,7 +21,7 @@ import {
 	updateSearchResults,
 	updateSearchToggle,
 	updateSearchQuery
-} from '../actions/actionCreators';
+} from 'site-redux';
 import BlogMain from '../components/Blog/BlogMain';
 
 const mapStateToProps = (state) => {

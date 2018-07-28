@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'react-bootstrap';
-import { getPathname } from '../reducers/rootReducer';
-import { redirectPage } from '../actions/actionCreators';
+import { getPathname, redirectPage } from 'site-redux';
 import ConnectedBlogMain from '../containers/ConnectedBlogMain';
 
 import PhotographyMain from './Photography/PhotographyMain';
