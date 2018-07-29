@@ -15,6 +15,7 @@ import { capitalizeFirstLetter } from '../../utils/utils';
 import BlogCard from './BlogCard';
 import ConnectedBlogModal from '../../containers/ConnectedBlogModal';
 import '../../styles/Work.css';
+import '../../styles/blog/BlogMain.css';
 
 class BlogMain extends Component {
 	constructor(){
@@ -187,8 +188,6 @@ class BlogMain extends Component {
 		return (
 			<Row id = "blog_section">
 
-				<Col xs={ 12 }><hr /></Col>
-
 				{/* Blog Filters */}
 
 				<Col xs={ 4 } md={ 6 }>
@@ -228,11 +227,15 @@ class BlogMain extends Component {
 					{ blogCards }
 				</Col>
 
-				<Col md={ 12 } className = "text-center">
-		    	<Pagination bsSize = "medium">
-		    		{ pageNumbers }
-		    	</Pagination>
-		    </Col>
+				{ 
+					filteredBlogs.length > 5 ?
+						<Col md={ 12 } className = "text-center">
+							<Pagination bsSize = "medium">
+								{ pageNumbers }
+							</Pagination>
+						</Col> :
+						null
+				}
 
 				{/* Blog Modal */}
 

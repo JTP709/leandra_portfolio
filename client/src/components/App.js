@@ -11,6 +11,7 @@ import ShowcaseTabs from './ShowcaseTabs';
 
 import '../styles/bootstrap.min.css';
 import '../styles/bootstrap-theme.min.css';
+import '../styles/App.css';
 
 
 class App extends Component {

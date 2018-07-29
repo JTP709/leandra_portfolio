@@ -2,11 +2,11 @@ const testPortfolio = [
   {
     rank: 1,
     title: "Qroger",
-    thumbnail: "http://placekitten.com/g/250/250",
+    thumbnail: "http://placekitten.com/g/512/256",
     carousel: [
-      "http://placekitten.com/g/512/1024",
-      "http://placekitten.com/g/512/1024", 
-      "http://placekitten.com/g/512/1024"
+      "http://placekitten.com/g/1024/512",
+      "https://placedog.net/1024/512", 
+      "http://placekitten.com/g/1024/512"
     ],
     about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
 		"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
@@ -32,11 +32,11 @@ const testPortfolio = [
   {
     rank: 2,
     title: "Kwitter",
-    thumbnail: "http://placekitten.com/g/250/250",
+    thumbnail: "https://placedog.net/512/256",
     carousel: [
-      "http://placekitten.com/g/512/1024",
-      "http://placekitten.com/g/512/1024", 
-      "http://placekitten.com/g/512/1024"
+      "http://placekitten.com/g/1024/512",
+      "https://placedog.net/1024/512", 
+      "http://placekitten.com/g/1024/512"
     ],
     about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
 		"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
@@ -62,11 +62,11 @@ const testPortfolio = [
   {
     rank: 3,
     title: "Kroogle",
-    thumbnail: "http://placekitten.com/g/250/250",
+    thumbnail: "http://placekitten.com/g/512/256",
     carousel: [
-      "http://placekitten.com/g/512/1024",
-      "http://placekitten.com/g/512/1024", 
-      "http://placekitten.com/g/512/1024"
+      "http://placekitten.com/g/1024/512",
+      "https://placedog.net/1024/512", 
+      "http://placekitten.com/g/1024/512"
     ],
     about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
 		"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +

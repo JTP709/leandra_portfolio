@@ -14,6 +14,8 @@ import {
 	updateSearchResults,
 	updateSearchToggleTrue,
 	updateSearchToggleFalse,
+	updateShowModalTrue,
+	updateShowModalFalse,
 	updateSearchQuery
 } from 'site-redux';
 import BlogMain from '../components/Blog/BlogMain';
@@ -46,6 +48,8 @@ const mapDispatchToProps = {
 	updateSearchResults,
 	updateSearchToggleTrue,
 	updateSearchToggleFalse,
+	updateShowModalTrue,
+	updateShowModalFalse,
 	updateSearchQuery
 }
 

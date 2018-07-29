@@ -8,6 +8,7 @@ import {
 import { Link } from 'react-router-dom';
 import ConnectedBlogModal from '../../../containers/ConnectedBlogModal';
 import { capitalizeFirstLetter, formatDate } from '../../../utils/utils';
+import '../../../styles/admin/blog/BlogDashBoard.css';
 
 class BlogDashboard extends Component {
 	constructor(){
@@ -42,7 +43,7 @@ class BlogDashboard extends Component {
 			      <td>
 			      	{ formatDate(dateObj) }
 			      </td>
-			      <td onClick={ () => { this.handleBlogPreview(blog) } } >
+			      <td className="blog_dashboard_title" onClick={ () => { this.handleBlogPreview(blog) } } >
 							{ blog.title }
 			      </td>
 			      <td>

@@ -1,0 +1,8 @@
+.portfolio_thumbnail {
+  cursor: pointer;
+  /* width: 33.2%; */
+}
+
+#portfolio_section {
+  padding-top: 25px;
+}
