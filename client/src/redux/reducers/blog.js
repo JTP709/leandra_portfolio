@@ -1,4 +1,13 @@
+import {
+  UPDATE_SEARCH,
+  UPDATE_BLOG,
+  UPDATE_FILTER,
+  UPDATE_NOTIFICATION
+} from '../constants'
+
 const defaultState = {
+  loading: false,
+  error: null,
 	blogs: [],
 	filters: [],
 	blogModal: {
@@ -28,85 +37,109 @@ const defaultState = {
 
 export const blogs = (state = defaultState, action) => {
   switch(action.type) {
-    case 'UPDATE_BLOG_ARRAY':
+    case UPDATE_BLOG.ARRAY:
     	const blogs = action.payload;
     	return {
     		...state,
     		blogs
-    	}
-    case 'UPDATE_BLOG_MODAL':
+      }
+    case UPDATE_BLOG.LOADING_TRUE:
+      return {
+        ...state,
+        loading: true
+      }
+      case UPDATE_BLOG.LOADING_FALSE:
+        return {
+          ...state,
+          loading: false
+        }
+        case UPDATE_BLOG.ERROR:
+        const error = action.error
+          return {
+            ...state,
+            error
+          }
+    case UPDATE_BLOG.MODAL:
     	const blogModal = action.payload;
     	return {
     		...state,
     		blogModal
     	}
-    case 'UPDATE_PAGE_NUMBER':
+    case UPDATE_BLOG.PAGE_NUMBER:
     	const pages = action.payload;
     	return {
     		...state,
     		pages
     	}
-    case 'UPDATE_BLOG_PAGE':
+    case UPDATE_BLOG.PAGE:
     	const activePage = action.payload;
     	return {
     		...state,
     		activePage
     	}
-    case 'UPDATE_BLOG_DISPLAY':
+    case UPDATE_BLOG.DISPLAY:
     	const blogsDisplay = action.payload;
     	return {
     		...state,
     		blogsDisplay
     	}
-    case 'UPDATE_FILTER_BUTTON':
+    case UPDATE_FILTER.FILTER_BUTTON:
     	const filterButton = action.payload;
     	return {
     		...state,
     		filterButton
     	}
-    case 'UPDATE_FILTERS':
+    case UPDATE_FILTER.FILTERS:
       const filters = action.payload;
       return {
         ...state,
         filters
       }
-    case 'UPDATE_NOTIFICATION':
+    case UPDATE_NOTIFICATION:
         const notification = action.payload;
         return {
             ...state,
             notification
         }
-    case 'UPDATE_BLOG_FORM':
+    case UPDATE_BLOG.FORM:
       const blogForm = action.payload;
       return {
         ...state,
         blogForm
       }
-    case 'UPDATE_SHOW_MODAL':
-      const showModal = action.payload;
+    case UPDATE_BLOG.SHOW_MODAL_TRUE:
       return {
         ...state,
-        showModal
+        showModal: true
       }
-    case 'UPDATE_SEARCH_INDEX':
+    case UPDATE_BLOG.SHOW_MODAL_FALSE:
+      return {
+        ...state,
+        showModal: false
+      }
+    case UPDATE_SEARCH.INDEX:
       const searchIndex = action.payload;
       return {
         ...state,
         searchIndex
       }
-    case 'UPDATE_SEARCH_RESULTS':
+    case UPDATE_SEARCH.RESULTS:
       const searchResults = action.payload;
       return {
         ...state,
         searchResults
       }
-    case 'UPDATE_SEARCH_TOGGLE':
-      const searchToggle = action.payload;
+    case UPDATE_SEARCH.TOGGLE_TRUE:
       return {
         ...state,
-        searchToggle
+        searchToggle: true
       }
-    case 'UPDATE_SEARCH_QUERY':
+    case UPDATE_SEARCH.TOGGLE_FALSE:
+      return {
+        ...state,
+        searchToggle: false
+      }
+    case UPDATE_SEARCH.QUERY:
       const searchQuery = action.payload;
       return {
         ...state,

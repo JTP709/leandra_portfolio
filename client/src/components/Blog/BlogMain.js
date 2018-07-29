@@ -45,26 +45,32 @@ class BlogMain extends Component {
 	}
 
 	handleSearch(){
-		const { searchIndex, updateSearchResults, updateSearchToggle, searchQuery } = this.props;
+		const { 
+			searchIndex,
+			updateSearchResults,
+			updateSearchToggleTrue,
+			updateSearchToggleFalse,
+			searchQuery 
+		} = this.props;
 		const search = searchIndex.search(searchQuery);
 		this.handleFilterSelect('Filter Blog');
 		this.handlePagination(1);
 		if(searchQuery === '' || searchQuery === undefined) {
-			updateSearchToggle(false)
+			updateSearchToggleFalse()
 		} else {
-			updateSearchToggle(true);
+			updateSearchToggleTrue();
 			updateSearchResults(search);
 		}
 	}
 
 	handleClearSearch(){
-		const { updateSearchToggle, updateSearchQuery } = this.props;
+		const { updateSearchToggleFalse, updateSearchQuery } = this.props;
 		updateSearchQuery('')
-		updateSearchToggle(false);
+		updateSearchToggleFalse();
 	}
 
 	openModal(blog){
-		const { updateBlogModal, updateShowModal } = this.props;
+		const { updateBlogModal, updateShowModalTrue } = this.props;
 		const { title, author_date, body, thumbnail } = blog;
 		const modalInfo={
 			title,
@@ -73,7 +79,7 @@ class BlogMain extends Component {
 			thumbnail
 		};
 		updateBlogModal(modalInfo);
-		updateShowModal(true);
+		updateShowModalTrue();
 	}
 
 	renderFilters(){

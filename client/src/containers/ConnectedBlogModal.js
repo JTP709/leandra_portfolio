@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import {
 	getShowModal,
 	getBlogModal,
-	updateShowModal
+	updateShowModalFalse
 } from 'site-redux';
 import BlogModal from '../components/Blog/BlogModal';
 
@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-	updateShowModal
+	updateShowModalFalse
 }
 
 const ConnectedBlogModal = connect(

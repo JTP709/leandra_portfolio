@@ -10,7 +10,8 @@ import {
   redirectPage,
   redirectNewBlogForm,
   updateSearchQuery,
-  updateSearchToggle,
+  updateSearchToggleTrue,
+  updateSearchToggleFalse,
   updateSearchResults,
   updateSearchIndex,
   updateBlogArray,
@@ -22,7 +23,8 @@ import {
   updateFilters,
   updateNotification,
   updateBlogForm,
-  updateShowModal
+  updateShowModalTrue,
+  updateShowModalFalse
 } from './actions/blog';
 
 import rootReducer from './reducers/rootReducer'
@@ -46,6 +48,7 @@ import {
 } from './selectors'
 
 export {
+  // actions/blogs
   fetchBlogs,
   newBlog,
   updateBlog,
@@ -57,7 +60,8 @@ export {
   redirectPage,
   redirectNewBlogForm,
   updateSearchQuery,
-  updateSearchToggle,
+  updateSearchToggleTrue,
+  updateSearchToggleFalse,
   updateSearchResults,
   updateSearchIndex,
   updateBlogArray,
@@ -69,8 +73,11 @@ export {
   updateFilters,
   updateNotification,
   updateBlogForm,
-  updateShowModal,
+  updateShowModalTrue,
+  updateShowModalFalse,
+  // root reducer
   rootReducer,
+  // selectors
   getSearchQuery,
   getSearchToggle,
   getSearchResults,

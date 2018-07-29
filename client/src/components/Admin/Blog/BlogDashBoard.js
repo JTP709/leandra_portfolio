@@ -17,8 +17,8 @@ class BlogDashboard extends Component {
 	}
 
 	handleBlogPreview(blog){
-		const { updateShowModal, updateBlogModal } = this.props;
-		updateShowModal(true);
+		const { updateShowModalTrue, updateBlogModal } = this.props;
+		updateShowModalTrue();
 		updateBlogModal(blog);
 	}
 

@@ -17,9 +17,10 @@ import {
 	updateBlogPage,
 	updateBlogsDisplay,
 	updateFilterButton,
-	updateShowModal,
+	updateShowModalTrue,
 	updateSearchResults,
-	updateSearchToggle,
+	updateSearchToggleTrue,
+	updateSearchToggleFalse,
 	updateSearchQuery
 } from 'site-redux';
 import BlogMain from '../components/Blog/BlogMain';
@@ -57,9 +58,10 @@ const mapDispatchToProps = {
 	updateBlogPage,
 	updateBlogsDisplay,
 	updateFilterButton,
-	updateShowModal,
+	updateShowModalTrue,
 	updateSearchResults,
-	updateSearchToggle,
+	updateSearchToggleTrue,
+	updateSearchToggleFalse,
 	updateSearchQuery
 }
 

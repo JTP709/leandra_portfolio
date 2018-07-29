@@ -3,14 +3,14 @@ import { Modal, Button } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
 import { formatDate } from '../../utils/utils';
 
-const BlogModal = ({ showModal, blogModal, updateShowModal }) => {
+const BlogModal = ({ showModal, blogModal, updateShowModalFalse }) => {
   const { title, author_date, body, thumbnail } = blogModal;
   const dateObject = new Date(author_date);
 
   return (
     <Modal 
       show={showModal}
-      onHide={ () => { updateShowModal(false) } }
+      onHide={ () => { updateShowModalFalse() } }
       bsSize="large"
       animation
     >
@@ -23,7 +23,7 @@ const BlogModal = ({ showModal, blogModal, updateShowModal }) => {
         <ReactMarkdown source={ body } />
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={ () => { updateShowModal(false) } }>Close</Button>
+        <Button onClick={ () => { updateShowModalFalse() } }>Close</Button>
       </Modal.Footer>
     </Modal>
   );

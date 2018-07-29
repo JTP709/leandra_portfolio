@@ -15,7 +15,7 @@ import {
 	updateBlogPage,
 	updateBlogsDisplay,
 	updateFilterButton,
-	updateShowModal
+	updateShowModalTrue,
 } from 'site-redux';
 import BlogDashboard from '../components/Admin/Blog/BlogDashBoard';
 
@@ -47,7 +47,7 @@ const mapDispatchToProps = {
 	updateBlogPage,
 	updateBlogsDisplay,
 	updateFilterButton,
-	updateShowModal
+	updateShowModalTrue
 }
 
 const ConnectedBlogDashboard = connect(

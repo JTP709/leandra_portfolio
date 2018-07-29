@@ -1,9 +1,16 @@
 import axios from 'axios';
 import lunr from 'lunr';
 import { push } from 'connected-react-router';
+import {
+  UPDATE_SEARCH,
+  UPDATE_BLOG,
+  UPDATE_FILTER,
+  UPDATE_NOTIFICATION
+} from '../constants';
 
 export const fetchBlogs = () => {
   return dispatch => {
+    dispatch(loadingBlogsStarted());
     fetch(`http://localhost:5000/api/blogs`)
       .then(response => {
         if (!response.ok) {
@@ -23,6 +30,11 @@ export const fetchBlogs = () => {
           dispatch(updateBlogArray(data));
         })
         dispatch(updateSearchIndex(idx));
+        dispatch(loadingBlogsFinished());
+      })
+      .catch(error => {
+        dispatch(loadingBlogsStarted())
+        dispatch(blogError(error));
       })
   };
 }
@@ -48,6 +60,7 @@ export const newBlog = blog => {
     }).catch(error => {
       //TODO : LOADING false
       dispatch(updateNotification('blog_submission_fail'));
+      dispatch(blogError(error));
     });
   }
 }
@@ -76,6 +89,7 @@ export const updateBlog = blog => {
     .catch(error => {
       //TODO : LOADING false
       dispatch(updateNotification('blog_update_fail'));
+      dispatch(blogError(error));
     });
   }
 }
@@ -96,6 +110,7 @@ export const deleteBlog = id => {
     .catch(error => {
       //TODO : LOADING false
       dispatch(updateNotification('blog_deletion_fail'));
+      dispatch(blogError(error));
     });
   };
 }
@@ -126,12 +141,10 @@ export const newFilter = filter => {
       }
     }).then(response => {
       if(response.status === 200) {
-        //TODO : LOADING false
         dispatch(updateNotification('filter_submission_successful'));
         dispatch(fetchFilters());
       }
     }).catch(error => {
-      //TODO : LOADING false
       dispatch(updateNotification('filter_submission_fail'));
     });
   }
@@ -194,100 +207,129 @@ export const redirectNewBlogForm = () => {
   }
 }
 
+export const loadingBlogsStarted = () => {
+  return {
+    type: UPDATE_BLOG.LOADING_TRUE
+  }
+}
+
+export const loadingBlogsFinished = () => {
+  return {
+    type: UPDATE_BLOG.LOADING_FALSE
+  }
+}
+
+export const blogError = error => {
+  return {
+    type: UPDATE_BLOG.ERROR,
+    error
+  }
+}
+
 export const updateSearchQuery = payload => {
   return {
-    type: 'UPDATE_SEARCH_QUERY',
+    type: UPDATE_SEARCH.QUERY,
     payload
   }
 }
 
-export const updateSearchToggle = payload => {
+export const updateSearchToggleTrue = () => {
   return {
-    type: 'UPDATE_SEARCH_TOGGLE',
-    payload
+    type: UPDATE_SEARCH.TOGGLE_TRUE
+  }
+}
+
+export const updateSearchToggleFalse = () => {
+  return {
+    type: UPDATE_SEARCH.TOGGLE_FALSE
   }
 }
 
 export const updateSearchResults = payload => {
   return {
-    type: 'UPDATE_SEARCH_RESULTS',
+    type: UPDATE_SEARCH.RESULTS,
     payload
   }
 }
 
 export const updateSearchIndex = payload => {
   return {
-    type: 'UPDATE_SEARCH_INDEX',
+    type: UPDATE_SEARCH.INDEX,
     payload
   }
 }
 
 export const updateBlogArray = payload => {
 	return {
-		type: 'UPDATE_BLOG_ARRAY',
+		type: UPDATE_BLOG.ARRAY,
 		payload
 	}
 }
 
 export const updateBlogModal = payload => {
   return {
-    type: 'UPDATE_BLOG_MODAL',
+    type: UPDATE_BLOG.MODAL,
     payload
   }
 }
 
 export const updatePageNumber = payload => {
 	return {
-		type: 'UPDATE_PAGE_NUMBER',
+		type: UPDATE_BLOG.PAGE_NUMBER,
 		payload
 	}
 }
 
 export const updateBlogPage = payload => {
 	return {
-		type: 'UPDATE_BLOG_PAGE',
+		type: UPDATE_BLOG.PAGE,
 		payload
 	}
 }
 
 export const updateBlogsDisplay = payload => {
   return {
-    type: 'UPDATE_BLOG_DISPLAY',
+    type: UPDATE_BLOG.DISPLAY,
     payload
   }
 }
 
 export const updateFilterButton = payload => {
   return {
-    type: 'UPDATE_FILTER_BUTTON',
+    type: UPDATE_FILTER.FILTER_BUTTON,
     payload
   }
 }
 
 export const updateFilters = payload => {
   return {
-    type: 'UPDATE_FILTERS',
+    type: UPDATE_FILTER.FILTERS,
     payload
   }
 }
 
 export const updateNotification = payload => {
   return {
-    type: 'UPDATE_NOTIFICATION',
+    type: UPDATE_NOTIFICATION,
     payload
   }
 }
 
 export const updateBlogForm = payload => {
   return {
-    type: 'UPDATE_BLOG_FORM',
+    type: UPDATE_BLOG.FORM,
     payload
   }
 }
 
-export const updateShowModal = payload => {
+export const updateShowModalTrue = () => {
   return {
-    type: 'UPDATE_SHOW_MODAL',
-    payload
+    type: UPDATE_BLOG.SHOW_MODAL_TRUE
+  }
+}
+
+export const updateShowModalFalse = () => {
+  return {
+    type: UPDATE_BLOG.SHOW_MODAL_FALSE
   }
 }
