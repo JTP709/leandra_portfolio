@@ -15,18 +15,18 @@ const putBlogs = (req, res) => {
 		filters,
 		hidden: false
 	});
-	mongoose.connect(`mongodb://${mongodb_host}`);
+	// mongoose.connect(`mongodb://${mongodb_host}`);
 	const db = mongoose.connection;
 	db.on('error', console.error.bind(console, 'connection error:'));
 	db.once('open', function() {
 		console.log('putBlogs connection success');
-		Blog.findByIdAndUpdate(_id, { hidden: true }, function (err, blog){
+		Blog.findByIdAndUpdate(_id, { hidden: true }, function (err){
 			if (err) {
 				console.error(err);
 				res.send(err);
 				db.close();
 			} else {
-				newBlog.save(function (err, title) {
+				newBlog.save(function (err) {
 				if (err) {
 					console.log('putBlogs error: ', err);
 					db.close();

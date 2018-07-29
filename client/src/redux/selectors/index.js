@@ -1,3 +1,5 @@
+// BLOGS
+
 export const getSearchQuery = state => { return state.blogState.searchQuery }
 
 export const getSearchToggle = state => { return state.blogState.searchToggle }
@@ -27,3 +29,7 @@ export const getBlogForm = state => { return state.blogState.blogForm }
 export const getShowModal = state => { return state.blogState.showModal }
 
 export const getPathname = state => { return state.router.location.pathname }
+
+// PORTFOLIO
+
+export const getPortfolios = state => { return state.portfolioState.portfolios }

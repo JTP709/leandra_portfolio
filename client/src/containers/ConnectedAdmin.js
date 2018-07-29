@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { push } from 'connected-react-router';
 import {
 	getBlogs,
 	getNotification,
@@ -19,7 +20,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-	updateBlogForm
+	updateBlogForm,
+	push
 }
 
 const ConnectedAdmin = connect(

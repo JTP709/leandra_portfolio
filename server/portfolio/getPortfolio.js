@@ -6,7 +6,7 @@ const mongodb_host = process.env.MONGODB_HOST || '127.0.0.1:27017';
 
 const getPortfolio = (req, res) => {
 	// TODO: filter out duplicate IDs, return most recent edit date (create a created_by date field), filter out hidden.
-	mongoose.connect(`mongodb://${mongodb_host}`);
+	// mongoose.connect(`mongodb://${mongodb_host}`);
 	const db = mongoose.connection;
 	db.on('error', console.error.bind(console, 'connection error:'));
 	db.once('open', function() {

@@ -48,7 +48,8 @@ import {
   getNotification,
   getBlogForm,
   getShowModal,
-  getPathname
+  getPathname,
+  getPortfolios
 } from './selectors'
 
 export {
@@ -83,7 +84,7 @@ export {
   fetchPortfolio,
   // root reducer
   rootReducer,
-  // selectors
+  // blog selectors
   getSearchQuery,
   getSearchToggle,
   getSearchResults,
@@ -98,5 +99,7 @@ export {
   getNotification,
   getBlogForm,
   getShowModal,
-  getPathname
+  getPathname,
+  // portfolio selectors
+  getPortfolios
 }

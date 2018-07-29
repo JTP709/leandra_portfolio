@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
@@ -16,6 +17,9 @@ const getPortfolio = require('./portfolio/getPortfolio.js');
 
 const app = express();
 const port = process.env.PORT || 5000;
+const mongodb_host = process.env.MONGODB_HOST || '127.0.0.1:27017';
+
+mongoose.connect(`mongodb://${mongodb_host}`);
 
 app.use(cors());
 app.use(bodyParser.json()); // for parsing application/json
