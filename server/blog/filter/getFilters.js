@@ -9,14 +9,16 @@ const getFilters = (req,res) => {
 	const db = mongoose.connection;
 	db.on('error', console.error.bind(console, 'connection error:'));
 	db.once('open', function() {
-	  console.log('connected to database');
+		console.log('getFilters connection success');
 		Filter.find(function (err, filters) {
 		  if (err) {
+				console.log('getFilters error: ', err)
+				db.close();
 				res.send(err);
-				db.close();
 			} else {
-				res.send(filters);
+				console.log('getFilters success');
 				db.close();
+				res.send(filters);
 			}
 		});
 	});

@@ -10,15 +10,17 @@ const deleteBlogs = (req, res) => {
 	const db = mongoose.connection;
 	db.on('error', console.error.bind(console, 'connection error:'));
 	db.once('open', function() {
+		console.log('deleteBlogs connection success');
 		Blog.findByIdAndUpdate(id, { hidden: true }, function (err){
 			if (err) {
-				console.error(err);
+				console.log('deleteBlogs error: ', err);
+				db.close();
 				res.send(err);
-				db.close();
 			} else {
+				console.log('deleteBlogs success');
 				res.statusCode = 200;
-				res.send('success');
 				db.close();
+				res.send('success');
 			}
 		});
 	});

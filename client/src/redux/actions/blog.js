@@ -8,10 +8,12 @@ import {
   UPDATE_NOTIFICATION
 } from '../constants';
 
+const BACKEND_URL = 'http://localhost:5000';
+
 export const fetchBlogs = () => {
   return dispatch => {
     dispatch(loadingBlogsStarted());
-    fetch(`http://localhost:5000/api/blogs`)
+    fetch(`${BACKEND_URL}/api/blogs/get`)
       .then(response => {
         if (!response.ok) {
           alert('API call returned an error.');
@@ -20,6 +22,7 @@ export const fetchBlogs = () => {
         return response.json();
       })
       .then(data => {
+        console.log('DATE: ', data);
         const idx = lunr(function() {
           this.ref('blogId');
           this.field('body');
@@ -27,6 +30,7 @@ export const fetchBlogs = () => {
           this.metadataWhitelist = ['position'];
 
           data.forEach(function (doc) { this.add(doc) }, this)
+          console.log('DATA TWO: ', data);
           dispatch(updateBlogArray(data));
         })
         dispatch(updateSearchIndex(idx));
@@ -43,7 +47,7 @@ export const newBlog = blog => {
   return dispatch => {
     axios({
       method: 'post',
-      url: 'http://localhost:5000/api/blogs/new',
+      url: `${BACKEND_URL}/api/blogs/new`,
       data: {
         title: blog.title,
         author_date: Date.now(),
@@ -69,7 +73,7 @@ export const updateBlog = blog => {
   return dispatch => {
     axios({
       method: 'put',
-      url: 'http://localhost:5000/api/blogs/update',
+      url: `${BACKEND_URL}/api/blogs/update`,
       data: {
         _id: blog._id,
         blogId: blog.blogId,
@@ -98,7 +102,7 @@ export const deleteBlog = id => {
   return dispatch => {
     axios({
       method: 'delete',
-      url: 'http://localhost:5000/api/blogs/delete',
+      url: `${BACKEND_URL}/api/blogs/delete`,
       data: { id }
     }).then(response => {
       if(response.status === 200) {
@@ -117,7 +121,7 @@ export const deleteBlog = id => {
 
 export const fetchFilters = () => {
   return dispatch => {
-    fetch(`http://localhost:5000/api/blogs/filters`)
+    fetch(`${BACKEND_URL}/api/blogs/filters`)
       .then(response => {
         if (!response.ok) {
           alert('API call returned an error.');
@@ -135,7 +139,7 @@ export const newFilter = filter => {
   return dispatch => {
     axios({
       method: 'post',
-      url: 'http://localhost:5000/api/blogs/filters/new',
+      url: `${BACKEND_URL}/api/blogs/filters/new`,
       data: {
         filter
       }
@@ -155,7 +159,7 @@ export const updateFilter = payload => {
   return dispatch => {
     axios({
       method: 'put',
-      url: 'http://localhost:5000/api/blogs/filters/update',
+      url: `${BACKEND_URL}/api/blogs/filters/update`,
       data: {
         id,
         filter
@@ -178,7 +182,7 @@ export const deleteFilter = id => {
 return dispatch => {
     axios({
       method: 'delete',
-      url: 'http://localhost:5000/api/blogs/filters/delete',
+      url: `${BACKEND_URL}/api/blogs/filters/delete`,
       data: { id }
     }).then(response => {
       if(response.status === 200) {
@@ -259,10 +263,10 @@ export const updateSearchIndex = payload => {
   }
 }
 
-export const updateBlogArray = payload => {
+export const updateBlogArray = blogs => {
 	return {
 		type: UPDATE_BLOG.ARRAY,
-		payload
+		blogs
 	}
 }
 

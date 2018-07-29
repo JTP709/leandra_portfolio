@@ -1,23 +1,16 @@
 import { connect } from 'react-redux';
 import {
 	getBlogs,
-	getPages,
 	getActivePage,
-	getBlogsDisplay,
 	getFilters,
 	getFilterButton,
 	getSearchIndex,
 	getSearchResults,
 	getSearchToggle,
 	getSearchQuery,
-	fetchBlogs,
-	updateBlogArray,
 	updateBlogModal,
-	updatePageNumber,
 	updateBlogPage,
-	updateBlogsDisplay,
 	updateFilterButton,
-	updateShowModalTrue,
 	updateSearchResults,
 	updateSearchToggleTrue,
 	updateSearchToggleFalse,
@@ -28,9 +21,7 @@ import BlogMain from '../components/Blog/BlogMain';
 const mapStateToProps = (state) => {
 	const filters = getFilters(state);
 	const blogs = getBlogs(state);
-	const pages = getPages(state);
 	const activePage = getActivePage(state);
-	const blogsDisplay = getBlogsDisplay(state);
 	const filterButton = getFilterButton(state);
 	const searchIndex = getSearchIndex(state);
 	const searchResults = getSearchResults(state);
@@ -39,9 +30,7 @@ const mapStateToProps = (state) => {
 	return {
 		filters,
 		blogs,
-		pages,
 		activePage,
-		blogsDisplay,
 		filterButton,
 		searchIndex,
 		searchResults,
@@ -51,14 +40,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-	fetchBlogs,
-	updateBlogArray,
 	updateBlogModal,
-	updatePageNumber,
 	updateBlogPage,
-	updateBlogsDisplay,
 	updateFilterButton,
-	updateShowModalTrue,
 	updateSearchResults,
 	updateSearchToggleTrue,
 	updateSearchToggleFalse,

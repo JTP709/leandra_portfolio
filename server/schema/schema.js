@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
+
 const blogSchema = new Schema({
 	blogId: String,
   title:  String,
@@ -11,11 +12,28 @@ const blogSchema = new Schema({
   filters: [String],
   hidden: Boolean
 });
-const Blog = mongoose.model('Blog', blogSchema);
+
 const filterSchema = new Schema({
 	filter: String
 });
+
+const portfolioSchema = new Schema({
+  rank: String,
+  title: String,
+  thumbnail: String,
+  carousel: [String],
+  about: String,
+  front_end: [String],
+  back_end: [String],
+  hidden: Boolean,
+  github: String,
+  demo: String
+});
+
+const Blog = mongoose.model('Blog', blogSchema);
 const Filter = mongoose.model('Filter', filterSchema);
+const Portfolio = mongoose.model('Portfolio', portfolioSchema);
 
 module.exports.Blog = Blog;
 module.exports.Filter = Filter;
+module.exports.Portfolio = Portfolio;

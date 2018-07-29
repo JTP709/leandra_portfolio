@@ -19,6 +19,7 @@ const putBlogs = (req, res) => {
 	const db = mongoose.connection;
 	db.on('error', console.error.bind(console, 'connection error:'));
 	db.once('open', function() {
+		console.log('putBlogs connection success');
 		Blog.findByIdAndUpdate(_id, { hidden: true }, function (err, blog){
 			if (err) {
 				console.error(err);
@@ -27,13 +28,14 @@ const putBlogs = (req, res) => {
 			} else {
 				newBlog.save(function (err, title) {
 				if (err) {
-					console.error(err);
+					console.log('putBlogs error: ', err);
+					db.close();
 					res.send(err);
-					db.close();
 				} else {
+					console.log('putBlogs success');
 					res.statusCode = 200;
-					res.send('success');
 					db.close();
+					res.send('success');
 				}
 			});
 			}

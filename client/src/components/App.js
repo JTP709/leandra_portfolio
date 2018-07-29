@@ -15,13 +15,14 @@ import '../styles/bootstrap-theme.min.css';
 
 class App extends Component {
   componentDidMount(){
-    const { blogs, filters, fetchBlogs, fetchFilters } = this.props;
+    const { blogs, filters, fetchBlogs, fetchFilters, fetchPortfolio } = this.props;
     if (blogs.length === 0){
       fetchBlogs();
     }
     if (filters.length === 0){
       fetchFilters();
     }
+    fetchPortfolio();
   }
 
   render() {

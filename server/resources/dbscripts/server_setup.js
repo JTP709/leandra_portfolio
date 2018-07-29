@@ -1,9 +1,11 @@
 const testBlogs = require('./testBlogData');
+const testPortfolio = require('./testPortfolioData');
 const mongoose = require('mongoose');
 const uuidv4 = require('uuid/v4');
 
 const Blog = require('../../schema/schema.js').Blog;
 const Filter = require('../../schema/schema.js').Filter;
+const Portfolio = require('../../schema/schema.js').Portfolio;
 
 const testFilters = ['life','design','cooking','animals', 'travel'];
 
@@ -28,6 +30,7 @@ db.once('open', function() {
 		newBlog.save(function (err, title) {
 	    if (err) return console.error(err);
 	    console.log(`${blog.title} added to database`);
+			mongoose.disconnect();
 	  });
 	});
 
@@ -38,6 +41,38 @@ db.once('open', function() {
   		console.log(`${filter} added to the database`);
 			mongoose.disconnect();
   	});
-  });
+	});
+	
+	testPortfolio.map(portfolio => {
+		const {
+			rank,
+			title,
+			thumbnail,
+			carousel,
+			about,
+			front_end,
+			back_end,
+			hidden,
+			github,
+			demo
+		} = portfolio;
+		const newPortfolio = new Portfolio({
+			rank,
+			title,
+			thumbnail,
+			carousel,
+			about,
+			front_end,
+			back_end,
+			hidden,
+			github,
+			demo
+		})
+		newPortfolio.save(function (err, title) {
+	    if (err) return console.error(err);
+	    console.log(`${portfolio.title} added to database`);
+			mongoose.disconnect();
+	  });
+	})
 
 });

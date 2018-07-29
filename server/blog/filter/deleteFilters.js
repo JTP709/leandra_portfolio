@@ -9,16 +9,18 @@ const deleteFilters = (req,res) => {
 	const db = mongoose.connection;
 	db.on('error', console.error.bind(console, 'connection error:'));
 	db.once('open', function() {
+		console.log('deleteFilters connection success');
 		const { id } = req.body;
 		Filter.findByIdAndRemove(id, function (err){
 			if (err) {
-				console.error(err);
+				console.log('deleteFilters error: ', err);
+				db.close();
 				res.send(err);
-				db.close();
 			} else {
+				console.log('deleteFilters success');
 				res.statusCode = 200;
-				res.send('success');
 				db.close();
+				res.send('success');
 			}
 		});
 	});

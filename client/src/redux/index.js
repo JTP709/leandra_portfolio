@@ -27,6 +27,10 @@ import {
   updateShowModalFalse
 } from './actions/blog';
 
+import {
+  fetchPortfolio
+} from './actions/portfolio';
+
 import rootReducer from './reducers/rootReducer'
 
 import {
@@ -75,6 +79,8 @@ export {
   updateBlogForm,
   updateShowModalTrue,
   updateShowModalFalse,
+  // actions portfolio
+  fetchPortfolio,
   // root reducer
   rootReducer,
   // selectors

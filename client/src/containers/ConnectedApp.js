@@ -9,6 +9,7 @@ import {
 	getFilterButton,
 	fetchBlogs,
 	fetchFilters,
+	fetchPortfolio,
 	updateBlogArray,
 	updateBlogModal,
 	updatePageNumber,
@@ -40,6 +41,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
 	fetchBlogs,
 	fetchFilters,
+	fetchPortfolio,
 	updateBlogArray,
 	updateBlogModal,
 	updatePageNumber,

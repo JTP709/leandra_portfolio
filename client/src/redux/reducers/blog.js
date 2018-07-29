@@ -38,7 +38,7 @@ const defaultState = {
 export const blogs = (state = defaultState, action) => {
   switch(action.type) {
     case UPDATE_BLOG.ARRAY:
-    	const blogs = action.payload;
+    	const { blogs } = action;
     	return {
     		...state,
     		blogs

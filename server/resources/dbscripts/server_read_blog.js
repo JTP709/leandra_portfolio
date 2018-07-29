@@ -1,8 +1,6 @@
-const testBlogs = require('./testBlogData');
 const mongoose = require('mongoose');
 
 const Blog = require('../../schema/schema.js').Blog;
-
 
 mongoose.connect('mongodb://127.0.0.1:27017');
 const db = mongoose.connection;

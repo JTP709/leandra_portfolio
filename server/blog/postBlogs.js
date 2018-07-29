@@ -21,15 +21,17 @@ const postBlogs = (req, res) => {
 	const db = mongoose.connection;
 	db.on('error', console.error.bind(console, 'connection error:'));
 	db.once('open', function() {
+		console.log('postBlogs connection success');
 		newBlog.save(function (err, title) {
 			if (err) {
-				console.error(err);
+				console.log('postBlogs error: ', err);
+				db.close();
 				res.send(err);
-				db.close();
 			} else {
+				console.log('postBlogs success');
 				res.statusCode = 200;
-				res.send('success');
 				db.close();
+				res.send('success');
 			}
 		});
 	});

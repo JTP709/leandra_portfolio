@@ -12,6 +12,8 @@ const postFilters = require('./blog/filter/postFilters.js');
 const putFilters = require('./blog/filter/putFilters.js');
 const deleteFilters = require('./blog/filter/deleteFilters.js');
 
+const getPortfolio = require('./portfolio/getPortfolio.js');
+
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -19,7 +21,7 @@ app.use(cors());
 app.use(bodyParser.json()); // for parsing application/json
 // TODO: https://expressjs.com/en/resources/middleware/cors.html
 
-app.get('/api/blogs', getBlogs);
+app.get('/api/blogs/get', getBlogs);
 
 app.post('/api/blogs/new', postBlogs);
 
@@ -34,5 +36,7 @@ app.post('/api/blogs/filters/new', postFilters);
 app.put('/api/blogs/filters/update', putFilters);
 
 app.delete('/api/blogs/filters/delete', deleteFilters);
+
+app.get('/api/portfolio/get', getPortfolio);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
