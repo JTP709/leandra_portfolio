@@ -10,7 +10,7 @@ import {
 
 const BACKEND_URL = 'http://localhost:5000';
 
-export const fetchBlogs = () => {
+const fetchBlogs = () => {
   return dispatch => {
     dispatch(loadingBlogsStarted());
     fetch(`${BACKEND_URL}/api/blogs/get`)
@@ -22,28 +22,24 @@ export const fetchBlogs = () => {
         return response.json();
       })
       .then(data => {
-        console.log('DATE: ', data);
         const idx = lunr(function() {
           this.ref('blogId');
           this.field('body');
           this.field('title');
           this.metadataWhitelist = ['position'];
 
-          data.forEach(function (doc) { this.add(doc) }, this)
-          console.log('DATA TWO: ', data);
+          data.forEach(function (doc) { this.add(doc) }, this);
           dispatch(updateBlogArray(data));
         })
         dispatch(updateSearchIndex(idx));
-        dispatch(loadingBlogsFinished());
       })
       .catch(error => {
-        dispatch(loadingBlogsStarted())
         dispatch(blogError(error));
       })
   };
 }
 
-export const newBlog = blog => {
+const newBlog = blog => {
   return dispatch => {
     axios({
       method: 'post',
@@ -69,7 +65,7 @@ export const newBlog = blog => {
   }
 }
 
-export const updateBlog = blog => {
+const updateBlog = blog => {
   return dispatch => {
     axios({
       method: 'put',
@@ -98,7 +94,7 @@ export const updateBlog = blog => {
   }
 }
 
-export const deleteBlog = id => {
+const deleteBlog = id => {
   return dispatch => {
     axios({
       method: 'delete',
@@ -119,7 +115,7 @@ export const deleteBlog = id => {
   };
 }
 
-export const fetchFilters = () => {
+const fetchFilters = () => {
   return dispatch => {
     fetch(`${BACKEND_URL}/api/blogs/filters`)
       .then(response => {
@@ -135,7 +131,7 @@ export const fetchFilters = () => {
   }
 }
 
-export const newFilter = filter => {
+const newFilter = filter => {
   return dispatch => {
     axios({
       method: 'post',
@@ -154,7 +150,7 @@ export const newFilter = filter => {
   }
 }
 
-export const updateFilter = payload => {
+const updateFilter = payload => {
   const { id, filter } = payload;
   return dispatch => {
     axios({
@@ -178,7 +174,7 @@ export const updateFilter = payload => {
   }
 }
 
-export const deleteFilter = id => {
+const deleteFilter = id => {
 return dispatch => {
     axios({
       method: 'delete',
@@ -198,142 +194,167 @@ return dispatch => {
   }
 }
 
-export const redirectPage = url => {
+const redirectPage = url => {
   return dispatch => {
     dispatch(push(url));
   }
 }
 
-export const redirectNewBlogForm = () => {
+const redirectNewBlogForm = () => {
   return dispatch => {
     dispatch(updateBlogForm({}));
     dispatch(push('/admin/blog/new'));
   }
 }
 
-export const loadingBlogsStarted = () => {
+const loadingBlogsStarted = () => {
   return {
     type: UPDATE_BLOG.LOADING_TRUE
   }
 }
 
-export const loadingBlogsFinished = () => {
-  return {
-    type: UPDATE_BLOG.LOADING_FALSE
-  }
-}
-
-export const blogError = error => {
+const blogError = error => {
   return {
     type: UPDATE_BLOG.ERROR,
     error
   }
 }
 
-export const updateSearchQuery = payload => {
+const updateSearchQuery = payload => {
   return {
     type: UPDATE_SEARCH.QUERY,
     payload
   }
 }
 
-export const updateSearchToggleTrue = () => {
+const updateSearchToggleTrue = () => {
   return {
     type: UPDATE_SEARCH.TOGGLE_TRUE
   }
 }
 
-export const updateSearchToggleFalse = () => {
+const updateSearchToggleFalse = () => {
   return {
     type: UPDATE_SEARCH.TOGGLE_FALSE
   }
 }
 
-export const updateSearchResults = payload => {
+const updateSearchResults = payload => {
   return {
     type: UPDATE_SEARCH.RESULTS,
     payload
   }
 }
 
-export const updateSearchIndex = payload => {
+const updateSearchIndex = payload => {
   return {
     type: UPDATE_SEARCH.INDEX,
     payload
   }
 }
 
-export const updateBlogArray = blogs => {
+const updateBlogArray = blogs => {
 	return {
 		type: UPDATE_BLOG.ARRAY,
 		blogs
 	}
 }
 
-export const updateBlogModal = payload => {
+const updateBlogModal = payload => {
   return {
     type: UPDATE_BLOG.MODAL,
     payload
   }
 }
 
-export const updatePageNumber = payload => {
+const updatePageNumber = payload => {
 	return {
 		type: UPDATE_BLOG.PAGE_NUMBER,
 		payload
 	}
 }
 
-export const updateBlogPage = payload => {
+const updateBlogPage = payload => {
 	return {
 		type: UPDATE_BLOG.PAGE,
 		payload
 	}
 }
 
-export const updateBlogsDisplay = payload => {
+const updateBlogsDisplay = payload => {
   return {
     type: UPDATE_BLOG.DISPLAY,
     payload
   }
 }
 
-export const updateFilterButton = payload => {
+const updateFilterButton = payload => {
   return {
     type: UPDATE_FILTER.FILTER_BUTTON,
     payload
   }
 }
 
-export const updateFilters = payload => {
+const updateFilters = payload => {
   return {
     type: UPDATE_FILTER.FILTERS,
     payload
   }
 }
 
-export const updateNotification = payload => {
+const updateNotification = payload => {
   return {
     type: UPDATE_NOTIFICATION,
     payload
   }
 }
 
-export const updateBlogForm = payload => {
+const updateBlogForm = payload => {
   return {
     type: UPDATE_BLOG.FORM,
     payload
   }
 }
 
-export const updateShowModalTrue = () => {
+const updateShowModalTrue = () => {
   return {
     type: UPDATE_BLOG.SHOW_MODAL_TRUE
   }
 }
 
-export const updateShowModalFalse = () => {
+const updateShowModalFalse = () => {
   return {
     type: UPDATE_BLOG.SHOW_MODAL_FALSE
   }
+}
+
+export {
+  fetchBlogs,
+  newBlog,
+  updateBlog,
+  deleteBlog,
+  fetchFilters,
+  newFilter,
+  updateFilter,
+  deleteFilter,
+  redirectPage,
+  redirectNewBlogForm,
+  loadingBlogsStarted,
+  blogError,
+  updateSearchQuery,
+  updateSearchToggleTrue,
+  updateSearchToggleFalse,
+  updateSearchResults,
+  updateSearchIndex,
+  updateBlogArray,
+  updateBlogModal,
+  updatePageNumber,
+  updateBlogPage,
+  updateBlogsDisplay,
+  updateFilterButton,
+  updateFilters,
+  updateNotification,
+  updateBlogForm,
+  updateShowModalTrue,
+  updateShowModalFalse,
 }

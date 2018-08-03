@@ -41,24 +41,15 @@ export const blogs = (state = defaultState, action) => {
     	const { blogs } = action;
     	return {
     		...state,
-    		blogs
+        blogs,
+        loading: false
       }
-    case UPDATE_BLOG.LOADING_TRUE:
+    case UPDATE_BLOG.ERROR:
+      const error = action.error
       return {
         ...state,
-        loading: true
+        error
       }
-      case UPDATE_BLOG.LOADING_FALSE:
-        return {
-          ...state,
-          loading: false
-        }
-        case UPDATE_BLOG.ERROR:
-        const error = action.error
-          return {
-            ...state,
-            error
-          }
     case UPDATE_BLOG.MODAL:
     	const blogModal = action.payload;
     	return {

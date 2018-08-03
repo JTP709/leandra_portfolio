@@ -10,7 +10,6 @@ export const fetchPortfolio = () => {
   return dispatch => {
     dispatch(loadingPortfolioStarted());
     fetch(`${BACKEND_URL}/api/portfolio/get`)
-
       .then(response => {
         if (!response.ok) {
           alert('API call returned an error.');
@@ -18,15 +17,10 @@ export const fetchPortfolio = () => {
         }
         return response.json();
       })
-
       .then(data => {
-
         dispatch(updatePortfolioArray(data));
-        dispatch(loadingPortfolioFinished());
-
       })
       .catch(error => {
-        dispatch(loadingPortfolioStarted())
         dispatch(portfolioError(error));
       })
   };

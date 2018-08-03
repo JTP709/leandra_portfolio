@@ -14,23 +14,20 @@ export const portfolio = (state = defaultState, action) => {
       const portfolios = action.portfolios;
       return {
         ...state,
-        portfolios
+        portfolios,
+        loading: false,
       }
     case UPDATE_PORTFOLIO.LOADING_TRUE:
       return {
         ...state,
         loading: true
       }
-    case UPDATE_PORTFOLIO.LOADING_FALSE:
-      return {
-        ...state,
-        loading: false
-      }
     case UPDATE_PORTFOLIO.ERROR:
       const error = action.error;
       return {
         ...state,
-        error
+        error,
+        loading: false,
       }
     default:
       return state
