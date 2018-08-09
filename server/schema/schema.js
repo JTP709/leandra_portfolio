@@ -21,7 +21,11 @@ const portfolioSchema = new Schema({
   rank: String,
   title: String,
   thumbnail: String,
-  carousel: [String],
+  carousel: [{
+    img: String,
+    label: String,
+    subLabel: String
+  }],
   about: String,
   front_end: [String],
   back_end: [String],

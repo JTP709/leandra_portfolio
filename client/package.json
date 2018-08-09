@@ -60,6 +60,8 @@
     "whatwg-fetch": "2.0.3"
   },
   "jest": {
+    "resetMocks": true,
+    "resetModules": true,
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,mjs}"
     ],
@@ -100,5 +102,9 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "jest": "^20.0.4",
+    "react-testing-library": "^4.1.8"
   }
 }

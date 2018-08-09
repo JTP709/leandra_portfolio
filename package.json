@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "client": "cd client && npm start",
+    "test": "cd client && npm test",
     "server": "cd server && MONGODB_HOST=127.0.0.1:27017 nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run client\" \"mongod\" \"npm run server\"",
     "database:drop": "cd server/resources/dbscripts && node server_drop.js",

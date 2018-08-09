@@ -4,9 +4,21 @@ const testPortfolio = [
     title: "Qroger",
     thumbnail: "http://placekitten.com/g/512/256",
     carousel: [
-      "http://placekitten.com/g/1024/512",
-      "https://placedog.net/1024/512", 
-      "http://placekitten.com/g/1024/512"
+      {
+        img: "http://placekitten.com/g/1024/512",
+        label: "First slide label",
+        subLabel: "Nulla vitae elit libero, a pharetra augue mollis interdum."
+      },
+      {
+        img: "https://placedog.net/1024/512",
+        label: "Second slide label",
+        subLabel: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      }, 
+      {
+        img: "http://placekitten.com/g/1024/512",
+        label: "Third slide label",
+        subLabel: "Praesent commodo cursus magna, vel scelerisque nisl consectetur."
+      }
     ],
     about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
 		"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
@@ -34,9 +46,21 @@ const testPortfolio = [
     title: "Kwitter",
     thumbnail: "https://placedog.net/512/256",
     carousel: [
-      "http://placekitten.com/g/1024/512",
-      "https://placedog.net/1024/512", 
-      "http://placekitten.com/g/1024/512"
+      {
+        img: "http://placekitten.com/g/1024/512",
+        label: "First slide label",
+        subLabel: "Nulla vitae elit libero, a pharetra augue mollis interdum."
+      },
+      {
+        img: "https://placedog.net/1024/512",
+        label: "Second slide label",
+        subLabel: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      }, 
+      {
+        img: "http://placekitten.com/g/1024/512",
+        label: "Third slide label",
+        subLabel: "Praesent commodo cursus magna, vel scelerisque nisl consectetur."
+      }
     ],
     about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
 		"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
@@ -64,9 +88,21 @@ const testPortfolio = [
     title: "Kroogle",
     thumbnail: "http://placekitten.com/g/512/256",
     carousel: [
-      "http://placekitten.com/g/1024/512",
-      "https://placedog.net/1024/512", 
-      "http://placekitten.com/g/1024/512"
+      {
+        img: "http://placekitten.com/g/1024/512",
+        label: "First slide label",
+        subLabel: "Nulla vitae elit libero, a pharetra augue mollis interdum."
+      },
+      {
+        img: "https://placedog.net/1024/512",
+        label: "Second slide label",
+        subLabel: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      }, 
+      {
+        img: "http://placekitten.com/g/1024/512",
+        label: "Third slide label",
+        subLabel: "Praesent commodo cursus magna, vel scelerisque nisl consectetur."
+      }
     ],
     about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
 		"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
