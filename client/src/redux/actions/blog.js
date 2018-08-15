@@ -5,42 +5,28 @@ import {
   UPDATE_SEARCH,
   UPDATE_BLOG,
   UPDATE_FILTER,
-  UPDATE_NOTIFICATION
+  NOTIFICATION
 } from '../constants';
 
 const BACKEND_URL = 'http://localhost:5000';
 
-const fetchBlogs = () => {
-  return dispatch => {
-    dispatch(loadingBlogsStarted());
-    fetch(`${BACKEND_URL}/api/blogs/get`)
-      .then(response => {
-        if (!response.ok) {
-          alert('API call returned an error.');
-          throw Error(response.statusText);
-        }
-        return response.json();
+const fetchBlogs = (notification = '') => dispatch => {
+  dispatch(loadingBlogsStarted(notification));
+  axios.get(`${BACKEND_URL}/api/blogs/get`)
+    .then(response => {
+      const idx = lunr(function() {
+        this.ref('blogId');
+        this.field('body');
+        this.field('title');
+        this.metadataWhitelist = ['position'];
+        response.data.forEach(function(doc) { this.add(doc) }, this);
       })
-      .then(data => {
-        const idx = lunr(function() {
-          this.ref('blogId');
-          this.field('body');
-          this.field('title');
-          this.metadataWhitelist = ['position'];
-
-          data.forEach(function (doc) { this.add(doc) }, this);
-          dispatch(updateBlogArray(data));
-        })
-        dispatch(updateSearchIndex(idx));
-      })
-      .catch(error => {
-        dispatch(blogError(error));
-      })
-  };
+      dispatch(updateBlogArray(response.data, idx));
+    })
+    .catch(error => dispatch(blogError(error)));
 }
 
-const newBlog = blog => {
-  return dispatch => {
+const newBlog = blog => dispatch => {
     axios({
       method: 'post',
       url: `${BACKEND_URL}/api/blogs/new`,
@@ -52,22 +38,12 @@ const newBlog = blog => {
         filters: blog.filters,
         body: blog.body
       }
-    }).then(response => {
-      if(response.status === 200) {
-        //TODO : LOADING false
-        dispatch(updateNotification('blog_submission_successful'));
-        dispatch(fetchBlogs());
-      }
-    }).catch(error => {
-      //TODO : LOADING false
-      dispatch(updateNotification('blog_submission_fail'));
-      dispatch(blogError(error));
-    });
-  }
+    })
+    .then(() => dispatch(fetchBlogs(NOTIFICATION.BLOG_SUBMISSION_SUCCESSFUL)))
+    .catch(error => dispatch(blogError(error, NOTIFICATION.BLOG_SUBMISSION_FAIL)))
 }
 
-const updateBlog = blog => {
-  return dispatch => {
+const updateBlog = blog => dispatch => {
     axios({
       method: 'put',
       url: `${BACKEND_URL}/api/blogs/update`,
@@ -81,254 +57,149 @@ const updateBlog = blog => {
         filters: blog.filters,
         body: blog.body
       }
-    }).then(response => {
-      if(response.status === 200) {
-        //TODO : LOADING false
-        dispatch(updateNotification('blog_update_successful'));
-        dispatch(fetchBlogs());
-      }
     })
-    .catch(error => {
-      //TODO : LOADING false
-      dispatch(updateNotification('blog_update_fail'));
-      dispatch(blogError(error));
-    });
-  }
+    .then(() => dispatch(fetchBlogs(NOTIFICATION.BLOG_UPDATE_SUCCESSFUL)))
+    .catch(error => dispatch(blogError(error, NOTIFICATION.BLOG_UPDATE_FAIL)));
 }
 
-const deleteBlog = id => {
-  return dispatch => {
+const deleteBlog = id => dispatch => {
     axios({
       method: 'delete',
       url: `${BACKEND_URL}/api/blogs/delete`,
       data: { id }
-    }).then(response => {
-      if(response.status === 200) {
-        //TODO : LOADING false
-        dispatch(updateNotification('blog_deletion_successful'));
-        dispatch(fetchBlogs());
-      }
     })
-    .catch(error => {
-      //TODO : LOADING false
-      dispatch(updateNotification('blog_deletion_fail'));
-      dispatch(blogError(error));
-    });
-  };
+    .then(() => dispatch(fetchBlogs(NOTIFICATION.BLOG_DELETION_SUCCESSFUL)))
+    .catch(error => dispatch(blogError(error, NOTIFICATION.BLOG_DELETION_FAIL)));
 }
 
-const fetchFilters = () => {
-  return dispatch => {
-    fetch(`${BACKEND_URL}/api/blogs/filters`)
-      .then(response => {
-        if (!response.ok) {
-          alert('API call returned an error.');
-          throw Error(response.statusText);
-        }
-        return response.json();
-      })
-      .then(data => {
-        dispatch(updateFilters(data));
-      })
-  }
+const fetchFilters = notificaiton => dispatch => {
+  dispatch(loadingFiltersStarted(notificaiton));
+  axios.get(`${BACKEND_URL}/api/blogs/filters`)
+    .then(response => dispatch(updateFilters(response.data)))
+    .catch(error => dispatch(filterError(error, NOTIFICATION.FILTER_UPDATE_FAIL)));
 }
 
-const newFilter = filter => {
-  return dispatch => {
-    axios({
-      method: 'post',
-      url: `${BACKEND_URL}/api/blogs/filters/new`,
-      data: {
-        filter
-      }
-    }).then(response => {
-      if(response.status === 200) {
-        dispatch(updateNotification('filter_submission_successful'));
-        dispatch(fetchFilters());
-      }
-    }).catch(error => {
-      dispatch(updateNotification('filter_submission_fail'));
-    });
-  }
+const newFilter = filter => dispatch => {
+  axios({
+    method: 'post',
+    url: `${BACKEND_URL}/api/blogs/filters/new`,
+    data: { filter }
+  })
+  .then(() => dispatch(fetchFilters(NOTIFICATION.FILTER_SUBMISSION_SUCCESSFUL)))
+  .catch(error => dispatch(filterError(error, NOTIFICATION.FILTER_SUBMISSION_FAIL)));
 }
 
-const updateFilter = payload => {
+const updateFilter = payload => dispatch => {
   const { id, filter } = payload;
-  return dispatch => {
-    axios({
-      method: 'put',
-      url: `${BACKEND_URL}/api/blogs/filters/update`,
-      data: {
-        id,
-        filter
-      }
-    }).then(response => {
-      if(response.status === 200) {
-        //TODO : LOADING false
-        dispatch(updateNotification('filter_update_successful'));
-        dispatch(fetchFilters());
-      }
-    })
-    .catch(error => {
-      //TODO : LOADING false
-      dispatch(updateNotification('filter_update_fail'));
-    });
-  }
+  axios({
+    method: 'put',
+    url: `${BACKEND_URL}/api/blogs/filters/update`,
+    data: {
+      id,
+      filter
+    }
+  })
+  .then(() => dispatch(fetchFilters(NOTIFICATION.FILTER_UPDATE_SUCCESSFULL)))
+  .catch(error => dispatch(filterError(error, NOTIFICATION.FILTER_UPDATE_FAIL)));
 }
 
-const deleteFilter = id => {
-return dispatch => {
-    axios({
-      method: 'delete',
-      url: `${BACKEND_URL}/api/blogs/filters/delete`,
-      data: { id }
-    }).then(response => {
-      if(response.status === 200) {
-        //TODO : LOADING false
-        dispatch(updateNotification('filter_update_successful'));
-        dispatch(fetchFilters());
-      }
-    })
-    .catch(error => {
-      //TODO : LOADING false
-      dispatch(updateNotification('filter_update_fail'));
-    });
-  }
+const deleteFilter = id => dispatch => {
+  axios({
+    method: 'delete',
+    url: `${BACKEND_URL}/api/blogs/filters/delete`,
+    data: { id }
+  })
+  .then(() => dispatch(fetchFilters(NOTIFICATION.FILTER_UPDATE_SUCCESSFULL)))
+  .catch(error => dispatch(filterError(error, NOTIFICATION.FILTER_UPDATE_FAIL)));
 }
 
-const redirectPage = url => {
-  return dispatch => {
-    dispatch(push(url));
-  }
-}
+const redirectPage = url => dispatch => dispatch(push(url));
 
-const redirectNewBlogForm = () => {
-  return dispatch => {
+const redirectNewBlogForm = () => dispatch => {
     dispatch(updateBlogForm({}));
     dispatch(push('/admin/blog/new'));
-  }
 }
 
-const loadingBlogsStarted = () => {
-  return {
-    type: UPDATE_BLOG.LOADING_TRUE
-  }
-}
+const loadingBlogsStarted = notification => ({
+    type: UPDATE_BLOG.LOADING_TRUE,
+    notification
+});
 
-const blogError = error => {
-  return {
+const blogError = error => ({
     type: UPDATE_BLOG.ERROR,
     error
-  }
-}
+})
 
-const updateSearchQuery = payload => {
-  return {
+const updateSearchQuery = payload => ({
     type: UPDATE_SEARCH.QUERY,
     payload
-  }
-}
+})
 
-const updateSearchToggleTrue = () => {
-  return {
-    type: UPDATE_SEARCH.TOGGLE_TRUE
-  }
-}
+const updateSearchToggleTrue = () => ({ type: UPDATE_SEARCH.TOGGLE_TRUE })
 
-const updateSearchToggleFalse = () => {
-  return {
-    type: UPDATE_SEARCH.TOGGLE_FALSE
-  }
-}
+const updateSearchToggleFalse = () => ({ type: UPDATE_SEARCH.TOGGLE_FALSE })
 
-const updateSearchResults = payload => {
-  return {
+const updateSearchResults = payload => ({
     type: UPDATE_SEARCH.RESULTS,
     payload
-  }
-}
+})
 
-const updateSearchIndex = payload => {
-  return {
-    type: UPDATE_SEARCH.INDEX,
-    payload
-  }
-}
-
-const updateBlogArray = blogs => {
-	return {
+const updateBlogArray = (blogs, index) => ({
 		type: UPDATE_BLOG.ARRAY,
-		blogs
-	}
-}
+		payload: {
+      blogs,
+      index
+    }
+})
 
-const updateBlogModal = payload => {
-  return {
+const updateBlogModal = payload => ({
     type: UPDATE_BLOG.MODAL,
     payload
-  }
-}
+})
 
-const updatePageNumber = payload => {
-	return {
+const updatePageNumber = payload => ({
 		type: UPDATE_BLOG.PAGE_NUMBER,
 		payload
-	}
-}
+})
 
-const updateBlogPage = payload => {
-	return {
+const updateBlogPage = payload => ({
 		type: UPDATE_BLOG.PAGE,
 		payload
-	}
-}
+})
 
-const updateBlogsDisplay = payload => {
-  return {
+const updateBlogsDisplay = payload => ({
     type: UPDATE_BLOG.DISPLAY,
     payload
-  }
-}
+})
 
-const updateFilterButton = payload => {
-  return {
+const loadingFiltersStarted = notification => ({
+    type: UPDATE_FILTER.LOADING_TRUE,
+    notification
+})
+
+const updateFilterButton = payload => ({
     type: UPDATE_FILTER.FILTER_BUTTON,
     payload
-  }
-}
+})
 
-const updateFilters = payload => {
-  return {
+const updateFilters = payload => ({
     type: UPDATE_FILTER.FILTERS,
     payload
-  }
-}
+})
 
-const updateNotification = payload => {
-  return {
-    type: UPDATE_NOTIFICATION,
-    payload
-  }
-}
+const filterError = error => ({
+    type: UPDATE_FILTER.ERROR,
+    error
+})
 
-const updateBlogForm = payload => {
-  return {
+const updateBlogForm = payload => ({
     type: UPDATE_BLOG.FORM,
     payload
-  }
-}
+})
 
-const updateShowModalTrue = () => {
-  return {
-    type: UPDATE_BLOG.SHOW_MODAL_TRUE
-  }
-}
+const updateShowModalTrue = () => ({ type: UPDATE_BLOG.SHOW_MODAL_TRUE })
 
-const updateShowModalFalse = () => {
-  return {
-    type: UPDATE_BLOG.SHOW_MODAL_FALSE
-  }
-}
+const updateShowModalFalse = () => ({ type: UPDATE_BLOG.SHOW_MODAL_FALSE })
 
 export {
   fetchBlogs,
@@ -347,7 +218,6 @@ export {
   updateSearchToggleTrue,
   updateSearchToggleFalse,
   updateSearchResults,
-  updateSearchIndex,
   updateBlogArray,
   updateBlogModal,
   updatePageNumber,
@@ -355,7 +225,6 @@ export {
   updateBlogsDisplay,
   updateFilterButton,
   updateFilters,
-  updateNotification,
   updateBlogForm,
   updateShowModalTrue,
   updateShowModalFalse,

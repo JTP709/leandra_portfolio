@@ -10,7 +10,7 @@ const BlogModal = ({ showModal, blogModal, updateShowModalFalse }) => {
   return (
     <Modal 
       show={showModal}
-      onHide={ () => { updateShowModalFalse() } }
+      onHide={ () => updateShowModalFalse() }
       bsSize="large"
       animation
     >
@@ -23,7 +23,7 @@ const BlogModal = ({ showModal, blogModal, updateShowModalFalse }) => {
         <ReactMarkdown source={ body } />
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={ () => { updateShowModalFalse() } }>Close</Button>
+        <Button onClick={ () => updateShowModalFalse() }>Close</Button>
       </Modal.Footer>
     </Modal>
   );

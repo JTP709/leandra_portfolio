@@ -2,12 +2,17 @@ import {
   UPDATE_SEARCH,
   UPDATE_BLOG,
   UPDATE_FILTER,
-  UPDATE_NOTIFICATION
 } from '../constants'
 
 const defaultState = {
-  loading: false,
-  error: null,
+  loading: {
+    blogs: false,
+    filters: false
+  },
+  error: {
+    blogs: null,
+    filters: null
+  },
 	blogs: [],
 	filters: [],
 	blogModal: {
@@ -40,17 +45,31 @@ const defaultState = {
 export const blogs = (state = defaultState, action) => {
   switch(action.type) {
     case UPDATE_BLOG.ARRAY:
-    	const { blogs } = action;
     	return {
-    		...state,
-        blogs,
-        loading: false
+        ...state,
+        searchIndex: action.payload.index,
+        blogs: action.payload.blogs,
+        loading: {
+          ...state.loading,
+          blogs: false
+        }
       }
-    case UPDATE_BLOG.ERROR:
-      const error = action.error
+    case UPDATE_BLOG.LOADING_TRUE:
       return {
         ...state,
-        error
+        loading: {
+          ...state.loading,
+          blogs: true
+        },
+        notification: action.notification
+      }
+    case UPDATE_BLOG.ERROR:
+      return {
+        ...state,
+        error: {
+          ...state.error,
+          blogs: action.error
+        }
       }
     case UPDATE_BLOG.MODAL:
     	const blogModal = action.payload;
@@ -83,17 +102,30 @@ export const blogs = (state = defaultState, action) => {
     		filterButton
     	}
     case UPDATE_FILTER.FILTERS:
-      const filters = action.payload;
       return {
         ...state,
-        filters
-      }
-    case UPDATE_NOTIFICATION:
-        const notification = action.payload;
-        return {
-            ...state,
-            notification
+        filters: action.payload,
+        loading: {
+          ...state.loading,
+          filters: false
         }
+      }
+    case UPDATE_FILTER.LOADING_TRUE:
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          filters: true,
+        }
+      }
+    case UPDATE_FILTER.ERROR:
+      return {
+        ...state,
+        error: {
+          ...state.error,
+          filters: action.error
+        }
+      }
     case UPDATE_BLOG.FORM:
       const blogForm = action.payload;
       return {
@@ -109,12 +141,6 @@ export const blogs = (state = defaultState, action) => {
       return {
         ...state,
         showModal: false
-      }
-    case UPDATE_SEARCH.INDEX:
-      const searchIndex = action.payload;
-      return {
-        ...state,
-        searchIndex
       }
     case UPDATE_SEARCH.RESULTS:
       const searchResults = action.payload;

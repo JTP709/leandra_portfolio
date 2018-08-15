@@ -1,4 +1,5 @@
 import { testState } from '../testState';
+import { UPDATE_FILTER } from '../constants';
 
 const defaultState = { 
 	...testState,
@@ -7,7 +8,7 @@ const defaultState = {
 
 export const filters = (state = defaultState.filters, action) => {
   switch(action.type) {
-    case 'UPDATE_FILTER_BUTTON':
+    case UPDATE_FILTER.FILTER_BUTTON:
     	const filterButton = action.payload;
     	return {
     		...state,

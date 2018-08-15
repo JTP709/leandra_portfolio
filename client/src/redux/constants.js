@@ -23,9 +23,9 @@ const UPDATE_BLOG = {
 const UPDATE_FILTER = {
   FILTER_BUTTON: 'UPDATE_FILTER_BUTTON',
   FILTERS: 'UPDATE_FILTERS',
+  LOADING_TRUE: 'UPDATE_FILTER_LOADING_TRUE',
+  ERROR: 'UPDATE_FILTER_ERROR'
 };
-
-const UPDATE_NOTIFICATION = 'UPDATE_NOTIFICATION';
 
 const UPDATE_PORTFOLIO = {
   ARRAY: 'UPDATE_PORTFOLIO_ARRAY',
@@ -34,10 +34,23 @@ const UPDATE_PORTFOLIO = {
   ERROR: 'UPDATE_PORTFOLIO_ERROR'
 }
 
+const NOTIFICATION = {
+  BLOG_SUBMISSION_SUCCESSFUL: 'blog_submission_successful',
+  BLOG_SUBMISSION_FAIL: 'blog_submission_fail',
+  BLOG_UPDATE_SUCCESSFUL: 'blog_update_successful',
+  BLOG_UPDATE_FAIL: 'blog_update_fail',
+  BLOG_DELETION_SUCCESSFUL: 'blog_deletion_successful',
+  BLOG_DELETION_FAIL: 'blog_deletion_fail',
+  FILTER_SUBMISSION_SUCCESSFUL: 'filter_submission_successful',
+  FILTER_SUBMISSION_FAIL: 'filter_submission_fail',
+  FILTER_UPDATE_SUCCESSFULL: 'filter_update_successful',
+  FILTER_UPDATE_FAIL: 'filter_update_fail',
+}
+
 export {
   UPDATE_SEARCH,
   UPDATE_BLOG,
   UPDATE_FILTER,
-  UPDATE_NOTIFICATION,
+  NOTIFICATION,
   UPDATE_PORTFOLIO
 }
