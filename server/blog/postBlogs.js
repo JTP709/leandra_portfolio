@@ -3,13 +3,14 @@ const Blog = require('../schema/schema.js').Blog;
 const uuidv4 = require('uuid/v4');
 
 const postBlogs = (req, res) => {
-	const { title, author_date, thumbnail, body, filters } = req.body;
+	const { title, author_date, thumbnail, header_img, body, filters } = req.body;
 	const blogId = uuidv4();
 	const newBlog = new Blog({
 		blogId,
 		title,
 		author_date,
 		thumbnail,
+		header_img,
 		body,
 		filters,
 		hidden: false

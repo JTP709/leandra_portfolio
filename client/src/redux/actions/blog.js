@@ -48,6 +48,7 @@ const newBlog = blog => {
         title: blog.title,
         author_date: Date.now(),
         thumbnail: blog.thumbnail,
+        header_img: blog.header_img,
         filters: blog.filters,
         body: blog.body
       }
@@ -76,6 +77,7 @@ const updateBlog = blog => {
         title: blog.title,
         author_date: blog.author_date,
         thumbnail: blog.thumbnail,
+        header_img: blog.header_img,
         filters: blog.filters,
         body: blog.body
       }

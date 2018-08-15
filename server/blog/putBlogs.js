@@ -2,12 +2,13 @@ const mongoose = require('mongoose');
 const Blog = require('../schema/schema.js').Blog;
 
 const putBlogs = (req, res) => {
-	const { title, author_date, thumbnail, body, filters, blogId, _id } = req.body;
+	const { title, author_date, thumbnail, header_img, body, filters, blogId, _id } = req.body;
 	const newBlog = new Blog({
 		blogId,
 		title,
 		author_date,
 		thumbnail,
+		header_img,
 		body,
 		filters,
 		hidden: false

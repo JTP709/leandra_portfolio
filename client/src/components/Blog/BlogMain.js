@@ -14,7 +14,7 @@ import {
 import { capitalizeFirstLetter } from '../../utils/utils';
 import BlogCard from './BlogCard';
 import ConnectedBlogModal from '../../containers/ConnectedBlogModal';
-import '../../styles/Work.css';
+
 import '../../styles/blog/BlogMain.css';
 
 class BlogMain extends Component {
@@ -72,12 +72,13 @@ class BlogMain extends Component {
 
 	openModal(blog){
 		const { updateBlogModal, updateShowModalTrue } = this.props;
-		const { title, author_date, body, thumbnail } = blog;
-		const modalInfo={
+		const { title, author_date, body, thumbnail, header_img } = blog;
+		const modalInfo = {
 			title,
 			author_date,
 			body,
-			thumbnail
+			thumbnail,
+			header_img
 		};
 		updateBlogModal(modalInfo);
 		updateShowModalTrue();

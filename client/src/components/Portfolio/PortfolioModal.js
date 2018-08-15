@@ -35,11 +35,11 @@ const PortfolioModal = ({ portfolio, closeModal, showModal }) => (
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-      <div>
-        <p>{ portfolio && portfolio.about }</p>
-      </div>
       <Row>
-        <Col md={6}>
+        <Col md={8}>
+          <p>{ portfolio && portfolio.about }</p>
+        </Col>
+        <Col md={2}>
           {
             portfolio && portfolio.front_end ?
             <div>
@@ -53,7 +53,7 @@ const PortfolioModal = ({ portfolio, closeModal, showModal }) => (
             null
           }
         </Col>
-        <Col md={6}>
+        <Col md={2}>
           {
             portfolio && portfolio.back_end ?
             <div>
@@ -68,7 +68,6 @@ const PortfolioModal = ({ portfolio, closeModal, showModal }) => (
           }
         </Col>
       </Row>
-
 
       <Row>
         <Col md={6}>

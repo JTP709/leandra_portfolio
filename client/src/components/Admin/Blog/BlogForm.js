@@ -17,12 +17,22 @@ class BlogForm extends Component {
 		this.handleTitleChange = this.handleTitleChange.bind(this);
 		this.handleFilterChange = this.handleFilterChange.bind(this);
 		this.handleThumbnailChange = this.handleThumbnailChange.bind(this);
+		this.handleHeaderImageChange = this.handleHeaderImageChange.bind(this);
 		this.renderFilterOptions = this.renderFilterOptions.bind(this);
 	}
 
 	handleSubmit() {
 		const { blogForm, type, updateNotification, newBlog, updateBlog } = this.props;
-		const { title, thumbnail, filters, body, blogId, _id, author_date } = blogForm;
+		const { 
+			title,
+			thumbnail,
+			header_img,
+			filters,
+			body,
+			blogId,
+			_id,
+			author_date 
+		} = blogForm;
 		if (title === '' || thumbnail === '' || filters === '' || body === '') {
 			//TODO : LOADING false
 			updateNotification('blog_submission_error');
@@ -32,6 +42,7 @@ class BlogForm extends Component {
 				title,
 				author_date,
 				thumbnail,
+				header_img,
 				filters,
 				body
 			};
@@ -71,6 +82,16 @@ class BlogForm extends Component {
     	...blogForm,
     	thumbnail
     });
+	}
+
+	handleHeaderImageChange(e) {
+		if (e === undefined) { return; }
+		const header_img = e.target.value;
+		const { blogForm, updateBlogForm } = this.props;
+		updateBlogForm({
+			...blogForm,
+			header_img
+		});
 	}
 
 	handleFilterChange(e) {
@@ -144,7 +165,18 @@ class BlogForm extends Component {
 		            placeholder="Enter thumbnail URL"
 		            onChange={ this.handleThumbnailChange }
 				      />
-				      <HelpBlock>Image resolution: 250x250</HelpBlock>
+				      <HelpBlock>Image resolution: 256x256</HelpBlock>
+				    </FormGroup>
+
+						<FormGroup controlId="formControlsText">
+				      <ControlLabel>Header Image</ControlLabel>
+				      <FormControl
+				      	type="text"
+		            value={ blogForm ? blogForm.header_img : '' }
+		            placeholder="Enter header image URL"
+		            onChange={ this.handleHeaderImageChange }
+				      />
+				      <HelpBlock>Image resolution: 1024x512</HelpBlock>
 				    </FormGroup>
 
 						<FormGroup controlId="formControlsSelectMultiple">

@@ -16,13 +16,14 @@ db.once('open', function() {
   console.log('connected to database');
 
   testBlogs.map(blog => {
-  	const { title, date, thumbnail, body, filters } = blog;
+  	const { title, date, thumbnail, header_img, body, filters } = blog;
 		const blogId = uuidv4();
 		const newBlog = new Blog({
 			blogId: blogId,
 			title: title,
 			author_date: date,
 			thumbnail: thumbnail,
+			header_img: header_img,
 			body: body,
 			filters: filters,
 			hidden: false

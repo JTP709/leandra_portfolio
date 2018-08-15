@@ -41,105 +41,120 @@ var testBlogs = [
 	{
 		date: date1,
 		title: "Kittens!",
-		thumbnail: "http://placekitten.com/g/250/250",
+		thumbnail: "http://placekitten.com/g/256/256",
+		header_img: "http://placekitten.com/g/1024/512",
 		filters: ['animals', 'life'],
 		body: text
 	},
 	{
 		date: date2,
 		title: "Doggies!",
-		thumbnail: "http://placekitten.com/g/250/250",
+		thumbnail: "http://placekitten.com/g/256/256",
+		header_img: "http://placekitten.com/g/1024/512",
 		filters: ['cooking', 'animals'],
 		body: text
 	},
 	{
 		date: date3,
 		title: "Bubbles!",
-		thumbnail: "http://placekitten.com/g/250/250",
+		thumbnail: "http://placekitten.com/g/256/256",
+		header_img: "http://placekitten.com/g/1024/512",
 		filters: ['design', 'life'],
 		body: text
 	},
 	{
 		date: date4,
 		title: "Bakery!",
-		thumbnail: "http://placekitten.com/g/250/250",
+		thumbnail: "http://placekitten.com/g/256/256",
+		header_img: "http://placekitten.com/g/1024/512",
 		filters: ['cooking', 'design'],
 		body: text
 	},
 	{
 		date: date5,
 		title: "Shapes!",
-		thumbnail: "http://placekitten.com/g/250/250",
+		thumbnail: "http://placekitten.com/g/256/256",
+		header_img: "http://placekitten.com/g/1024/512",
 		filters: ['life', 'design'],
 		body: text
 	},
 	{
 		date: date6,
 		title: "Shapes!",
-		thumbnail: "http://placekitten.com/g/250/250",
+		thumbnail: "http://placekitten.com/g/256/256",
+		header_img: "http://placekitten.com/g/1024/512",
 		filters: ['life', 'design'],
 		body: text
 	},
 	{
 		date: date7,
 		title: "Lizzards!",
-		thumbnail: "http://placekitten.com/g/250/250",
+		thumbnail: "http://placekitten.com/g/256/256",
+		header_img: "http://placekitten.com/g/1024/512",
 		filters: ['animals', 'design'],
 		body: text
 	},
 	{
 		date: date8,
 		title: "Music!",
-		thumbnail: "http://placekitten.com/g/250/250",
+		thumbnail: "http://placekitten.com/g/256/256",
+		header_img: "http://placekitten.com/g/1024/512",
 		filters: ['life'],
 		body: text
 	},
 	{
 		date: date9,
 		title: "Jungles!",
-		thumbnail: "http://placekitten.com/g/250/250",
+		thumbnail: "http://placekitten.com/g/256/256",
+		header_img: "http://placekitten.com/g/1024/512",
 		filters: ['cooking', 'travel'],
 		body: text
 	},
 	{
 		date: date10,
 		title: "Singing!",
-		thumbnail: "http://placekitten.com/g/250/250",
+		thumbnail: "http://placekitten.com/g/256/256",
+		header_img: "http://placekitten.com/g/1024/512",
 		filters: ['life'],
 		body: text
 	},
 	{
 		date: date11,
 		title: "Squares!",
-		thumbnail: "http://placekitten.com/g/250/250",
+		thumbnail: "http://placekitten.com/g/256/256",
+		header_img: "http://placekitten.com/g/1024/512",
 		filters: ['design'],
 		body: text
 	},
 	{
 		date: date12,
 		title: "Circles!",
-		thumbnail: "http://placekitten.com/g/250/250",
+		thumbnail: "http://placekitten.com/g/256/256",
+		header_img: "http://placekitten.com/g/1024/512",
 		filters: ['design'],
 		body: text
 	},
 	{
 		date: date13,
 		title: "Hypothetical Physics!",
-		thumbnail: "http://placekitten.com/g/250/250",
+		thumbnail: "http://placekitten.com/g/256/256",
+		header_img: "http://placekitten.com/g/1024/512",
 		filters: ['life', 'design'],
 		body: text
 	},
 	{
 		date: date14,
 		title: "Boombox!",
-		thumbnail: "http://placekitten.com/g/250/250",
+		thumbnail: "http://placekitten.com/g/256/256",
+		header_img: "http://placekitten.com/g/1024/512",
 		filters: ['life', 'travel'],
 		body: text
 	},
 	{
 		date: date15,
 		title: "Hats!",
-		thumbnail: "http://placekitten.com/g/250/250",
+		thumbnail: "http://placekitten.com/g/256/256",
+		header_img: "http://placekitten.com/g/1024/512",
 		filters: ['life', 'design'],
 		body: text
 	}

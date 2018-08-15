@@ -11,10 +11,11 @@ const defaultState = {
 	blogs: [],
 	filters: [],
 	blogModal: {
-		title: "",
-    date: "",
-		body: "",
-		thumbnail: ""
+		title: '',
+    date: '',
+		body: '',
+    thumbnail: '',
+    header_img: '',
 	},
 	pages: 0,
 	activePage: 1,
@@ -27,6 +28,7 @@ const defaultState = {
     body: '',
     filters: [],
     thumbnail: '',
+    header_img: '',
   },
   showModal: false,
   searchToggle: false,

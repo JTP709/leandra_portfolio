@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, Row, Col } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
 import { formatDate } from '../../utils/utils';
-import '../../styles/Work.css';
+import '../../styles/BlogCard.css';
 
 const BlogCard =({ 
 	blogCardContentClass,

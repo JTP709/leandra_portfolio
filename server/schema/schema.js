@@ -8,7 +8,8 @@ const blogSchema = new Schema({
   author_date: { type: Date },
   created_date: { type: Date, default: Date.now},
   thumbnail: String,
-  body:   String,
+  header_img: String,
+  body: String,
   filters: [String],
   hidden: Boolean
 });

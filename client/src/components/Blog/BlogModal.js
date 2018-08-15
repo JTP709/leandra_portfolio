@@ -1,10 +1,10 @@
 import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Image } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
 import { formatDate } from '../../utils/utils';
 
 const BlogModal = ({ showModal, blogModal, updateShowModalFalse }) => {
-  const { title, author_date, body, thumbnail } = blogModal;
+  const { title, author_date, body, header_img } = blogModal;
   const dateObject = new Date(author_date);
 
   return (
@@ -18,8 +18,8 @@ const BlogModal = ({ showModal, blogModal, updateShowModalFalse }) => {
         <Modal.Title>{ formatDate(dateObject) }</Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        <Image responsive src={ header_img } alt="blog thumbnail" />
         <h2>{ title }</h2>
-        <img src={ thumbnail } alt="blog thumbnail" />
         <ReactMarkdown source={ body } />
       </Modal.Body>
       <Modal.Footer>
