@@ -13,25 +13,17 @@ const fetchPortfolio = () => dispatch => {
     .catch(error => dispatch(portfolioError(error)));
 };
 
-const updatePortfolioArray = portfolios => {
-  return {
-    type: UPDATE_PORTFOLIO.ARRAY,
-    portfolios
-  }
-};
+const updatePortfolioArray = portfolios => ({
+  type: UPDATE_PORTFOLIO.ARRAY,
+  portfolios
+});
 
-const loadingPortfolioStarted = () => {
-  return {
-    type: UPDATE_PORTFOLIO.LOADING_TRUE
-  }
-};
+const portfolioError = error => ({
+  type: UPDATE_PORTFOLIO.ERROR,
+  error
+});
 
-const portfolioError = error => {
-  return {
-    type: UPDATE_PORTFOLIO.ERROR,
-    error
-  }
-};
+const loadingPortfolioStarted = () => ({ type: UPDATE_PORTFOLIO.LOADING_TRUE });
 
 export {
   BACKEND_URL,
