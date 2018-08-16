@@ -8,7 +8,7 @@ import {
   NOTIFICATION
 } from '../constants';
 
-const BACKEND_URL = 'http://localhost:5000';
+const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:5000';
 
 const fetchBlogs = (notification = '') => dispatch => {
   dispatch(loadingBlogsStarted(notification));

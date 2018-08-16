@@ -2,7 +2,7 @@
   "name": "imposter_syndrome_cms",
   "version": "1.0.0",
   "scripts": {
-    "client": "cd client && npm start",
+    "client": "cd client && BACKEND_URL=http://localhost:5000 npm start",
     "test": "cd client && npm test",
     "server": "cd server && MONGODB_HOST=127.0.0.1:27017 nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run client\" \"mongod\" \"npm run server\"",

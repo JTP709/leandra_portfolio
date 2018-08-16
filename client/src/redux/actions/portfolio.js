@@ -4,7 +4,7 @@ import {
   UPDATE_PORTFOLIO
 } from '../constants';
 
-const BACKEND_URL = 'http://localhost:5000';
+const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:5000';
 
 const fetchPortfolio = () => dispatch => {
   dispatch(loadingPortfolioStarted());

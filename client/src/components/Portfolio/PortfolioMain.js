@@ -36,7 +36,7 @@ class PortfolioMain extends Component{
 			<Row id="portfolio_section">
 					{ 
 						portfolios.map(portfolio => (
-							<Col md={4}>
+							<div className='PortfolioMain--thumbnail'>
 								<Image 
 									data-testid="portfolio-main-image"
 									className="portfolio_thumbnail"
@@ -45,7 +45,7 @@ class PortfolioMain extends Component{
 									responsive
 									onClick={ ()=>{ this.openModal(portfolio._id) } }
 								/>
-							</Col>
+							</div>
 						))
 					}
 				<Col xs={ 12 }><hr /></Col>
