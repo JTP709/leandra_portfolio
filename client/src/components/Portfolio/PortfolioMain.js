@@ -33,7 +33,12 @@ class PortfolioMain extends Component{
 	render(){
 		const { portfolios } = this.props;
 		return(
-			<Row id="portfolio_section">
+			<Row className='Portfolio' id='portfolio'>
+				<Col xs={12} className='Portfolio--header'>
+					<h1>Portfolio</h1>
+					<hr />
+				</Col>
+				<Col xs={12}>
 					{ 
 						portfolios.map(portfolio => (
 							<div className='PortfolioMain--thumbnail'>
@@ -48,6 +53,7 @@ class PortfolioMain extends Component{
 							</div>
 						))
 					}
+				</Col>
 				<Col xs={ 12 }><hr /></Col>
 				<PortfolioModal
 					portfolio={ portfolios.filter(portfolio => portfolio._id === this.state.portfolioId)[0] }

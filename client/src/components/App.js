@@ -1,65 +1,52 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'
 import { ConnectedRouter } from 'connected-react-router';
-import { Grid } from 'react-bootstrap';
-import Navbar from './Navbar';
-import Header from './Header';
+
+import CommonHOC from './CommonHOC';
 import About from './About';
-import Footer from './Footer';
+import Services from './Services';
+import BlogMain from '../containers/ConnectedBlogMain';
+import PhotographyMain from './Photography/PhotographyMain';
+import PortfolioMain from './Portfolio/PortfolioMain';
+import LaboratoryMain from './Laboratory/LaboratoryMain';
+
 import ConnectedAdmin from '../containers/ConnectedAdmin';
-import ShowcaseTabs from './ShowcaseTabs';
 
 import '../styles/bootstrap.min.css';
 import '../styles/bootstrap-theme.min.css';
 import '../styles/App.css';
 
-
 class App extends Component {
   componentDidMount(){
     const { blogs, filters, fetchBlogs, fetchFilters, fetchPortfolio } = this.props;
-    if (blogs.length === 0){
-      fetchBlogs();
-    }
-    if (filters.length === 0){
-      fetchFilters();
-    }
+    blogs.length === 0 && fetchBlogs();
+    filters.length === 0 && fetchFilters();
     fetchPortfolio();
   }
-
+  
   render() {
-    const IndexPage = () =>
-      <Grid>
-        <Navbar />
-        <Header />
-        <About />
-        <ShowcaseTabs />
-        <Footer />
-      </Grid>
-    const AdminPage = () => <ConnectedAdmin />
     const AdminPageUpdateBlog = ({ match }) => <ConnectedAdmin blogId={ match.params.id } />
-
     return (
       <ConnectedRouter history={this.props.history}>
         <Switch>
           {/* INDEX */}
-          <Route exact path="/" component={ IndexPage } />
-          <Route exact path="/blog" component={ IndexPage } />
-          <Route exact path="/photography" component={ IndexPage } />
-          <Route exact path="/portfolio" component={ IndexPage } />
-          <Route exact path="/laboratory" component={ IndexPage } />
+          <Route exact path="/" component={ CommonHOC(About, Services, PortfolioMain) } />
+          <Route exact path="/blog" component={ CommonHOC(BlogMain) } />
+          <Route exact path="/photography" component={ CommonHOC(PhotographyMain) } />
+          <Route exact path="/laboratory" component={ CommonHOC(LaboratoryMain) } />
           {/* ADMIN */}
-          <Route exact path="/admin" component={ AdminPage } />
+          <Route exact path="/admin" component={ ConnectedAdmin } />
           {/* ADMIN BLOG */}
-          <Route exact path="/admin/blog" component={ AdminPage } />
-          <Route exact path="/admin/blog/new" component={ AdminPage } />
+          <Route exact path="/admin/blog" component={ ConnectedAdmin } />
+          <Route exact path="/admin/blog/new" component={ ConnectedAdmin } />
           <Route exact path="/admin/blog/update/:id" component={ AdminPageUpdateBlog } />
-          <Route exact path="/admin/blog/filters" component={ AdminPage } />
+          <Route exact path="/admin/blog/filters" component={ ConnectedAdmin } />
           {/* ADMIN PORTFOLIO */}
-          <Route exact path="/admin/portfolio" component={ AdminPage } />
+          <Route exact path="/admin/portfolio" component={ ConnectedAdmin } />
           {/* ADMIN PHOTOGRAPHY */}
-          <Route exact path="/admin/photography" component={ AdminPage } />
+          <Route exact path="/admin/photography" component={ ConnectedAdmin } />
           {/* ADMIN LABORATORY */}
-          <Route exact path="/admin/laboratory" component={ AdminPage } />
+          <Route exact path="/admin/laboratory" component={ ConnectedAdmin } />
         </Switch>
       </ConnectedRouter>
     );

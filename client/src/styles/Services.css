@@ -1,0 +1,10 @@
+.Services .Services--content {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
+
+.Services .Services--icon-large {
+  font-size: 50px;
+  margin: 16px 0;
+}
