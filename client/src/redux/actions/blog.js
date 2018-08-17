@@ -20,7 +20,7 @@ const fetchBlogs = (notification = '') => dispatch => {
         this.field('title');
         this.metadataWhitelist = ['position'];
         response.data.forEach(function(doc) { this.add(doc) }, this);
-      })
+      });
       dispatch(updateBlogArray(response.data, idx));
     })
     .catch(error => dispatch(blogError(error)));

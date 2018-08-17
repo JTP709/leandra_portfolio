@@ -8,14 +8,9 @@ import PhotographyMain from './Photography/PhotographyMain';
 import PortfolioMain from './Portfolio/PortfolioMain';
 import LaboratoryMain from './Laboratory/LaboratoryMain';
 
-
 class ShowcaseTabs extends Component {
-  constructor(props, context) {
-		super(props, context);
-		
-
-
-		// this.state = { key: 1 };
+  constructor() {
+		super();
 		
 		this.handleSelect = this.handleSelect.bind(this);
 		this.calculateKey = this.calculateKey.bind(this);
@@ -39,56 +34,39 @@ class ShowcaseTabs extends Component {
 			3: "/photography",
 			4: "/laboratory"
 		}
-
-		// this.setState({ key });
 		redirectPage(redirects[key]);
   }
 
   render() {
     return (
-			<div id = "work">
-
-				<hr />
-
-				<Tabs
-					activeKey={this.calculateKey()}
-					onSelect={this.handleSelect}
-					id="showcaseTabs"
-				>
-					<Tab eventKey={1} title="Blogs" >
-						<ConnectedBlogMain />
-					</Tab>
-					<Tab eventKey={2} title="Portfolio" >
-						<PortfolioMain />
-					</Tab>
-					<Tab eventKey={3} title="Photos" >
-						<PhotographyMain />
-					</Tab>
-					<Tab eventKey={4} title="Lab" >
-						<LaboratoryMain />
-					</Tab>
-				</Tabs>
-			</div>
+			<Tabs
+				className='ShowcaseTabs'
+				activeKey={this.calculateKey()}
+				onSelect={this.handleSelect}
+				id='work'
+			>
+				<Tab eventKey={1} title="Blogs" >
+					<ConnectedBlogMain />
+				</Tab>
+				<Tab eventKey={2} title="Portfolio" >
+					<PortfolioMain />
+				</Tab>
+				<Tab eventKey={3} title="Photos" >
+					<PhotographyMain />
+				</Tab>
+				<Tab eventKey={4} title="Lab" >
+					<LaboratoryMain />
+				</Tab>
+			</Tabs>
     );
   }
 }
 
-// export default ShowcaseTabs
-
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
 	const pathname = getPathname(state);
-	return {
-		pathname
-	}
+	return { pathname }
 }
 
-const mapDispatchToProps = {
-	redirectPage
-}
+export { ShowcaseTabs }
 
-const ConnectedShowcaseTabs = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ShowcaseTabs)
-
-export default ConnectedShowcaseTabs;
+export default connect(mapStateToProps, { redirectPage })(ShowcaseTabs);
