@@ -27,43 +27,6 @@ const About = () =>
 				Do you know how many lines of code I've already had to write in addition to this stilly blurb?
 				My text editor deosn't even have a spellchekcer, so who Knows how many grammatrical errors I've typed?
 			</p>
-			<h3>Technologies</h3>
-			<hr/>
-			<div className='About--contentTech'>
-
-				<div className='About--contentTechList'>
-					<h4>Core</h4>
-					<ul>
-						<li>Javascript</li>
-						<li>Kotlin</li>
-						<li>Python</li>
-						<li>Java</li>
-						<li>MongoDb</li>
-						<li>PostgreSQL</li>
-					</ul>
-				</div>
-
-				<div className='About--contentTechList'>
-					<h4>Libraries</h4>
-					<ul>
-						<li>React</li>
-						<li>Redux</li>
-						<li>Express</li>
-						<li>Spring</li>
-						<li>Flask</li>
-					</ul>
-				</div>
-
-				<div className='About--contentTechList'>
-					<h4>Other</h4>
-					<ul>
-						<li>Photoshop</li>
-						<li>Linux (Ubuntu)</li>
-						<li>Coffee Consumption</li>
-					</ul>
-				</div>
-
-			</div>
 		</Col>
 	</Row>;
 

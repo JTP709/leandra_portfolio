@@ -17,10 +17,3 @@
 #profile_picture {
 	padding: 20px 20px 20px 0px;
 }*/
-.About .About--content .About--contentTech {
-	display: flex;
-	flex-direction: row
-}
-.About .About--content .About--contentTech .About--contentTechList {
-	width: 33.333333%;
-}

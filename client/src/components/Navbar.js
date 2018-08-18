@@ -1,40 +1,61 @@
 import React from 'react';
-import { Nav, NavItem } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import { Nav, NavItem, Navbar } from 'react-bootstrap';
+import { IndexLinkContainer } from 'react-router-bootstrap';
+
 import '../styles/Navbar.css';
 
-const Navbar = () =>
-  <Nav navbar>
-    <LinkContainer to='/'>
-      <NavItem>
-        Home
-      </NavItem>
-    </LinkContainer>
-    <LinkContainer to='/'>
-      <NavItem>
-        About
-      </NavItem>
-    </LinkContainer>
-    <LinkContainer to='/'>
-      <NavItem>
-        Portfolio
-      </NavItem>
-    </LinkContainer>
-    <LinkContainer to='/blog'>
-      <NavItem>
-        Blog
-      </NavItem>
-    </LinkContainer>
-    <LinkContainer to='/photography'>
-      <NavItem>
-        Photography
-      </NavItem>
-    </LinkContainer>
-    <LinkContainer to='/'>
-      <NavItem>
-        Contact
-      </NavItem>
-    </LinkContainer>
-  </Nav>
+class Navigation extends React.Component {
+  constructor() {
+    super();
+    this.state = { key: 0 }
+    this.handleSelect = this.handleSelect.bind(this);
+  }
 
-export default Navbar;
+  handleSelect(key) {
+    this.setState({ key });
+  }
+
+  render() {
+    return(
+      <Navbar collapseOnSelect fixedTop>
+        <Navbar.Header>
+          <Navbar.Brand>
+              JP
+          </Navbar.Brand>
+          <Navbar.Toggle />
+        </Navbar.Header>
+        <Navbar.Collapse>
+          <Nav activeKey={ this.state.key } onSelect={ this.handleSelect } >
+            <IndexLinkContainer to='/'>
+              <NavItem eventKey={1} >
+                About
+              </NavItem>
+            </IndexLinkContainer>
+            <IndexLinkContainer to='/'>
+              <NavItem eventKey={2} >
+                Portfolio
+              </NavItem>
+            </IndexLinkContainer>
+            <IndexLinkContainer to='/blog'>
+              <NavItem eventKey={3} >
+                Blog
+              </NavItem>
+            </IndexLinkContainer>
+            <IndexLinkContainer to='/photography'>
+              <NavItem eventKey={4} >
+                Photography
+              </NavItem>
+            </IndexLinkContainer>
+            <IndexLinkContainer to='/'>
+              <NavItem eventKey={5} >
+                Contact
+              </NavItem>
+            </IndexLinkContainer>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    );
+  }
+}
+
+export default Navigation;

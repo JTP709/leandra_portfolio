@@ -5,6 +5,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import CommonHOC from './CommonHOC';
 import About from './About';
 import Services from './Services';
+import Stack from './Stack';
 import BlogMain from '../containers/ConnectedBlogMain';
 import PhotographyMain from './Photography/PhotographyMain';
 import PortfolioMain from './Portfolio/PortfolioMain';
@@ -30,7 +31,7 @@ class App extends Component {
       <ConnectedRouter history={this.props.history}>
         <Switch>
           {/* INDEX */}
-          <Route exact path="/" component={ CommonHOC(About, Services, PortfolioMain) } />
+          <Route exact path="/" component={ CommonHOC(About, Stack, Services, PortfolioMain) } />
           <Route exact path="/blog" component={ CommonHOC(BlogMain) } />
           <Route exact path="/photography" component={ CommonHOC(PhotographyMain) } />
           <Route exact path="/laboratory" component={ CommonHOC(LaboratoryMain) } />

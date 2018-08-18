@@ -4,14 +4,15 @@ import Navbar from './Navbar';
 import Header from './Header';
 import Footer from './Footer';
 
-const CommonHOC = (Content, ExtraContent, BonusContent) => {
+const CommonHOC = (ComponentOne, ComponentTwo, ComponentThree, ComponentFour) => {
   return () => (
     <Grid>
       <Navbar />
       <Header />
-      <Content />
-      { ExtraContent && <ExtraContent /> }
-      { BonusContent && <BonusContent /> }
+      <ComponentOne />
+      { ComponentTwo && <ComponentTwo /> }
+      { ComponentThree && <ComponentThree /> }
+      { ComponentFour && <ComponentFour /> }
       <Footer />
     </Grid>
   );
