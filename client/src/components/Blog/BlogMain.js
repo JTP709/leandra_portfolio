@@ -9,7 +9,8 @@ import {
 	Pagination,
 	Form,
 	FormGroup,
-	FormControl
+	FormControl,
+	Glyphicon
 } from 'react-bootstrap';
 import { capitalizeFirstLetter } from '../../utils/utils';
 import BlogCard from './BlogCard';
@@ -187,11 +188,11 @@ class BlogMain extends Component {
 			});
 
 		return (
-			<Row id = "blog_section">
+			<Row className='BlogMain'>
 
 				{/* Blog Filters */}
 
-				<Col xs={ 4 } md={ 6 }>
+				<Col className='BlogMain--filter' xs={ 4 } md={ 6 }>
 					<ButtonToolbar>
 							<DropdownButton
 								title={ this.props.filterButton }
@@ -205,7 +206,7 @@ class BlogMain extends Component {
 
 				{/* Blog Search */}
 
-				<Col xd={ 8 } md={ 6 }>
+				<Col className='BlogMain--search' xd={ 8 } md={ 6 }>
 					<Form inline>
 						<FormGroup bsSize="large" controlId="search_box">
 					  	<FormControl
@@ -215,8 +216,12 @@ class BlogMain extends Component {
 					  		onChange={ this.handleSearchQuery }
 					  	/>
 						</FormGroup>
-						<Button bsSize="large" onClick={ this.handleSearch }>Submit</Button>
-						<Button bsSize="large" onClick={ this.handleClearSearch }>Clear</Button>
+						<Button bsSize="large" onClick={ this.handleSearch }>
+							<Glyphicon glyph='search' />
+						</Button>
+						<Button bsSize="large" onClick={ this.handleClearSearch }>
+							<Glyphicon glyph='remove' />
+						</Button>
 					</Form>
 				</Col>
 
@@ -224,7 +229,7 @@ class BlogMain extends Component {
 
 				{/* Blog Cards */}
 
-				<Col xs={ 12 }>
+				<Col className='BlogMain--cardContainer' xs={ 12 }>
 					{ blogCards }
 				</Col>
 
