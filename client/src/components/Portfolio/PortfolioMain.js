@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Col, Row, Image } from 'react-bootstrap';
-import { getPortfolios } from 'site-redux';
+import { getPortfolios, getScrollToRef } from 'site-redux';
 import PortfolioModal from './PortfolioModal';
 import '../../styles/portfolio/PortfolioMain.css';
 
@@ -14,7 +14,12 @@ class PortfolioMain extends Component{
 		}
 		this.openModal = this.openModal.bind(this);
 		this.closeModal = this.closeModal.bind(this);
+		this.ref = React.createRef();
 	};
+
+	componentDidMount(){
+		this.props.scrollToRef === 'PORTFOLIO' && window.scrollTo(0, this.ref);
+	}
 
 	openModal(id){
 		this.setState({
@@ -33,7 +38,7 @@ class PortfolioMain extends Component{
 	render(){
 		const { portfolios } = this.props;
 		return(
-			<Row className='Portfolio' id='portfolio'>
+			<Row className='Portfolio' id='portfolio' ref={ this.ref } >
 				<Col xs={12} className='Portfolio--header'>
 					<h1>Portfolio</h1>
 					<hr />
@@ -65,12 +70,10 @@ class PortfolioMain extends Component{
 	}
 }
 
-const mapStateToProps = state => {
-	const portfolios = getPortfolios(state);
-	return {
-		portfolios
-	}
-}
+const mapStateToProps = state => ({
+	portfolios: getPortfolios(state),
+	scrollToRef: getScrollToRef(state)
+})
 
 export { PortfolioMain };
 export default connect(mapStateToProps)(PortfolioMain);

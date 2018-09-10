@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Nav, NavItem, Navbar } from 'react-bootstrap';
 import { IndexLinkContainer } from 'react-router-bootstrap';
+import { getPathname, scrollToAbout, scrollToPortfolio } from 'site-redux';
 
 import '../styles/Navbar.css';
 
@@ -16,6 +18,26 @@ class Navigation extends React.Component {
   }
 
   render() {
+    const about = <NavItem onClick={ scrollToAbout } eventKey={1} >
+        About
+      </NavItem>
+
+    const portfolio = <NavItem onClick={ scrollToPortfolio } eventKey={2} >
+        Portfolio
+      </NavItem>
+
+    const blog = <NavItem eventKey={3} >
+        Blog
+      </NavItem>
+
+    const photography = <NavItem eventKey={4} >
+        Photography
+      </NavItem>
+
+    const contact = <NavItem eventKey={5} >
+        Contact
+      </NavItem>
+
     return(
       <Navbar collapseOnSelect fixedTop>
         <Navbar.Header>
@@ -26,30 +48,26 @@ class Navigation extends React.Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav activeKey={ this.state.key } onSelect={ this.handleSelect } >
-            <IndexLinkContainer to='/'>
-              <NavItem eventKey={1} >
-                About
-              </NavItem>
-            </IndexLinkContainer>
-            <IndexLinkContainer to='/'>
-              <NavItem eventKey={2} >
-                Portfolio
-              </NavItem>
-            </IndexLinkContainer>
+            {
+              this.props.pathname === '/'
+                ? [about, portfolio]
+                : [
+                    <IndexLinkContainer to='/'>
+                      { about }
+                    </IndexLinkContainer>,
+                    <IndexLinkContainer to='/'>
+                      { portfolio }
+                    </IndexLinkContainer>
+                  ]
+            }
             <IndexLinkContainer to='/blog'>
-              <NavItem eventKey={3} >
-                Blog
-              </NavItem>
+              { blog }
             </IndexLinkContainer>
             <IndexLinkContainer to='/photography'>
-              <NavItem eventKey={4} >
-                Photography
-              </NavItem>
+              { photography }
             </IndexLinkContainer>
-            <IndexLinkContainer to='/'>
-              <NavItem eventKey={5} >
-                Contact
-              </NavItem>
+            <IndexLinkContainer to='/contact'>
+              { contact }
             </IndexLinkContainer>
           </Nav>
         </Navbar.Collapse>
@@ -58,4 +76,7 @@ class Navigation extends React.Component {
   }
 }
 
-export default Navigation;
+const mapStateToProps = state => ({ pathname: getPathname(state) });
+
+export { Navigation }
+export default connect(mapStateToProps, { scrollToAbout, scrollToPortfolio })(Navigation);

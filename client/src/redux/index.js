@@ -31,6 +31,12 @@ import {
   fetchPortfolio
 } from './actions/portfolio';
 
+import {
+  scrollToAbout,
+  scrollToPortfolio,
+  resetScrollTo
+} from './actions/scroll';
+
 import rootReducer from './reducers/rootReducer'
 
 import {
@@ -49,7 +55,8 @@ import {
   getBlogForm,
   getShowModal,
   getPathname,
-  getPortfolios
+  getPortfolios,
+  getScrollToRef
 } from './selectors'
 
 export {
@@ -82,6 +89,10 @@ export {
   updateShowModalFalse,
   // actions portfolio
   fetchPortfolio,
+  // actions scroll
+  scrollToAbout,
+  scrollToPortfolio,
+  resetScrollTo,
   // root reducer
   rootReducer,
   // blog selectors
@@ -101,5 +112,7 @@ export {
   getShowModal,
   getPathname,
   // portfolio selectors
-  getPortfolios
+  getPortfolios,
+  // scroll selectors
+  getScrollToRef
 }

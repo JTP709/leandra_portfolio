@@ -1,35 +1,39 @@
 // BLOGS
 
-export const getSearchQuery = state => { return state.blogState.searchQuery }
+export const getSearchQuery = state => state.blogs.searchQuery;
 
-export const getSearchToggle = state => { return state.blogState.searchToggle }
+export const getSearchToggle = state => state.blogs.searchToggle;
 
-export const getSearchResults = state => { return state.blogState.searchResults }
+export const getSearchResults = state => state.blogs.searchResults;
 
-export const getSearchIndex = state => { return state.blogState.searchIndex }
+export const getSearchIndex = state => state.blogs.searchIndex;
 
-export const getBlogs = state => { return state.blogState.blogs }
+export const getBlogs = state => state.blogs.blogs;
 
-export const getBlogModal = state => { return state.blogState.blogModal }
+export const getBlogModal = state => state.blogs.blogModal;
 
-export const getPages = state => { return state.blogState.pages }
+export const getPages = state => state.blogs.pages;
 
-export const getActivePage = state => { return state.blogState.activePage }
+export const getActivePage = state => state.blogs.activePage;
 
-export const getBlogsDisplay = state => { return state.blogState.blogsDisplay }
+export const getBlogsDisplay = state => state.blogs.blogsDisplay;
 
-export const getFilters = state => { return state.blogState.filters }
+export const getFilters = state => state.blogs.filters;
 
-export const getFilterButton = state => { return state.blogState.filterButton }
+export const getFilterButton = state => state.blogs.filterButton;
 
-export const getNotification = state => { return state.blogState.notification }
+export const getNotification = state => state.blogs.notification;
 
-export const getBlogForm = state => { return state.blogState.blogForm }
+export const getBlogForm = state => state.blogs.blogForm;
 
-export const getShowModal = state => { return state.blogState.showModal }
+export const getShowModal = state => state.blogs.showModal;
 
-export const getPathname = state => { return state.router.location.pathname }
+export const getPathname = state => state.router.location.pathname;
 
 // PORTFOLIO
 
-export const getPortfolios = state => { return state.portfolioState.portfolios }
+export const getPortfolios = state => state.portfolio.portfolios;
+
+// SCROLL
+
+export const getScrollToRef = state => state.scroll.scrollToRef

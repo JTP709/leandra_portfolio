@@ -10,7 +10,7 @@ const testPortfolio = [
         subLabel: "Nulla vitae elit libero, a pharetra augue mollis interdum."
       },
       {
-        img: "https://placedog.net/1024/512",
+        img: "https://loremflickr.com/1024/512/dog",
         label: "Second slide label",
         subLabel: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       }, 
@@ -44,7 +44,7 @@ const testPortfolio = [
   {
     rank: 2,
     title: "Kwitter",
-    thumbnail: "https://placedog.net/512/384",
+    thumbnail: "https://loremflickr.com/512/384/dog",
     carousel: [
       {
         img: "http://placekitten.com/g/1024/512",
@@ -52,7 +52,7 @@ const testPortfolio = [
         subLabel: "Nulla vitae elit libero, a pharetra augue mollis interdum."
       },
       {
-        img: "https://placedog.net/1024/512",
+        img: "https://loremflickr.com/1024/512/dog",
         label: "Second slide label",
         subLabel: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       }, 
@@ -94,7 +94,7 @@ const testPortfolio = [
         subLabel: "Nulla vitae elit libero, a pharetra augue mollis interdum."
       },
       {
-        img: "https://placedog.net/1024/512",
+        img: "https://loremflickr.com/1024/512/dog",
         label: "Second slide label",
         subLabel: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       }, 
@@ -128,7 +128,7 @@ const testPortfolio = [
   {
     rank: 2,
     title: "Kwitter",
-    thumbnail: "https://placedog.net/512/384",
+    thumbnail: "https://loremflickr.com/512/384/dog",
     carousel: [
       {
         img: "http://placekitten.com/g/1024/512",
@@ -136,7 +136,7 @@ const testPortfolio = [
         subLabel: "Nulla vitae elit libero, a pharetra augue mollis interdum."
       },
       {
-        img: "https://placedog.net/1024/512",
+        img: "https://loremflickr.com/1024/512/dog",
         label: "Second slide label",
         subLabel: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       }, 
@@ -178,7 +178,7 @@ const testPortfolio = [
         subLabel: "Nulla vitae elit libero, a pharetra augue mollis interdum."
       },
       {
-        img: "https://placedog.net/1024/512",
+        img: "https://loremflickr.com/1024/512/dog",
         label: "Second slide label",
         subLabel: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       }, 
@@ -212,7 +212,7 @@ const testPortfolio = [
   {
     rank: 2,
     title: "Kwitter",
-    thumbnail: "https://placedog.net/512/384",
+    thumbnail: "https://loremflickr.com/512/384/dog",
     carousel: [
       {
         img: "http://placekitten.com/g/1024/512",
@@ -220,7 +220,7 @@ const testPortfolio = [
         subLabel: "Nulla vitae elit libero, a pharetra augue mollis interdum."
       },
       {
-        img: "https://placedog.net/1024/512",
+        img: "https://loremflickr.com/1024/512/dog",
         label: "Second slide label",
         subLabel: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       }, 

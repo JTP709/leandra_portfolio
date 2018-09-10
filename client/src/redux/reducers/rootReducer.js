@@ -1,10 +1,12 @@
 import { blogs } from './blog';
 import { portfolio } from './portfolio';
+import { scroll } from './scroll';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
-	blogState: blogs,
-	portfolioState: portfolio
+	blogs,
+	portfolio,
+	scroll
 });
 
 export default rootReducer;

@@ -3,9 +3,18 @@
     padding: 60px 48px;
 }
 
-.Header .Header--text, .Header .Header--learnMoreButton {
-    margin: auto;
+.Header--fullScreen {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Header .Header--content {
+    flex-direction: column;
+    justify-content: center;
     width: fit-content;
+    margin: auto;
 }
 
 .Header h1 {

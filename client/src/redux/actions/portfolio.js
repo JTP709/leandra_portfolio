@@ -1,8 +1,6 @@
 import axios from 'axios';
 // import { push } from 'connected-react-router';
-import {
-  UPDATE_PORTFOLIO
-} from '../constants';
+import { UPDATE_PORTFOLIO } from '../constants';
 
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:5000';
 
