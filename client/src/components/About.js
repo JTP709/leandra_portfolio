@@ -7,19 +7,22 @@ import { getScrollToRef } from 'site-redux';
 class About extends Component {
 	constructor() {
 		super ();
-		this.ref = React.createRef();
+		this.componentRef = React.createRef();
+		console.log('About ref:', this.componentRef);
 	}
 
 	componentDidMount(){
-		window.scrollTo(0, this.ref);
+		this.props.scrollToRef === 'ABOUT' && window.scrollTo(0, this.componentRef);
+		this.props.scrollToRef === 'ABOUT' && console.log('scroll to About');
 	}
 
 	render() {
 		return (
-			<Row className='About' ref={ this.ref }>
+			<Row className='About' ref={ this.componentRef }>
 				<Col xs={12} className='About--header'>
 					<h1>About Me</h1>
 					<hr />
+					<button onClick={()=>window.scrollTo(0, this.componentRef)}>Go to About</button>
 				</Col>
 				<Col xs={12} md={3}>
 					<Image className='About--image' src="https://loremflickr.com/250/250/dog" alt="Profile Picture" responsive />

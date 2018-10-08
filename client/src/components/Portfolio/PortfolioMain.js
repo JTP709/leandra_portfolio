@@ -14,11 +14,12 @@ class PortfolioMain extends Component{
 		}
 		this.openModal = this.openModal.bind(this);
 		this.closeModal = this.closeModal.bind(this);
-		this.ref = React.createRef();
+		this.componentRef = React.createRef();
 	};
 
 	componentDidMount(){
-		this.props.scrollToRef === 'PORTFOLIO' && window.scrollTo(0, this.ref);
+		this.props.scrollToRef && this.props.scrollToRef === 'PORTFOLIO' && window.scrollTo(0, this.componentRef);
+		this.props.scrollToRef && this.props.scrollToRef === 'PORTFOLIO' && console.log('scroll to Porftolio');
 	}
 
 	openModal(id){
@@ -38,10 +39,11 @@ class PortfolioMain extends Component{
 	render(){
 		const { portfolios } = this.props;
 		return(
-			<Row className='Portfolio' id='portfolio' ref={ this.ref } >
+			<Row className='Portfolio' id='portfolio' ref={ this.componentRef } >
 				<Col xs={12} className='Portfolio--header'>
 					<h1>Portfolio</h1>
 					<hr />
+					<button onClick={()=>window.scrollTo(0, this.componentRef)}>Go to Portfolio</button>
 				</Col>
 				<Col xs={12}>
 					{ 

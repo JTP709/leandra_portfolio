@@ -18,11 +18,11 @@ class Navigation extends React.Component {
   }
 
   render() {
-    const about = <NavItem onClick={ scrollToAbout } eventKey={1} >
+    const about = <NavItem onClick={ this.props.scrollToAbout } eventKey={1} >
         About
       </NavItem>
 
-    const portfolio = <NavItem onClick={ scrollToPortfolio } eventKey={2} >
+    const portfolio = <NavItem onClick={ this.props.scrollToPortfolio } eventKey={2} >
         Portfolio
       </NavItem>
 
