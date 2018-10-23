@@ -18,6 +18,10 @@ class Navigation extends React.Component {
   }
 
   render() {
+    const home = <NavItem eventKey ={1} >
+      Home
+    </NavItem>
+    // TODO: fix nav with anchor points AND change eventKey!
     const about = <NavItem onClick={ this.props.scrollToAbout } eventKey={1} >
         About
       </NavItem>
@@ -26,15 +30,15 @@ class Navigation extends React.Component {
         Portfolio
       </NavItem>
 
-    const blog = <NavItem eventKey={3} >
+    const blog = <NavItem eventKey={2} >
         Blog
       </NavItem>
 
-    const photography = <NavItem eventKey={4} >
+    const photography = <NavItem eventKey={3} >
         Photography
       </NavItem>
 
-    const contact = <NavItem eventKey={5} >
+    const contact = <NavItem eventKey={4} >
         Contact
       </NavItem>
 
@@ -48,18 +52,27 @@ class Navigation extends React.Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav activeKey={ this.state.key } onSelect={ this.handleSelect } >
-            {
-              this.props.pathname === '/'
-                ? [about, portfolio]
-                : [
-                    <IndexLinkContainer to='/'>
-                      { about }
-                    </IndexLinkContainer>,
-                    <IndexLinkContainer to='/'>
-                      { portfolio }
-                    </IndexLinkContainer>
-                  ]
-            }
+            {/* 
+              {
+                this.props.pathname === '/'
+                  ? [about, portfolio]
+                  : [
+                      <IndexLinkContainer to='/'>
+                        { about }
+                      </IndexLinkContainer>,
+                      <IndexLinkContainer to='/'>
+                        { portfolio }
+                      </IndexLinkContainer>
+                    ]
+              } 
+            */}
+
+            {/* placeholder hom until nav works */}
+            <IndexLinkContainer to='/'>
+              { home }
+            </IndexLinkContainer>
+            {/* end placeholder */}
+
             <IndexLinkContainer to='/blog'>
               { blog }
             </IndexLinkContainer>

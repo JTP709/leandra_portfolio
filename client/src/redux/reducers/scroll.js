@@ -1,5 +1,4 @@
 export const scroll = (state = { scrollToRef: null }, action) => {
-  console.log(action);
   switch(action.type) {
     case 'SCROLL_TO_ABOUT':
       return { scrollToRef: 'ABOUT' }

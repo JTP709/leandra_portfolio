@@ -8,13 +8,20 @@ class About extends Component {
 	constructor() {
 		super ();
 		this.componentRef = React.createRef();
-		console.log('About ref:', this.componentRef);
 	}
 
-	componentDidMount(){
-		this.props.scrollToRef === 'ABOUT' && window.scrollTo(0, this.componentRef);
-		this.props.scrollToRef === 'ABOUT' && console.log('scroll to About');
-	}
+	// componentDidMount() {
+	// 	if (this.props.scrollToRef === 'ABOUT') {
+	// 		window.scrollTo(0, this.comp');
+	// 	} 
+	// }
+
+	// componentWillReceiveProps(nextProps) {
+	// 	if(nextProps.scrollToRef === 'ABOUT'){
+	// 		console.log('should scroll tis.compnoentRef);
+	// 		window.scrollTo(0, this.componentRef);
+	// 	}
+	// }
 
 	render() {
 		return (
@@ -22,7 +29,6 @@ class About extends Component {
 				<Col xs={12} className='About--header'>
 					<h1>About Me</h1>
 					<hr />
-					<button onClick={()=>window.scrollTo(0, this.componentRef)}>Go to About</button>
 				</Col>
 				<Col xs={12} md={3}>
 					<Image className='About--image' src="https://loremflickr.com/250/250/dog" alt="Profile Picture" responsive />

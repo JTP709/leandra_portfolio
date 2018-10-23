@@ -17,10 +17,12 @@ class PortfolioMain extends Component{
 		this.componentRef = React.createRef();
 	};
 
-	componentDidMount(){
-		this.props.scrollToRef && this.props.scrollToRef === 'PORTFOLIO' && window.scrollTo(0, this.componentRef);
-		this.props.scrollToRef && this.props.scrollToRef === 'PORTFOLIO' && console.log('scroll to Porftolio');
-	}
+	// componentDidMount(){
+	// 	if(this.props.scrollToRef === 'PORTFOLIO') {
+	// 		window.scrollTo(0, this.componentRef);
+	// 		console.log('scroll to Porftolio');
+	// 	} 
+	// }
 
 	openModal(id){
 		this.setState({
@@ -43,12 +45,11 @@ class PortfolioMain extends Component{
 				<Col xs={12} className='Portfolio--header'>
 					<h1>Portfolio</h1>
 					<hr />
-					<button onClick={()=>window.scrollTo(0, this.componentRef)}>Go to Portfolio</button>
 				</Col>
 				<Col xs={12}>
 					{ 
 						portfolios.map(portfolio => (
-							<div className='PortfolioMain--thumbnail'>
+							<div key={portfolio._id} className='PortfolioMain--thumbnail'>
 								<Image 
 									data-testid="portfolio-main-image"
 									className="portfolio_thumbnail"
