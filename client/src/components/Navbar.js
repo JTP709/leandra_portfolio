@@ -71,6 +71,12 @@ class Navigation extends React.Component {
             <IndexLinkContainer to='/'>
               { home }
             </IndexLinkContainer>
+            <IndexLinkContainer to='/about'>
+              { about }
+            </IndexLinkContainer>
+            <IndexLinkContainer to='/portfolio'>
+              { portfolio }
+            </IndexLinkContainer>
             {/* end placeholder */}
 
             <IndexLinkContainer to='/blog'>

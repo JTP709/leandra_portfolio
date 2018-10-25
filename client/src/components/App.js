@@ -33,7 +33,9 @@ class App extends Component {
         <Switch>
           <ScrollToTheTop>
             {/* INDEX */}
-            <Route exact path="/" component={ CommonHOC(About, Stack, Services, PortfolioMain) } />
+            <Route exact path="/" component={ CommonHOC() } />
+            <Route exact path="/about" component={ CommonHOC(About, Stack, Services) } />
+            <Route exact path="/portfolio" component={ CommonHOC(PortfolioMain) } />
             <Route exact path="/blog" component={ CommonHOC(BlogMain) } />
             <Route exact path="/photography" component={ CommonHOC(PhotographyMain) } />
             <Route exact path="/contact" component={ CommonHOC(Contact) } />

@@ -8,11 +8,13 @@ const CommonHOC = (ComponentOne, ComponentTwo, ComponentThree, ComponentFour) =>
   return () => (
     <Grid>
       <Navbar />
-      <Header />
-      <ComponentOne />
-      { ComponentTwo && <ComponentTwo /> }
-      { ComponentThree && <ComponentThree /> }
-      { ComponentFour && <ComponentFour /> }
+      <div className='mainContainer'>
+        <Header />
+        { ComponentOne && <ComponentOne /> }
+        { ComponentTwo && <ComponentTwo /> }
+        { ComponentThree && <ComponentThree /> }
+        { ComponentFour && <ComponentFour /> }
+      </div>
       <Footer />
     </Grid>
   );

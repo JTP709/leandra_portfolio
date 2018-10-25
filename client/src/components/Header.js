@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getPathname } from 'site-redux';
+import { IndexLinkContainer } from 'react-router-bootstrap';
 import { Button } from 'react-bootstrap';
 import '../styles/Header.css';
 
@@ -10,7 +11,12 @@ const Header = ({ pathname }) =>
 			<h1>Welcome to my World!</h1>
 			<p>Something Witty...</p>
 			<div className='Header--content'>
-				<Button>Learn More</Button>
+			{
+				pathname === '/' &&
+        <IndexLinkContainer to='/about'>
+					<Button>Learn More</Button>
+				</IndexLinkContainer>
+			}
 			</div>
 		</div>
 	</div>
