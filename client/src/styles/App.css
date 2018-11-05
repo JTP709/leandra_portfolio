@@ -1,5 +1,9 @@
 .mainContainer {
   width: 100%;
   min-height: calc(100vh - 100px);
-  padding: 0 20% 0 20%;
+  padding: 0;
+}
+
+#root {
+  /* background: rgb(14, 175, 36); */
 }
